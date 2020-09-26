@@ -1,8 +1,81 @@
+/*
+Blue Ironhack: rgb(45, 197, 250) // #2DC5FA
+*/
+
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px 'Roboto', Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+  color: #2DC5FA;
+}
+
+
+
+
+/***
+ *    ######## ##     ## ######## ########  ##    ## ##      ## ##     ## ######## ########  ######## 
+ *    ##       ##     ## ##       ##     ##  ##  ##  ##  ##  ## ##     ## ##       ##     ## ##       
+ *    ##       ##     ## ##       ##     ##   ####   ##  ##  ## ##     ## ##       ##     ## ##       
+ *    ######   ##     ## ######   ########     ##    ##  ##  ## ######### ######   ########  ######   
+ *    ##        ##   ##  ##       ##   ##      ##    ##  ##  ## ##     ## ##       ##   ##   ##       
+ *    ##         ## ##   ##       ##    ##     ##    ##  ##  ## ##     ## ##       ##    ##  ##       
+ *    ########    ###    ######## ##     ##    ##     ###  ###  ##     ## ######## ##     ## ######## 
+ */
+
+.content-container {
+  /*Ajouter un left padding égale à la largeur de la left barre pour être sûr de ne rien avoir en dessous*/
+}
+
+.blue-btn {
+  background: rgb(45, 197, 250) none repeat scroll 0% 0%;
+  color: white;
+  border-radius: 0.6rem;
+  padding: 1.4rem 2.8rem;
+  border: 0px none;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+}
+
+.blue-btn:hover {
+  background: rgb(0, 180, 255) none repeat scroll 0% 0%;
+}
+
+
+
+
+/***
+ *    ##     ##  #######  ##     ## ######## 
+ *    ##     ## ##     ## ###   ### ##       
+ *    ##     ## ##     ## #### #### ##       
+ *    ######### ##     ## ## ### ## ######   
+ *    ##     ## ##     ## ##     ## ##       
+ *    ##     ## ##     ## ##     ## ##       
+ *    ##     ##  #######  ##     ## ######## 
+ */
+
+.home {
+  background: url(images/home-bg.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100vh;
+}
+
+.home-title {
+  font-size: 8rem;
+  font-weight: 700;
+}
+
+.home-subtitle {
+  font-size: 4rem;
+  font-weight: 700;
 }
