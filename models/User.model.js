@@ -19,25 +19,43 @@ const userSchema = new Schema({
   ironhacker: {
     type: Boolean,
   },
+  //EMBEDDED IRONHACKER PROPERTY ? DOES THE REQUIRED FIELD CAN BE CONDITIONAL
   profileImgSrc: String,
   firstName: String,
   lastName: String,
   expertise: String,
   gitHub: String,
   linkedIn: String,
-  courses: String,
+  courses: { type: String, enum: ['Web-Dev', 'UX/UI', 'Data', 'Cyber Security'], required: [true, 'What did you study ?'] },
   promo: String,
   campus: {
     type: String,
-    enum: ['Amsterdam', 'Barcelona', 'Berlin', 'Lisboa', 'Madrid', 'Mexico', 'Miami', 'Paris', 'Sao Paulo'],
-    required: [true, 'Write your campus']
+    enum: ['Amsterdam', 'Barcelona', 'Berlin', 'Lisboa', 'Madrid', 'Mexico', 'Miami', 'Paris', 'Remote', 'Sao Paulo'],
+    required: [true, 'Where was your campus ?']
   },
-  timing: String, // PART-TIME OU FULL-TIME
+  format: { type: String, enum: ['Full-Time', 'Part-Time'] }, // PART-TIME OU FULL-TIME
   current_location: String, //WHAT LOCATION ATTRIBUTE IS ABOUT?
   projects: {
     type: Schema.Types.ObjectId,
     ref: 'Project'
   },
-})
+  // OBJET DANS OBJET POUR user AND recruiter MODEL REQUIRED FIELD ?
+  recruiter: {
+    type: Boolean,
+  },
+  title: {
+    type: String,
+    required: [true, "What is your current position ?"]
+  },
+  company: {
+    type: String,
+    required: [true, "Please enter your company"]
+  },
+  contact: {
+    type: String,
+  },
+  favorites: [String],
+  timestamps: true
+});
 
 module.exports = model('User', userSchema);
