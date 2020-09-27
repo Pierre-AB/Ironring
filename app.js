@@ -59,8 +59,8 @@ app.locals.title = 'Ironring';
 // ##     ##  #######   #######     ##    ######## ##     ##  ######  
 
 
-const index = require('./routes/index');
-app.use('/', index);
+const indexRouter = require('./routes/index');
+app.use('/', indexRouter);
 
 const authRouter = require('./routes/auth.routes');
 app.use('/', authRouter)

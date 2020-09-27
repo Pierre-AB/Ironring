@@ -1,5 +1,5 @@
-const { Router } = require('express'),
-const router = new Router();
+const express = require('express'),
+const router = express.Router();
 const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
 const User = require('../models/User.model');
