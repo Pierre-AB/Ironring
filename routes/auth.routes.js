@@ -22,48 +22,52 @@ const mongoose = require('mongoose');
 router.get('/signup', (req, res, next) => res.render('auth/signup'));
 
 router.post('/signup', (req, res, next) => { /*uploader to add*/
-  const { email, password, ironhacker } = req.body;
+  // const { email, password, ironhacker } = req.body;
+  const { email, password, ironhacker, firstName, lastName, expertise, campus, courses, profileImgSrc } = req.body;
+
+
   if (!email || !password) {
-    res.render('auth/signup', { errorMessage: 'All Fields are mandatory.' })
+    res.render('auth/signup', { errorMessage: 'All Fields are mandatory.' });
+    return;
   }
-  //Strong password validation
+  // Strong password validation
   const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
   if (!regex.test(password)) {
-    res.status(500)
-      .render('auth/signup', { errorMessage: 'Password needs to have at least 6 chars and must contain at least one number, one lowercase and one uppercase letter.' })
-    return
+    // res.status(500) ????? A QUOI CELA SERT ???
+    res.render('auth/signup', { errorMessage: 'Password needs to have at least 6 chars and must contain at least one number, one lowercase and one uppercase letter.' })
+    return;
   }
 
   if (ironhacker === 'true') { //WARNING: Uploader not set-up yet
-    //Specific variables for Ironhacker model
-    const { firstName, lastName, expertise, campus, profileImgSrc } = req.body;
-
     //Hash password and create User (specific variables)
     bcryptjs.genSalt(saltRounds)
       .then(salt => bcryptjs.hash(password, salt))
       .then(hashedPassword => {
         return User.create({
-          username,
           email,
           passwordHash: hashedPassword,
           firstName,
           lastName,
           expertise,
           campus,
+          courses
           // profileImgSrc //WARNING: Uploader not set up yet.
         })
       })
       .then(userFromDB => {
         console.log('🙌🏻 IRONHACKER CREE =', userFromDB);
-        res.redirect('/userProfile'); //DEFINE VIEW NAME
+        // res.redirect('/userProfile'); //DEFINE VIEW NAME
+        return;
       })
       .catch(error => {
         console.log('💥 IRONHACKER ERROR =', error);
         return;
       })
   }
-  if (!ironhacker) {
-    // JUST A VISITOR
+  if (ironhacker != 'true') {
+    //   // JUST A VISITOR
+    console.log('Just a visitor');
+    //Factoring?
     bcryptjs.genSalt(saltRounds)
       .then(salt => bcryptjs.hash(password, salt))
       .then(hashedPassword => {
@@ -74,6 +78,7 @@ router.post('/signup', (req, res, next) => { /*uploader to add*/
       })
       .then(userFromDB => {
         console.log('🙌🏻 VISITOR CREE =', userFromDB);
+        return;
       })
       .catch(error => {
         console.log('💥 VISITOR ERROR =', error);

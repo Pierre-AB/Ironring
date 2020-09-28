@@ -27,7 +27,7 @@ const userSchema = new Schema(
     expertise: String,
     gitHub: String,
     linkedIn: String,
-    courses: { type: String, enum: ['Web-Dev', 'UX/UI', 'Data', 'Cyber Security'], required: [true, 'What did you study ?'] },
+    courses: { type: String, enum: ['Web-Dev', 'UX/UI', 'Data', 'Cyber_Security'], required: [true, 'What did you study ?'] },
     promo: String,
     campus: {
       type: String,
@@ -40,22 +40,23 @@ const userSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: 'Project'
     },
-    // OBJET DANS OBJET POUR user AND recruiter MODEL REQUIRED FIELD ?
-    recruiter: {
-      type: Boolean,
-    },
-    title: {
-      type: String,
-      required: [true, "What is your current position ?"]
-    },
-    company: {
-      type: String,
-      required: [true, "Please enter your company"]
-    },
-    contact: {
-      type: String,
-    },
-    favorites: [String]
+    // OBJET DANS OBJET POUR user AND recruiter MODEL REQUIRED FIELD ? REQUIRED = WE CAN'T MISS IT
+    //   recruiter: {
+    //     type: Boolean,
+    //   },
+    //   title: {
+    //     type: String,
+    //     required: [true, "What is your current position ?"]
+    //   },
+    //   company: {
+    //     type: String,
+    //     required: [true, "Please enter your company"]
+    //   },
+    //   contact: {
+    //     type: String,
+    //   },
+    //   favorites: [String]
+    // },
   },
   {
     timestamps: true
