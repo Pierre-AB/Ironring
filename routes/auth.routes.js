@@ -21,12 +21,12 @@ const mongoose = require('mongoose');
 // GET -> Sign Up page
 router.get('/signup', (req, res, next) => res.render('auth/signup'));
 
-router.post('/signup', /*uploader to add*/(req, res, next) => {
+router.post('/signup', (req, res, next) => { /*uploader to add*/
   const { email, password, ironhacker } = req.body;
   if (!email || !password) {
     res.render('auth/signup', { errorMessage: 'All Fields are mandatory.' })
   }
-
+  //Strong password validation
   const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
   if (!regex.test(password)) {
     res.status(500)
@@ -34,7 +34,7 @@ router.post('/signup', /*uploader to add*/(req, res, next) => {
     return
   }
 
-  if (ironhacker) { //WARNING: Uploader not set-up yet
+  if (ironhacker === 'true') { //WARNING: Uploader not set-up yet
     //Specific variables for Ironhacker model
     const { firstName, lastName, expertise, campus, profileImgSrc } = req.body;
 
@@ -50,7 +50,7 @@ router.post('/signup', /*uploader to add*/(req, res, next) => {
           lastName,
           expertise,
           campus,
-          profileImgSrc //WARNING: Uploader not set up yet.
+          // profileImgSrc //WARNING: Uploader not set up yet.
         })
       })
       .then(userFromDB => {

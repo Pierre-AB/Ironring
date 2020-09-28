@@ -59,6 +59,7 @@ a:active, a:hover, a:focus {
 
 .small-btn {
   padding: 0.4rem 1.2rem;
+  margin-left: auto;
 }
 
 .big-btn {
@@ -92,6 +93,10 @@ a:active, a:hover, a:focus {
 .top-nav-items {
   display:flex;
   justify-content: space-between;
+}
+.top-nav-items ul {
+  display:flex;
+  margin-left:auto;
 }
 
 .courses-nav ul {

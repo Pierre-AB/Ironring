@@ -46,7 +46,8 @@ a:active, a:hover, a:focus {
   font-weight: 700; }
 
 .small-btn {
-  padding: 0.4rem 1.2rem; }
+  padding: 0.4rem 1.2rem;
+  margin-left: auto; }
 
 .big-btn {
   padding: 1rem 2rem;
@@ -74,6 +75,10 @@ a:active, a:hover, a:focus {
 .top-nav-items {
   display: flex;
   justify-content: space-between; }
+
+.top-nav-items ul {
+  display: flex;
+  margin-left: auto; }
 
 .courses-nav ul {
   display: flex;
@@ -113,7 +118,7 @@ a:active, a:hover, a:focus {
 .left-nav .ico {
   padding: 3vh 0; }
 
-.left-nav a:active, a:hover, a:focus {
+.left-nav a:active, .left-nav a:hover, .left-nav a:focus {
   background: rgba(45, 197, 250, 0.3);
   width: 100%;
   text-align: center;
