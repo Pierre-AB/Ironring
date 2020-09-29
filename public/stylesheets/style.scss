@@ -12,7 +12,7 @@ Grey: #c0c4d0
 body {
   margin: 0px;
   padding: 0px;
-  font: 14px 'Roboto', Helvetica, Arial, sans-serif;
+  font: 14px "Roboto", Helvetica, Arial, sans-serif;
   font-weight: 500;
 }
 
@@ -21,11 +21,11 @@ a {
   text-decoration: none;
 }
 
-a:active, a:hover, a:focus {
-  color: #2DC5FA;
+a:active,
+a:hover,
+a:focus {
+  color: #2dc5fa;
 }
-
-
 
 /***
  *    ######## ##     ## ######## ########  ##    ## ##      ## ##     ## ######## ########  ######## 
@@ -48,14 +48,15 @@ a:active, a:hover, a:focus {
   border: 0px none;
   cursor: pointer;
   transition: all 0.3s ease 0s;
-  letter-spacing: .05rem;
+  letter-spacing: 0.05rem;
 }
 
-.blue-btn a:active, .blue-btn a:hover, .blue-btn a:focus {
+.blue-btn a:active,
+.blue-btn a:hover,
+.blue-btn a:focus {
   color: white;
   font-weight: 700;
 }
-
 
 .small-btn {
   padding: 0.4rem 1.2rem;
@@ -70,7 +71,6 @@ a:active, a:hover, a:focus {
 .blue-btn:hover {
   background: rgb(0, 180, 255) none repeat scroll 0% 0%;
 }
-
 
 /***
  *    ########  #######  ########     ##    ##    ###    ##     ## 
@@ -91,7 +91,7 @@ a:active, a:hover, a:focus {
 }
 
 .top-nav-items {
-  display:flex;
+  display: flex;
   justify-content: end;
 }
 
@@ -114,9 +114,6 @@ a:active, a:hover, a:focus {
   z-index: 1;
   top: 1.1vw;
 }
-
-
-
 
 /***
  *    ##       ######## ######## ########         ##    ##    ###    ##     ## 
@@ -147,17 +144,16 @@ a:active, a:hover, a:focus {
   padding: 3vh 0;
 }
 
-.left-nav a:active, .left-nav a:hover, .left-nav a:focus {
+.left-nav a:active,
+.left-nav a:hover,
+.left-nav a:focus {
   background: rgba(45, 197, 250, 0.1);
   width: 100%;
   text-align: center;
-  border-right: solid 3px #2DC5FA;
+  border-right: solid 3px #2dc5fa;
   margin-right: -6px;
   padding-left: 6px;
 }
-
-
-
 
 /***
  *    ##     ##  #######  ##     ## ######## 
@@ -170,7 +166,7 @@ a:active, a:hover, a:focus {
  */
 
 .home {
-  background: url('../images/home-bg.jpg') no-repeat right center fixed;
+  background: url("../images/home-bg.jpg") no-repeat right center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -200,8 +196,8 @@ a:active, a:hover, a:focus {
   font-size: 6rem;
   font-weight: 400;
   text-transform: uppercase;
-  color: #2DC5FA;
-  letter-spacing: .2rem;
+  color: #2dc5fa;
+  letter-spacing: 0.2rem;
 }
 
 .home-subtitle {
@@ -210,8 +206,6 @@ a:active, a:hover, a:focus {
   color: #c0c4d0;
   padding-bottom: 5vh;
 }
-
-
 
 /***
  *     ######  ####  ######   ##    ##    ##     ## ########  
@@ -235,7 +229,7 @@ a:active, a:hover, a:focus {
 .signup-box {
   background: #fafbfd;
   border-radius: 6px;
-  box-shadow: 2px 4px 12px rgba(0, 0, 0, .09);
+  box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.09);
   display: flex;
   flex-wrap: wrap;
   align-content: center;
@@ -252,21 +246,22 @@ a:active, a:hover, a:focus {
   padding-left: 5vw;
 }
 
-// .invisible {
-//   width: 0;
-//   overflow: hidden;
-//   transition: width 0.5s;
-// }
+.invisible {
+  display: none;
+}
 
-// .visible {
-//   width: auto;
-//   transition: width 0.5s;
-// }
+.visible {
+  display: block;
+}
 
 form {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.visitor-signup-box form {
+  flex-direction: row;
 }
 
 .error {
@@ -290,7 +285,7 @@ form {
 }
 
 .form-subtitle {
-  color: #2DC5FA;
+  color: #2dc5fa;
   font-size: 18px;
   font-weight: 700;
   line-height: 18px;
@@ -299,7 +294,7 @@ form {
 }
 
 label {
-  color: #86939E;
+  color: #86939e;
   display: block;
   font-size: 14px;
   font-weight: 400;
@@ -309,7 +304,12 @@ label {
   width: 300px;
 }
 
-input[type="text"], input[type="password"], input[type="email"], input[type="textarea"], input[type="number"], select {
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="textarea"],
+input[type="number"],
+select {
   border: 2px solid #e1e8ee;
   border-radius: 6px;
   padding: 8px 16px;
@@ -325,7 +325,12 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tex
   margin-right: 1vh;
 }
 
-
+.mandatory {
+  color: #2dc5fa;
+  font-size: 10px;
+  text-align: right;
+  padding-top: 2vh;
+}
 
 /***
  *    ##    ## ######## ##      ##       ########  ########   #######        ## ########  ######  ######## 
@@ -337,18 +342,17 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tex
  *    ##    ## ########  ###  ###        ##        ##     ##  #######   ######  ########  ######     ##    
  */
 
-
 .grey-bg {
-  background: #FAFBFD;
+  background: #fafbfd;
   height: 100vh;
 }
- 
+
 .general-subtitle {
   font-size: 18px;
   font-weight: 700;
   line-height: 18px;
-  text-transform: uppercase; 
-  margin-bottom: 3Vh;
+  text-transform: uppercase;
+  margin-bottom: 3vh;
 }
 
 .new-project-form {

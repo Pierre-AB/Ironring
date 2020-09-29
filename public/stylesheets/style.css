@@ -10,15 +10,17 @@ Grey: #c0c4d0
 body {
   margin: 0px;
   padding: 0px;
-  font: 14px 'Roboto', Helvetica, Arial, sans-serif;
+  font: 14px "Roboto", Helvetica, Arial, sans-serif;
   font-weight: 500; }
 
 a {
   color: #c0c4d0;
   text-decoration: none; }
 
-a:active, a:hover, a:focus {
-  color: #2DC5FA; }
+a:active,
+a:hover,
+a:focus {
+  color: #2dc5fa; }
 
 /***
  *    ######## ##     ## ######## ########  ##    ## ##      ## ##     ## ######## ########  ######## 
@@ -39,9 +41,11 @@ a:active, a:hover, a:focus {
   border: 0px none;
   cursor: pointer;
   transition: all 0.3s ease 0s;
-  letter-spacing: .05rem; }
+  letter-spacing: 0.05rem; }
 
-.blue-btn a:active, .blue-btn a:hover, .blue-btn a:focus {
+.blue-btn a:active,
+.blue-btn a:hover,
+.blue-btn a:focus {
   color: white;
   font-weight: 700; }
 
@@ -113,11 +117,13 @@ a:active, a:hover, a:focus {
 .left-nav .ico {
   padding: 3vh 0; }
 
-.left-nav a:active, .left-nav a:hover, .left-nav a:focus {
+.left-nav a:active,
+.left-nav a:hover,
+.left-nav a:focus {
   background: rgba(45, 197, 250, 0.1);
   width: 100%;
   text-align: center;
-  border-right: solid 3px #2DC5FA;
+  border-right: solid 3px #2dc5fa;
   margin-right: -6px;
   padding-left: 6px; }
 
@@ -157,8 +163,8 @@ a:active, a:hover, a:focus {
   font-size: 6rem;
   font-weight: 400;
   text-transform: uppercase;
-  color: #2DC5FA;
-  letter-spacing: .2rem; }
+  color: #2dc5fa;
+  letter-spacing: 0.2rem; }
 
 .home-subtitle {
   font-size: 2.5rem;
@@ -200,10 +206,19 @@ a:active, a:hover, a:focus {
   border-left: 3px solid #f3f4fa;
   padding-left: 5vw; }
 
+.invisible {
+  display: none; }
+
+.visible {
+  display: block; }
+
 form {
   display: flex;
   flex-direction: column;
   align-items: center; }
+
+.visitor-signup-box form {
+  flex-direction: row; }
 
 .error {
   align-self: start;
@@ -223,7 +238,7 @@ form {
   text-transform: uppercase; }
 
 .form-subtitle {
-  color: #2DC5FA;
+  color: #2dc5fa;
   font-size: 18px;
   font-weight: 700;
   line-height: 18px;
@@ -231,7 +246,7 @@ form {
   text-transform: uppercase; }
 
 label {
-  color: #86939E;
+  color: #86939e;
   display: block;
   font-size: 14px;
   font-weight: 400;
@@ -240,7 +255,12 @@ label {
   text-align: left;
   width: 300px; }
 
-input[type="text"], input[type="password"], input[type="email"], input[type="textarea"], input[type="number"], select {
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="textarea"],
+input[type="number"],
+select {
   border: 2px solid #e1e8ee;
   border-radius: 6px;
   padding: 8px 16px;
@@ -253,6 +273,12 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tex
 .ironhacker-check {
   margin-right: 1vh; }
 
+.mandatory {
+  color: #2dc5fa;
+  font-size: 10px;
+  text-align: right;
+  padding-top: 2vh; }
+
 /***
  *    ##    ## ######## ##      ##       ########  ########   #######        ## ########  ######  ######## 
  *    ###   ## ##       ##  ##  ##       ##     ## ##     ## ##     ##       ## ##       ##    ##    ##    
@@ -263,7 +289,7 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tex
  *    ##    ## ########  ###  ###        ##        ##     ##  #######   ######  ########  ######     ##    
  */
 .grey-bg {
-  background: #FAFBFD;
+  background: #fafbfd;
   height: 100vh; }
 
 .general-subtitle {
@@ -271,7 +297,7 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tex
   font-weight: 700;
   line-height: 18px;
   text-transform: uppercase;
-  margin-bottom: 3Vh; }
+  margin-bottom: 3vh; }
 
 .new-project-form {
   flex-direction: row; }

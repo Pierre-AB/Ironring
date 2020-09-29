@@ -27,13 +27,11 @@ const userSchema = new Schema(
     expertise: String,
     gitHub: String,
     linkedIn: String,
-    courses: { type: String, enum: ['Web-Dev', 'UX/UI', 'Data', 'Cyber_Security'], required: [true, 'What did you study ?'] },
+    courses: { type: String, enum: ['Web-Dev', 'UX/UI', 'Data', 'Cyber_Security']},
     promo: String,
     campus: {
       type: String,
-      enum: ['Amsterdam', 'Barcelona', 'Berlin', 'Lisboa', 'Madrid', 'Mexico', 'Miami', 'Paris', 'Remote', 'Sao Paulo'],
-      required: [true, 'Where was your campus ?']
-    },
+      enum: ['Amsterdam', 'Barcelona', 'Berlin', 'Lisboa', 'Madrid', 'Mexico', 'Miami', 'Paris', 'Remote', 'Sao_Paulo']},
     format: { type: String, enum: ['Full-Time', 'Part-Time'] }, // PART-TIME OU FULL-TIME
     current_location: String, //WHAT LOCATION ATTRIBUTE IS ABOUT?
     projects: {
