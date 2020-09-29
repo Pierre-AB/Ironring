@@ -65,5 +65,8 @@ app.use('/', indexRouter);
 const authRouter = require('./routes/auth.routes');
 app.use('/', authRouter)
 
+const projectRouter = require('./routes/projects.routes');
+app.use('/', projectRouter)
+
 
 module.exports = app;

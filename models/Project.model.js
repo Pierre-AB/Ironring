@@ -48,7 +48,8 @@ const projectSchema = new Schema({
   github: String,
   rank: Number,
   likes: [{type: Schema.Types.ObjectId, ref: 'User'}]
-}, {
+}, 
+{
   timestamps: true
 })
 
