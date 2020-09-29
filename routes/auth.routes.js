@@ -41,58 +41,48 @@ router.post('/signup', (req, res, next) => { /*uploader to add*/
   // Strong password validation
   const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
   if (!regex.test(password)) {
-    // res.status(500) ????? A QUOI CELA SERT ???
     res.render('auth/signup', { errorMessage: 'Password needs to have at least 6 chars and must contain at least one number, one lowercase and one uppercase letter.' })
     return;
   }
 
   if (ironhacker === 'true') { //WARNING: Uploader not set-up yet
     //Hash password and create User (specific variables)
-    bcryptjs.genSalt(saltRounds)
-      .then(salt => bcryptjs.hash(password, salt))
-      .then(hashedPassword => {
-        return User.create({
-          email,
-          passwordHash: hashedPassword,
-          firstName,
-          lastName,
-          expertise,
-          campus,
-          courses
-          // profileImgSrc //WARNING: Uploader not set up yet.
-        })
-      })
-      .then(userFromDB => {
-        console.log('🙌🏻 IRONHACKER CREE =', userFromDB);
-        // res.redirect('/userProfile'); //DEFINE VIEW NAME
-        return;
-      })
-      .catch(error => {
-        console.log('💥 IRONHACKER ERROR =', error);
-        return;
-      })
-  }
-  if (ironhacker != 'true') {
+
+    // verif de plein de choses
+
+  } else {
     //   // JUST A VISITOR
     console.log('Just a visitor');
     //Factoring?
-    bcryptjs.genSalt(saltRounds)
-      .then(salt => bcryptjs.hash(password, salt))
-      .then(hashedPassword => {
-        return User.create({
-          email,
-          passwordHash: hashedPassword,
-        })
-      })
-      .then(userFromDB => {
-        console.log('🙌🏻 VISITOR CREE =', userFromDB);
-        return;
-      })
-      .catch(error => {
-        console.log('💥 VISITOR ERROR =', error);
-        return;
-      })
+
   }
+
+
+  // genSaltSync  hqshSync
+  bcryptjs.genSalt(saltRounds)
+    .then(salt => bcryptjs.hash(password, salt))
+    .then(hashedPassword => {
+      return User.create({
+        email,
+        passwordHash: hashedPassword,
+        firstName, // ""
+        lastName, // ""
+        expertise,
+        campus,
+        courses
+        // profileImgSrc //WARNING: Uploader not set up yet.
+      })
+    })
+    .then(userFromDB => {
+      console.log('🙌🏻 IRONHACKER CREE =', userFromDB);
+      // res.redirect('/userProfile'); //DEFINE VIEW NAME
+      return;
+    })
+    .catch(error => {
+      console.log('💥 IRONHACKER ERROR =', error);
+      return;
+    })
+
 
   // ADD RECRUITER THERE WHETHER WE KEEP IT WITH A NEW IF
 
