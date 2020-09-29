@@ -30,7 +30,7 @@ a:active, a:hover, a:focus {
  *    ########    ###    ######## ##     ##    ##     ###  ###  ##     ## ######## ##     ## ######## 
  */
 .content-container {
-  padding-left: 6vw; }
+  padding: 6vh 10vw; }
 
 .blue-btn {
   background: #2dc5fa none repeat scroll 0% 0%;
@@ -72,7 +72,8 @@ a:active, a:hover, a:focus {
   padding: 3vw; }
 
 .top-nav-items {
-  display: flex; }
+  display: flex;
+  justify-content: end; }
 
 .courses-nav ul {
   display: flex;
@@ -113,7 +114,7 @@ a:active, a:hover, a:focus {
   padding: 3vh 0; }
 
 .left-nav a:active, .left-nav a:hover, .left-nav a:focus {
-  background: rgba(45, 197, 250, 0.3);
+  background: rgba(45, 197, 250, 0.1);
   width: 100%;
   text-align: center;
   border-right: solid 3px #2DC5FA;
@@ -239,7 +240,7 @@ label {
   text-align: left;
   width: 300px; }
 
-input[type="text"], input[type="password"], input[type="email"], select {
+input[type="text"], input[type="password"], input[type="email"], input[type="textarea"], input[type="number"], select {
   border: 2px solid #e1e8ee;
   border-radius: 6px;
   padding: 8px 16px;
@@ -251,5 +252,34 @@ input[type="text"], input[type="password"], input[type="email"], select {
 
 .ironhacker-check {
   margin-right: 1vh; }
+
+/***
+ *    ##    ## ######## ##      ##       ########  ########   #######        ## ########  ######  ######## 
+ *    ###   ## ##       ##  ##  ##       ##     ## ##     ## ##     ##       ## ##       ##    ##    ##    
+ *    ####  ## ##       ##  ##  ##       ##     ## ##     ## ##     ##       ## ##       ##          ##    
+ *    ## ## ## ######   ##  ##  ##       ########  ########  ##     ##       ## ######   ##          ##    
+ *    ##  #### ##       ##  ##  ##       ##        ##   ##   ##     ## ##    ## ##       ##          ##    
+ *    ##   ### ##       ##  ##  ##       ##        ##    ##  ##     ## ##    ## ##       ##    ##    ##    
+ *    ##    ## ########  ###  ###        ##        ##     ##  #######   ######  ########  ######     ##    
+ */
+.grey-bg {
+  background: #FAFBFD;
+  height: 100vh; }
+
+.general-subtitle {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 18px;
+  text-transform: uppercase;
+  margin-bottom: 3Vh; }
+
+.new-project-form {
+  flex-direction: row; }
+
+.rank-input {
+  display: inline; }
+
+.project-images {
+  margin-left: 7vw; }
 
 /*# sourceMappingURL=style.css.map */
