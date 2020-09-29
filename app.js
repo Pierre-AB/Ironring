@@ -9,6 +9,14 @@ const mongoose = require('mongoose');
 const logger = require('morgan');
 const path = require('path');
 
+// //Install and use jQuery
+// var jsdom = require("jsdom");
+// const { JSDOM } = jsdom;
+// const { window } = new JSDOM();
+// const { document } = (new JSDOM('')).window;
+// global.document = document;
+// var $ = jQuery = require('jquery')(window);
+
 
 mongoose
   .connect('mongodb://localhost/ironring', { useNewUrlParser: true })

@@ -240,14 +240,38 @@ a:active, a:hover, a:focus {
   align-content: center;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  // flex-direction: column;
   padding: 5vw;
 }
+
+.ironhacker-signup-box {
+  display: none;
+  margin-left: 5vw;
+  border-left: 3px solid #f3f4fa;
+  padding-left: 5vw;
+}
+
+// .invisible {
+//   width: 0;
+//   overflow: hidden;
+//   transition: width 0.5s;
+// }
+
+// .visible {
+//   width: auto;
+//   transition: width 0.5s;
+// }
 
 form {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.error {
+  align-self: start;
+  margin-top: 3vh;
+  color: #ff6e6e;
 }
 
 .signup-box .small-btn {
@@ -257,6 +281,15 @@ form {
 }
 
 .form-title {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 18px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.form-subtitle {
+  color: #2DC5FA;
   font-size: 18px;
   font-weight: 700;
   line-height: 18px;
@@ -275,7 +308,7 @@ label {
   width: 300px;
 }
 
-input[type="text"], input[type="password"], input[type="email"] {
+input[type="text"], input[type="password"], input[type="email"], select {
   border: 2px solid #e1e8ee;
   border-radius: 6px;
   padding: 8px 16px;

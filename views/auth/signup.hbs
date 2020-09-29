@@ -1,59 +1,105 @@
 <div class="signup-bg">
 
   <div id="signup" class="signup-box">
-    <h1 class="form-title">Sign-up</h1>
+    
+    <!--Part displayed for everyone-->
+    <div class="visitor-signup-box">
+      <h1 class="form-title">Sign-up</h1>
 
-    {{!-- <form action="/signup" method="POST" enctype="multipart/form-data"> --}}
-    <form action="/signup" method="POST">
-      <label for="input-email">Email</label>
-      <input type="email" id="input-email" name="email" placeholder="sheldon_cooper@caltech.edu">
+      {{!-- <form action="/signup" method="POST" enctype="multipart/form-data"> --}}
+      <form action="/signup" method="POST">
+        <label for="input-email">Email</label>
+        <input type="email" id="input-email" name="email" placeholder="sheldon_cooper@caltech.edu">
 
-      <label for="input-password">Password</label>
-      <input type="password" name="password" id="input-password" placeholder="********">
+        <label for="input-password">Password</label>
+        <input type="password" name="password" id="input-password" placeholder="********">
 
-      <label for="ironhacker"><input type="checkbox" class="ironhacker-check" id="ironhacker" name="ironhacker"
-          value="true">I am an Ironhacker</label>
+        <label for="ironhacker"><input type="checkbox" class="ironhacker-check" id="ironhacker" onclick="ironhackerSignupBox()" name="ironhacker"
+            value="true">I am an Ironhacker</label>
 
-      <label for="input-firstname">Firstname</label>
-      <input type="text" id="input-firstname" name="firstname" placeholder="Sheldon">
+        <button type="submit" class="small-btn blue-btn">Create account</button>
 
-      <label for="input-lastname">Lastname</label>
-      <input type="text" id="input-lastname" name="lastname" placeholder="Cooper">
+        {{#if errorMessage}}
+        <p class="error">{{errorMessage}}</p>
+        {{/if}}
+      </form>
+    </div>
 
-      <label for="input-expertise">Expertise</label>
-      <input type="text" id="input-expertise" name="expertise" placeholder="super-asymmetry">
+    <!--Part displayed if ironhacker-->
+    <div class="ironhacker-signup-box <!--invisible-->" id="ironhacker-signup-box">
 
-      <label for="input-campus">Campus</label>
-      <select name="campus" id="input-campus">
-        <option value="">--Please select your campus--</option>
-        <option value="Amsterdam">Amsterdam</option>
-        <option value="Barcelona">Barcelona</option>
-        <option value="Berlin">Berlin</option>
-        <option value="Lisboa">Lisboa</option>
-        <option value="Madrid">Madrid</option>
-        <option value="Mexico">Mexico</option>
-        <option value="Miami">Miami</option>
-        <option value="Paris">Paris</option>
-        <option value="Remote">Remote</option>
-        <option value="Sao Paulo">Sao Paulo</option>
-      </select>
+      <h2 class="form-subtitle">Welcome back Ironhacker!</h2>
 
-      <label for="input-courses">Courses</label>
-      <select name="courses" id="input-courses">
-        <option value="">--What did you study?--</option>
-        <option value="Web-Dev">Web-Dev</option>
-        <option value="UX/UI">UX/UI</option>
-        <option value="Data">Data</option>
-        <option value="Cyber_Security">Cyber Security</option>
-      </select>
+      <form>
+        <label for="input-firstname">Firstname</label>
+        <input type="text" id="input-firstname" name="firstname" placeholder="Sheldon">
 
-      <button type="submit" class="small-btn blue-btn">Create account</button>
+        <label for="input-lastname">Lastname</label>
+        <input type="text" id="input-lastname" name="lastname" placeholder="Cooper">
 
+        <label for="input-expertise">Expertise</label>
+        <input type="text" id="input-expertise" name="expertise" placeholder="super-asymmetry">
 
-      {{#if errorMessage}}
-      <p class="error">{{errorMessage}}</p>
-      {{/if}}
-    </form>
+        <label for="input-campus">Campus</label>
+        <select name="campus" id="input-campus">
+          <option value="">--Please select your campus--</option>
+          <option value="Amsterdam">Amsterdam</option>
+          <option value="Barcelona">Barcelona</option>
+          <option value="Berlin">Berlin</option>
+          <option value="Lisboa">Lisboa</option>
+          <option value="Madrid">Madrid</option>
+          <option value="Mexico">Mexico</option>
+          <option value="Miami">Miami</option>
+          <option value="Paris">Paris</option>
+          <option value="Remote">Remote</option>
+          <option value="Sao Paulo">Sao Paulo</option>
+        </select>
+
+        <label for="input-courses">Courses</label>
+        <select name="courses" id="input-courses">
+          <option value="">--What did you study?--</option>
+          <option value="Web-Dev">Web-Dev</option>
+          <option value="UX/UI">UX/UI</option>
+          <option value="Data">Data</option>
+          <option value="Cyber_Security">Cyber Security</option>
+        </select>
+
+        {{#if errorMessage}}
+        <p class="error">{{errorMessage}}</p>
+        {{/if}}
+      </form>
+    </div>
+
   </div>
 
 </div>
+
+<!--Script avec JS - FONCTIONNEL - pour afficher ou hide bloc ironhacker-->
+<script>
+  function ironhackerSignupBox() {
+    var checkBox = document.getElementById("ironhacker");
+    var ironhackerSignupBox = document.getElementById("ironhacker-signup-box");
+    if (checkBox.checked == true){
+      ironhackerSignupBox.style.display = "block";
+    } else {
+      ironhackerSignupBox.style.display = "none";
+    }
+  }
+</script>
+
+
+<!--Script avec jQuery pour transition quand click sur "I am an Ironhacker"-->
+<!--Voir avec le prof comment faire marcher jQuery-->
+
+{{!-- <script>
+  function ironhackerSignupBox() {
+    console.log('jentre dans la fonction')
+    if( $('#ironhacker:checked').length > 0 ) {
+        console.log('jsuis dans le if')
+        $("#ironhacker-signup-box").slideDown( "slow" );
+    } else {
+        $("#ironhacker-signup-box").hide();
+        console.log('jsuis dans le else')
+    }
+  }
+</script> --}}

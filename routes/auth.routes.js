@@ -5,6 +5,14 @@ const saltRounds = 10;
 const User = require('../models/User.model');
 const mongoose = require('mongoose');
 
+// //Install and use jQuery
+// var jsdom = require("jsdom");
+// const { JSDOM } = jsdom;
+// const { window } = new JSDOM();
+// const { document } = (new JSDOM('')).window;
+// global.document = document;
+// var $ = jQuery = require('jquery')(window);
+
 // ROUTE GUARD TO ADD
 
 //PICTURE UPLOADER TO ADD
