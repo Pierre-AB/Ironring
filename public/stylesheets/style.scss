@@ -1,5 +1,5 @@
 /*
-Blue Ironhack: rgb(45, 197, 250) // #2DC5FA
+Blue Ironhack: rgb(45, 197, 25n0) // #2DC5FA
 Grey: #c0c4d0
 */
 
@@ -38,7 +38,7 @@ a:focus {
  */
 
 .content-container {
-  padding: 6vh 10vw;
+  padding: 4vw 10vw;
 }
 
 .blue-btn {
@@ -72,6 +72,10 @@ a:focus {
   background: rgb(0, 180, 255) none repeat scroll 0% 0%;
 }
 
+.fa, .fas {
+  font-size: 1.2rem;
+}
+
 /***
  *    ########  #######  ########     ##    ##    ###    ##     ## 
  *       ##    ##     ## ##     ##    ###   ##   ## ##   ##     ## 
@@ -93,12 +97,8 @@ a:focus {
 .top-nav-items {
   display: flex;
   justify-content: end;
+  margin-left: auto;
 }
-
-// .top-nav-items ul {
-//   display:flex;
-//   margin-left:auto;
-// }
 
 .courses-nav ul {
   display: flex;
@@ -131,7 +131,7 @@ a:focus {
   border-right: solid 3px #f3f4fa;
   position: absolute;
   height: 100vh;
-  width: 6vw;
+  width: 4vw;
   top: 0;
   left: 0;
   padding-top: 10vw;
@@ -175,13 +175,9 @@ a:focus {
 }
 
 /*Exceptionnellement sur la home, pas de background ni border*/
-.home .courses-nav {
+.courses-nav .home {
   background: none;
   border: none;
-}
-
-.home .top-nav-items {
-  justify-content: end;
 }
 
 .home .content-container {

@@ -3,6 +3,7 @@ const router  = express.Router();
 
 const Project = require('../models/Project.model');
 const User = require('../models/User.model');
+const fileUploader = require('../configs/cloudinary.config.js');
 
 /*
  _______                                                     __               
@@ -41,16 +42,23 @@ router.get('/projects/:id/edit', (req, res, next) => {
   
 })
 
-router.post('/projects/:id/edit', (req, res, next) => {
+router.post('/projects/:id/edit', /*fileUploader.single('image'),*/ (req, res, next) => {
 
-  const { owners_id, owners_mail, course, module, campus, img, name, description, theme, year_creation, techno, url, github, rank, likes  } = req.body;
+  const { owners_id, owners_mail, course, module, campus, imageUrl, name, description, theme, year_creation, techno, url, github, rank, likes  } = req.body;
+  
+  // let imageUrl;
+  // if (req.file) {
+  //   imageUrl = req.file.path;
+  // } else {
+  //   imageUrl = req.body.existingImage;
+  // }
 
   Project.findByIdAndUpdate(req.params.id, {
     owners_mail, 
     course,
     module,
     campus,
-    img,
+    imageUrl,
     name, 
     description, 
     theme, 
@@ -77,8 +85,8 @@ router.get('/projects/new', (req, res, next) => {
 })
 
 router.post('/projects/new', (req, res, next) => {
-  const { owners_id, owners_mail, course, module, campus, img, name, description, theme, year_creation, techno, url, github, rank, likes  } = req.body;
-  Project.create({owners_mail, course, module, campus, img, name, description, theme, year_creation, techno, url, github, rank, likes}).then(newProject => {
+  const { owners_id, owners_mail, course, module, campus, imageUrl, name, description, theme, year_creation, techno, url, github, rank, likes  } = req.body;
+  Project.create({owners_mail, course, module, campus, imageUrl: req.file.path, name, description, theme, year_creation, techno, url, github, rank, likes}).then(newProject => {
     res.redirect('/projects');
   }).catch(err => {
     next(err);

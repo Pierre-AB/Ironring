@@ -17,7 +17,7 @@ const projectSchema = new Schema({
     type: String,
     required: [true, 'The campus is required.']
   },
-  img: { 
+  imageUrl: { 
     type: [String],
     required: [true, 'img is required.']
   },
