@@ -102,6 +102,7 @@ router.post("/signup", uploader.single('image'), (req, res, next) => {
       return User.create({
         email,
         passwordHash: hashedPassword,
+        ironhacker,
         firstName: firstName, // ""
         lastName, // ""
         expertise,
@@ -150,9 +151,9 @@ router.post('/login', (req, res, next) => {
         res.render('auth/login', { errorMessage: "Email not found. Try with another email" });
         return;
       } else if (bcryptjs.compareSync(password, user.passwordHash)) {
-        console.log("USER===", user)
         req.session.currentUser = user;
-        res.render('/userProfile');
+        console.log('REQ.SESSION.USER===', user);
+        res.redirect('/userProfile');
       } else {
         res.render('auth/login', { errorMessage: 'Incorrect password.' });
       }
@@ -177,7 +178,7 @@ router.post('/logout', (req, res) => {
 });
 
 router.get('/userProfile', routeGuard, (req, res) => {
-  res.render('users/user-profile');
+  res.render('users/user-profile', { user: req.session.currentUser });
 });
 
 
