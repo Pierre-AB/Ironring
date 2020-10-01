@@ -95,8 +95,8 @@ router.post("/signup", (req, res, next) => {
         firstName: firstName, // ""
         lastName, // ""
         expertise,
-        campus,
-        courses,
+        campus: campus || undefined,
+        courses: courses || undefined,
         // profileImgSrc //WARNING: Uploader not set up yet.
       });
     })
