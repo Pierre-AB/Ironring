@@ -79,7 +79,8 @@ router.post("/signup", (req, res, next) => {
     }
   } else {
     //   // JUST A VISITOR
-    console.log("Just a visitor");
+
+    console.log("👍 Just a visitor");
     //Factoring?
   }
 
@@ -91,7 +92,7 @@ router.post("/signup", (req, res, next) => {
       return User.create({
         email,
         passwordHash: hashedPassword,
-        firstName, // ""
+        firstName: firstName, // ""
         lastName, // ""
         expertise,
         campus,
@@ -100,12 +101,12 @@ router.post("/signup", (req, res, next) => {
       });
     })
     .then((userFromDB) => {
-      console.log("🙌🏻 IRONHACKER CREE =", userFromDB);
-      // res.redirect('/userProfile'); //DEFINE VIEW NAME
+      console.log("🙌🏻 USER CREATED =", userFromDB);
+      // res.redirect('users/userProfile'); //DEFINE VIEW NAME
       return;
     })
     .catch((error) => {
-      console.log("💥 IRONHACKER ERROR =", error);
+      console.log("💥 USER ERROR =", error);
       return;
     });
 
@@ -119,5 +120,34 @@ router.post("/signup", (req, res, next) => {
 // ##       ##     ## ##    ##   ##  ##  ####
 // ##       ##     ## ##    ##   ##  ##   ###
 // ########  #######   ######   #### ##    ##
+
+
+router.get('/login', (req, res) => res.render('auth/login'));
+
+router.post('/login', (req, res, next) => {
+  const { email, password } = req.body;
+
+  if (!email || !password) {
+    res.render('auth/login', {
+      errorMessage: 'Please enter both, email and passwors to login.'
+    });
+    return;
+  }
+
+  User.findOne({ email })
+    .then(user => {
+      if (!user) {
+        res.render('auth/login', { errorMessage: "Email not found. Try with another email" });
+        return;
+      } else if (bcryptjs.compareSync(password, user.passwordHash)) {
+        req.session.currentUser = user;
+        res.redirect('users/userProfile');
+      } else {
+        res.render('auth/login', { errorMessage: 'Incorrect password.' });
+      }
+    })
+    .catch(error => next(error))
+
+})
 
 module.exports = router;
