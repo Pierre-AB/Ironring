@@ -1,5 +1,5 @@
 /*
-Blue Ironhack: rgb(45, 197, 250) // #2DC5FA
+Blue Ironhack: rgb(45, 197, 25n0) // #2DC5FA
 Grey: #c0c4d0
 */
 * {
@@ -32,7 +32,7 @@ a:focus {
  *    ########    ###    ######## ##     ##    ##     ###  ###  ##     ## ######## ##     ## ######## 
  */
 .content-container {
-  padding: 6vh 10vw; }
+  padding: 4vw 10vw; }
 
 .blue-btn {
   background: #2dc5fa none repeat scroll 0% 0%;
@@ -59,6 +59,9 @@ a:focus {
 .blue-btn:hover {
   background: #00b4ff none repeat scroll 0% 0%; }
 
+.fa, .fas {
+  font-size: 1.2rem; }
+
 /***
  *    ########  #######  ########     ##    ##    ###    ##     ## 
  *       ##    ##     ## ##     ##    ###   ##   ## ##   ##     ## 
@@ -71,21 +74,29 @@ a:focus {
 .courses-nav {
   background: white;
   border-bottom: solid 3px #f3f4fa;
-  width: 100vw;
-  height: 6vw;
-  padding: 3vw; }
+  height: 4vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2vw; }
 
 .top-nav-items {
-  display: flex;
-  justify-content: end;
-  margin-left: auto; }
+  padding-left: 7vw; }
+
+.courses a:active,
+.courses a:hover,
+.courses a:focus {
+  display: inline-block;
+  background: rgba(45, 197, 250, 0.1);
+  text-align: center;
+  border-bottom: solid 3px #2dc5fa; }
 
 .courses-nav ul {
   display: flex;
   list-style-type: none; }
 
 .courses-nav li {
-  padding-left: 2vh; }
+  padding: 2vw; }
 
 .ir-logo {
   position: absolute;
@@ -107,7 +118,7 @@ a:focus {
   border-right: solid 3px #f3f4fa;
   position: absolute;
   height: 100vh;
-  width: 6vw;
+  width: 4vw;
   top: 0;
   left: 0;
   padding-top: 10vw;
@@ -142,22 +153,13 @@ a:focus {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-size: cover;
-  height: 100vh; }
+  background-size: cover; }
 
 /*Exceptionnellement sur la home, pas de background ni border*/
-.home .courses-nav {
-  background: none;
-  border: none; }
-
-.home .top-nav-items {
-  justify-content: end; }
-
-.home .content-container {
+.content-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: calc(100vh - 7vw);
   padding-top: 10vh; }
 
 .home-title {

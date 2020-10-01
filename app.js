@@ -26,12 +26,19 @@ const debug = require("debug")(
 );
 
 const app = express();
+require('./configs/session.config')(app);
 
 // Middleware Setup
 app.use(logger("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+// Session set-up
+
+
+
+
 
 // Express View engine setup
 

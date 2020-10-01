@@ -4,12 +4,14 @@ const bcryptjs = require("bcryptjs");
 const saltRounds = 10;
 const User = require("../models/User.model");
 const mongoose = require("mongoose");
-const uploader = require('../configs/cloudinary.config');
+const uploader = require('../configs/cloudinary.config'); //pour ajouter l'image dans l'edit du profile
 
 // ROUTE GUARD
 const routeGuard = require('../configs/route-guard.config');
 
 // UPLOADER
+
+
 
 // PICTURE UPLOADER TO ADD
 
@@ -28,8 +30,8 @@ router.post("/signup", uploader.single('image'), (req, res, next) => {
 
 
   /*uploader to add*/
-  
-  
+
+
   // const { email, password, ironhacker } = req.body;
   const {
     email,
@@ -148,8 +150,9 @@ router.post('/login', (req, res, next) => {
         res.render('auth/login', { errorMessage: "Email not found. Try with another email" });
         return;
       } else if (bcryptjs.compareSync(password, user.passwordHash)) {
+        console.log("USER===", user)
         req.session.currentUser = user;
-        res.redirect('users/userProfile');
+        res.render('/userProfile');
       } else {
         res.render('auth/login', { errorMessage: 'Incorrect password.' });
       }
@@ -168,7 +171,7 @@ router.post('/login', (req, res, next) => {
 // ########  #######   ######    #######   #######     ##    
 
 
-router.post('/logout', (req,res) => {
+router.post('/logout', (req, res) => {
   req.session.destroy();
   res.redirect('/');
 });

@@ -42,16 +42,16 @@ router.get('/projects/:id/edit', (req, res, next) => {
   
 })
 
-router.post('/projects/:id/edit', /*fileUploader.single('image'),*/ (req, res, next) => {
+router.post('/projects/:id/edit', fileUploader.single('image'), (req, res, next) => {
 
-  const { owners_id, owners_mail, course, module, campus, imageUrl, name, description, theme, year_creation, techno, url, github, rank, likes  } = req.body;
+  const { owners_id, owners_mail, course, module, campus, name, description, theme, year_creation, techno, url, github, rank, likes  } = req.body;
   
-  // let imageUrl;
-  // if (req.file) {
-  //   imageUrl = req.file.path;
-  // } else {
-  //   imageUrl = req.body.existingImage;
-  // }
+  let imageUrl;
+  if (req.file) {
+    imageUrl = req.file.path;
+  } else {
+    imageUrl = req.body.existingImage;
+  }
 
   Project.findByIdAndUpdate(req.params.id, {
     owners_mail, 
