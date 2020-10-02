@@ -89,12 +89,11 @@ router.post("/signup", uploader.single('image'), (req, res, next) => {
     }
   } else {
     //   // JUST A VISITOR
-
     console.log("👍 Just a visitor");
-    //Factoring?
+
   }
 
-  // genSaltSync  hqshSync
+  // Encryption for user password
   bcryptjs
     .genSalt(saltRounds)
     .then((salt) => bcryptjs.hash(password, salt))
@@ -113,7 +112,9 @@ router.post("/signup", uploader.single('image'), (req, res, next) => {
     })
     .then((userFromDB) => {
       console.log("🙌🏻 USER CREATED =", userFromDB);
-      // res.redirect('users/userProfile'); //DEFINE VIEW NAME
+      req.session.currentUser = userFromDB;
+      res.redirect('/userProfile'); //REDIRECT ON ROUTEGUARD 
+      //PROBABLY REDIRECT ON PROJECTS VIEW WITH ALL FILTERS AVAILABLE
       return;
     })
     .catch((error) => {
@@ -177,9 +178,15 @@ router.post('/logout', (req, res) => {
   res.redirect('/');
 });
 
+//ROUTEGUARD INCLUDED
+
 router.get('/userProfile', routeGuard, (req, res) => {
   res.render('users/user-profile', { user: req.session.currentUser });
 });
 
+
+router.get('/userEdit'), routeGuard, (req, res) => {
+  res.render('users/user-edit', { user: req.session.currentUser });
+}
 
 module.exports = router;
