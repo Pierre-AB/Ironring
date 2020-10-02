@@ -11,11 +11,11 @@ const projectSchema = new Schema({
   },
   module: { // "1, js"
     type: String,
-    required: [true, 'The module is required.']
+    enum: ['Front', 'Back', 'React']
   },
-  campus: { //'London'
+  campus: {
     type: String,
-    required: [true, 'The campus is required.']
+    enum: ['Amsterdam', 'Barcelona', 'Berlin', 'Lisboa', 'Madrid', 'Mexico', 'Miami', 'Paris', 'Remote', 'Sao_Paulo']
   },
   imageUrl: { 
     type: [String],
@@ -31,7 +31,7 @@ const projectSchema = new Schema({
   },
   theme: {
     type: String,
-    required: [true, 'The theme is required.']
+    enum: ['game', 'monsters']
   },
   year_creation: {
     type: String,
@@ -39,14 +39,17 @@ const projectSchema = new Schema({
   },
   techno: {
     type: [String],
-    required: [true, 'The techno of creation is required.']
+    enum: ['HTML', 'CSS', 'CANVAS']
   },
   url: {
     type: String,
     required: [true, 'The url of creation is required.']
   },
   github: String,
-  rank: Number,
+  rank: {
+    type: String,
+    enum: ['1', '2', '3']
+  },
   likes: [{type: Schema.Types.ObjectId, ref: 'User'}]
 }, 
 {

@@ -86,7 +86,22 @@ router.get('/projects/new', (req, res, next) => {
 
 router.post('/projects/new', (req, res, next) => {
   const { owners_id, owners_mail, course, module, campus, imageUrl, name, description, theme, year_creation, techno, url, github, rank, likes  } = req.body;
-  Project.create({owners_mail, course, module, campus, imageUrl: req.file.path, name, description, theme, year_creation, techno, url, github, rank, likes}).then(newProject => {
+  Project.create({
+    owners_mail,
+    course, 
+    module, 
+    campus, 
+    // imageUrl: req.file.path || undefined, 
+    name, 
+    description, 
+    theme, 
+    year_creation, 
+    techno, 
+    url, 
+    github, 
+    rank: rank || undefined, 
+    likes: likes || undefined
+  }).then(newProject => {
     res.redirect('/projects');
   }).catch(err => {
     next(err);
