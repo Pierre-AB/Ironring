@@ -1,7 +1,7 @@
 <div class="projects-list-page grey-bg">
 
   <!-- Top navbar -->
-  <nav class="courses-nav">
+  <nav class="course-nav">
     <a href="#" class="">
       <svg class="ir-logo" xmlns="http://www.w3.org/2000/svg" width="7vw" height="7vw" viewBox="0 0 50 50">
         <defs>
@@ -82,21 +82,21 @@
     <div class="filters">Filters</div>
     <div class="all-projects">
       {{#each projects}}
-        {{!-- {{projectPartial}} --}}
+      {{!-- {{projectPartial}} --}}
 
-        {{!-- A REMPLACER PAR LE {{projectPartial}}   --}}
+      {{!-- A REMPLACER PAR LE {{projectPartial}}   --}}
       <div>
-      <h3>
-        <a href="/projects/{{id}}">{{this.name}}</a> 
-       <p> <img src="{{this.imageUrl}}" alt></p>
-       <p>{{this.description}}</p>
-      </h3> 
-      <a href="/projects/{{id}}/edit">Edit</a> 
+        <h3>
+          <a href="/projects/{{id}}">{{this.name}}</a>
+          <p> <img src="{{this.imageUrl}}" alt></p>
+          <p>{{this.description}}</p>
+        </h3>
+        <a href="/projects/{{id}}/edit">Edit</a>
 
-      <form action="/projects/{{id}}/delete" method="POST"><button>supprimer</button></form>
+        <form action="/projects/{{id}}/delete" method="POST"><button>supprimer</button></form>
 
-    </div>
-        {{!-- A REMPLACER PAR LE {{projectPartial}}   --}}
+      </div>
+      {{!-- A REMPLACER PAR LE {{projectPartial}}   --}}
 
       {{/each}}
     </div>

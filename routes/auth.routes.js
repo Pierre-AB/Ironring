@@ -41,7 +41,7 @@ router.post("/signup", uploader.single('image'), (req, res, next) => {
     lastName,
     expertise,
     campus,
-    courses,
+    course,
     profileImgSrc,
   } = req.body;
 
@@ -67,7 +67,7 @@ router.post("/signup", uploader.single('image'), (req, res, next) => {
     - lastname
     - expertise
     - campus
-    - courses
+    - course
 */
     if (!firstName) {
       res.render("auth/signup", {
@@ -82,9 +82,9 @@ router.post("/signup", uploader.single('image'), (req, res, next) => {
     if (!campus) {
       res.render("auth/signup", { errorMessage: "Please enter your campus ?" });
     }
-    if (!courses) {
+    if (!course) {
       res.render("auth/signup", {
-        errorMessage: "Please enter your courses ?",
+        errorMessage: "Please enter your course ?",
       });
     }
   } else {
@@ -106,7 +106,7 @@ router.post("/signup", uploader.single('image'), (req, res, next) => {
         lastName, // ""
         expertise,
         campus: campus || undefined,
-        courses: courses || undefined,
+        course: course || undefined,
         // profileImgSrc //WARNING: Uploader not set up yet.
       });
     })

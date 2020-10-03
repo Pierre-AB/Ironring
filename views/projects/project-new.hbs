@@ -1,7 +1,7 @@
 <div class="new-project-page grey-bg">
 
   <!-- Top navbar -->
-  <nav class="courses-nav">
+  <nav class="course-nav">
     <a href="#" class="">
       <svg class="ir-logo" xmlns="http://www.w3.org/2000/svg" width="7vw" height="7vw" viewBox="0 0 50 50">
         <defs>
@@ -89,7 +89,7 @@
         <input type="text" name="name">
 
         <label for="">Creation year</label>
-        <input type="number" class="" name="year_creation" min="1900" step="1" max="2099">
+        <input type="number" class="" name="year_creation" min="1970" step="1" max="2099">
 
         <label for="">Description of your project</label>
         <input type="textarea" cols="30" rows="4" class="" name="description">
@@ -131,15 +131,6 @@
           <option value="">etc...</option>
         </select>
 
-        <label for="">Topics</label>
-        <select name="theme" id="">
-          <option value="">--Please select your topic(s)--</option>
-          <option value="game">Game</option>
-          <option value="monsters">monsters</option>
-          <option value="">...</option>
-          <option value="">etc...</option>
-        </select>
-
         <label for="">Ranking</label>
         <label for="" class="rank-input"><input type="checkbox" class="" name="rank" value="1">1st</label>
         <label for="" class="rank-input"><input type="checkbox" class="" name="rank" value="2">2nd</label>
@@ -155,9 +146,9 @@
         <input type="text" name="github">
 
         <div class="project-images">
-        <label for="image-input">Image:</label>
-        <input type="file" name="image" id="image-input" class="form-control-file" />
-      </div>
+          <label for="image-input">Image:</label>
+          <input type="file" name="image" id="image-input" class="form-control-file" />
+        </div>
 
         <button type="submit" class="small-btn blue-btn">Submit this project</button>
       </div>

@@ -3,59 +3,49 @@ const Schema = mongoose.Schema;
 
 const projectSchema = new Schema({
   // uploader_id:{type: Schema.Types.ObjectId, ref: 'User'}, // vérifier la ref
-  uploader_id: String,
-  owners_id: [String], // push rec.body.co-users_mail,
-  owners_mail: [String], 
-  course: {  // "webdev"
+  uploader_id: String, // OFF VIEW
+  owners_id: [String], // push rec.body.co-users_mail, // OFF VIEW
+  owners_mail: [String], // OFF VIEW
+  course: String, // OFF VIEW
+  module: { // "1, js" // ON VIEW
     type: String,
-    required: [true, 'course is required.']
+    enum: ['1', '2', '3', 'Personal']
   },
-  module: { // "1, js"
-    type: String,
-    enum: ['Front', 'Back', 'React']
-  },
-  campus: {
-    type: String,
-    enum: ['Amsterdam', 'Barcelona', 'Berlin', 'Lisboa', 'Madrid', 'Mexico', 'Miami', 'Paris', 'Remote', 'Sao_Paulo']
-  },
-  imageUrl: { 
+  campus: String, // OFF VIEW
+  imageUrl: { // ON VIEW -> Multiple images = bonus
     type: [String],
     required: [true, 'img is required.']
   },
-  name: { //'IronSecurity'
+  name: { //'IronSecurity' // ON VIEW
     type: String,
     required: [true, 'Your project name is required.']
   },
-  description: { //project description
+  description: { //project description // ON VIEW
     type: String,
     required: [true, 'The description is required.']
   },
-  theme: {
-    type: String,
-    enum: ['game', 'monsters']
-  },
-  year_creation: {
-    type: String,
+  year_creation: { // ON VIEW
+    type: Number,
     required: [true, 'The year of creation is required.']
   },
-  techno: {
+  techno: { // ON VIEW
     type: [String],
-    enum: ['HTML', 'CSS', 'CANVAS']
+    // enum: ['HTML', 'CSS', 'JS', 'EXPRESS', 'MONGODB', 'REACT']
   },
-  url: {
+  url: { // ON VIEW
     type: String,
     required: [true, 'The url of creation is required.']
   },
-  github: String,
+  github: String, // ON VIEW
   rank: {
     type: String,
     enum: ['1', '2', '3', 'not ranked']
   },
-  likes: [{type: Schema.Types.ObjectId, ref: 'User'}]
-}, 
-{
-  timestamps: true
-})
+  likes: [{ type: Schema.Types.ObjectId, ref: 'User' }] // ON VIEW
+},
+  {
+    timestamps: true
+  })
 
 const Project = mongoose.model("Project", projectSchema);
 

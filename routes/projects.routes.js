@@ -1,5 +1,5 @@
 const express = require('express')
-const router  = express.Router();
+const router = express.Router();
 
 const Project = require('../models/Project.model');
 const User = require('../models/User.model');
@@ -18,7 +18,18 @@ const fileUploader = require('../configs/cloudinary.config.js');
                             |  \__/ $$                                        
                              \$$    $$                                        
                               \$$$$$$                                         
-*/ 
+*/
+
+
+// ######## ########  #### ########               ########  ########   #######        ## ########  ######  ######## 
+// ##       ##     ##  ##     ##                  ##     ## ##     ## ##     ##       ## ##       ##    ##    ##    
+// ##       ##     ##  ##     ##                  ##     ## ##     ## ##     ##       ## ##       ##          ##    
+// ######   ##     ##  ##     ##       #######    ########  ########  ##     ##       ## ######   ##          ##    
+// ##       ##     ##  ##     ##                  ##        ##   ##   ##     ## ##    ## ##       ##          ##    
+// ##       ##     ##  ##     ##                  ##        ##    ##  ##     ## ##    ## ##       ##    ##    ##    
+// ######## ########  ####    ##                  ##        ##     ##  #######   ######  ########  ######     ##    
+
+// GET -> SINGLE PROJECT EDIT
 
 router.get('/projects/:id/edit', (req, res, next) => {
   Project.findById(req.params.id).then(projectFromDb => {
@@ -37,15 +48,17 @@ router.get('/projects/:id/edit', (req, res, next) => {
       })
     }).catch(err => next(err))
 
-    
+
   }).catch(err => next(err))
-  
+
 })
+
+// POST -> SINGLE PROJECT EDIT
 
 router.post('/projects/:id/edit', fileUploader.single('image'), (req, res, next) => {
 
-  const { owners_id, owners_mail, course, module, campus, name, description, theme, year_creation, techno, url, github, rank, likes  } = req.body;
-  
+  const { owners_id, owners_mail, course, module, campus, name, description, year_creation, techno, url, github, rank, likes } = req.body;
+
   let imageUrl;
   if (req.file) {
     imageUrl = req.file.path;
@@ -54,54 +67,67 @@ router.post('/projects/:id/edit', fileUploader.single('image'), (req, res, next)
   }
   console.log(req.session.currentUser)
   Project.findByIdAndUpdate(req.params.id, {
-    owners_mail, 
+    owners_mail,
     course,
     module,
     campus,
     imageUrl,
-    name, 
-    description, 
-    theme, 
-    year_creation, 
-    techno, 
-    url, 
-    github, 
-    rank, 
+    name,
+    description,
+    year_creation,
+    techno,
+    url,
+    github,
+    rank,
     likes
-  }, {new: true}).then(updatedProject => {
+  }, { new: true }).then(updatedProject => {
     console.log('title', updatedProject.title)
     res.redirect(`/projects/${updatedProject.id}`)
   }).catch(err => next(err))
 })
 
+
+
+// ##    ## ######## ##      ##               ########  ########   #######        ## ########  ######  ######## 
+// ###   ## ##       ##  ##  ##               ##     ## ##     ## ##     ##       ## ##       ##    ##    ##    
+// ####  ## ##       ##  ##  ##               ##     ## ##     ## ##     ##       ## ##       ##          ##    
+// ## ## ## ######   ##  ##  ##    #######    ########  ########  ##     ##       ## ######   ##          ##    
+// ##  #### ##       ##  ##  ##               ##        ##   ##   ##     ## ##    ## ##       ##          ##    
+// ##   ### ##       ##  ##  ##               ##        ##    ##  ##     ## ##    ## ##       ##    ##    ##    
+// ##    ## ########  ###  ###                ##        ##     ##  #######   ######  ########  ######     ##    
+
+
+// GET - NEW PROJECT CREATION
+
 router.get('/projects/new', (req, res, next) => {
   User.find({}).then(usersFromDb => {
     res.render('projects/project-new', {   //// vérifier le nom du fichier hbs
-      users: usersFromDb 
+      users: usersFromDb
     })
   }).catch(err => next(err))
 
-  
+
 })
 
+// POST -> NEW PROJECT CREATION
+
 router.post('/projects/new', fileUploader.single('image'), (req, res, next) => {
-  const {uploader_id, owners_id, owners_mail, course, module, campus, imageUrl, name, description, theme, year_creation, techno, url, github, rank, likes  } = req.body;
+  const { uploader_id, owners_id, owners_mail, course, module, campus, imageUrl, name, description, year_creation, techno, url, github, rank, likes } = req.body;
   Project.create({
     uploader_id: req.session.currentUser._id,
     owners_id,
     owners_mail: req.session.currentUser.email,
-    course, 
-    module, 
-    campus, 
-    imageUrl: req.file.path, 
-    name, 
-    description, 
-    theme, 
-    year_creation, 
-    techno, 
-    url, 
-    github, 
-    rank: rank || undefined, 
+    course: req.session.currentUser.course,
+    module,
+    campus,
+    imageUrl: req.file.path,
+    name,
+    description,
+    year_creation,
+    techno,
+    url,
+    github,
+    rank: rank || undefined,
     likes: likes || undefined
   }).then(newProject => {
     res.redirect(`/projects/${newProject.id}`);
@@ -110,6 +136,17 @@ router.post('/projects/new', fileUploader.single('image'), (req, res, next) => {
   });
 
 })
+
+
+//    ###    ##       ##                     ########  ########   #######        ## ########  ######  ########  ######  
+//   ## ##   ##       ##                     ##     ## ##     ## ##     ##       ## ##       ##    ##    ##    ##    ## 
+//  ##   ##  ##       ##                     ##     ## ##     ## ##     ##       ## ##       ##          ##    ##       
+// ##     ## ##       ##          #######    ########  ########  ##     ##       ## ######   ##          ##     ######  
+// ######### ##       ##                     ##        ##   ##   ##     ## ##    ## ##       ##          ##          ## 
+// ##     ## ##       ##                     ##        ##    ##  ##     ## ##    ## ##       ##    ##    ##    ##    ## 
+// ##     ## ######## ########               ##        ##     ##  #######   ######  ########  ######     ##     ######  
+
+// GET -> ALL PROJECTS 
 
 router.get('/projects', (req, res, next) => {
   console.log('user: 🤑', req.session.currentUser)
@@ -126,20 +163,31 @@ router.get('/projects', (req, res, next) => {
     })
 })
 
+
+
+// ########  ######## ########    ###    #### ##        ######             ########  ########   #######        ## ########  ######  ######## 
+// ##     ## ##          ##      ## ##    ##  ##       ##    ##            ##     ## ##     ## ##     ##       ## ##       ##    ##    ##    
+// ##     ## ##          ##     ##   ##   ##  ##       ##                  ##     ## ##     ## ##     ##       ## ##       ##          ##    
+// ##     ## ######      ##    ##     ##  ##  ##        ######     ####### ########  ########  ##     ##       ## ######   ##          ##    
+// ##     ## ##          ##    #########  ##  ##             ##            ##        ##   ##   ##     ## ##    ## ##       ##          ##    
+// ##     ## ##          ##    ##     ##  ##  ##       ##    ##            ##        ##    ##  ##     ## ##    ## ##       ##    ##    ##    
+// ########  ########    ##    ##     ## #### ########  ######             ##        ##     ##  #######   ######  ########  ######     ##    
+
+
+// GET -> PROJECT DETAILS
+
 router.get('/projects/:id', (req, res, next) => {
   const id = req.params.id
-  
-  Project.findOne({_id: id})
+
+  Project.findOne({ _id: id })
     .populate('user') //vérifier nom
     .then((project) => {
+      var userIsUploader
       console.log('project 🤠', project.uploader_id, 'user 🙄', req.session.currentUser)
+      // VALIDATION IF USER
       if (project.uploader_id === req.session.currentUser._id) {
-        var userIsUploader = true
+        userIsUploader = true
         console.log("👻")
-        res.render('projects/project-details', {
-          project: project,
-          userIsUploader
-        })
       }
       res.render('projects/project-details', {
         project: project,
@@ -151,6 +199,24 @@ router.get('/projects/:id', (req, res, next) => {
       next(err);
     })
 })
+
+
+
+
+// ########  ######## ##       ######## ######## ########               ########  ########   #######        ## ########  ######  ######## 
+// ##     ## ##       ##       ##          ##    ##                     ##     ## ##     ## ##     ##       ## ##       ##    ##    ##    
+// ##     ## ##       ##       ##          ##    ##                     ##     ## ##     ## ##     ##       ## ##       ##          ##    
+// ##     ## ######   ##       ######      ##    ######      #######    ########  ########  ##     ##       ## ######   ##          ##    
+// ##     ## ##       ##       ##          ##    ##                     ##        ##   ##   ##     ## ##    ## ##       ##          ##    
+// ##     ## ##       ##       ##          ##    ##                     ##        ##    ##  ##     ## ##    ## ##       ##    ##    ##    
+// ########  ######## ######## ########    ##    ########               ##        ##     ##  #######   ######  ########  ######     ##    
+
+
+
+
+
+
+// POST -> PROJECT DELETE
 
 router.post('/projects/:id/delete', (req, res, next) => {
   // 

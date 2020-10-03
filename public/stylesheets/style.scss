@@ -86,7 +86,7 @@ a:focus {
  *       ##     #######  ##           ##    ## ##     ##    ###    
  */
 
-.courses-nav {
+.course-nav {
   background: white;
   border-bottom: solid 3px #f3f4fa;
   height: 4vh;
@@ -103,9 +103,9 @@ a:focus {
   padding-left: 7vw;
 }
 
-.courses a:active,
-.courses a:hover,
-.courses a:focus {
+.course a:active,
+.course a:hover,
+.course a:focus {
   display: inline-block;
   background: rgba(45, 197, 250, 0.1);
   // height: 4vw;
@@ -115,12 +115,12 @@ a:focus {
   // padding-top: 6px;
 }
 
-.courses-nav ul {
+.course-nav ul {
   display: flex;
   list-style-type: none;
 }
 
-.courses-nav li {
+.course-nav li {
   padding: 2vw;
 }
 
@@ -189,7 +189,7 @@ a:focus {
 }
 
 /*Exceptionnellement sur la home, pas de background ni border*/
-// .courses-nav .home {
+// .course-nav .home {
 //   background: none;
 //   border: none;
 // }
