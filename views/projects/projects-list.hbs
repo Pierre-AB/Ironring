@@ -82,7 +82,19 @@
     <div class="filters">Filters</div>
     <div class="all-projects">
       {{#each projects}}
-        {{projectPartial}}
+        {{!-- {{projectPartial}} --}}
+
+        {{!-- A REMPLACER PAR LE {{projectPartial}}   --}}
+      <div>
+      <h3>
+        <a href="/projects/{{id}}">{{this.name}}</a> 
+        <br>
+       <p> <img src="{{this.imageUrl}}" alt></p>
+        (<a href="/projects/{{id}}/edit">Edit</a> - <form action="/projects/{{id}}/delete" method="POST"><button>supprimer</button></form>)
+      </h3> 
+    </div>
+        {{!-- A REMPLACER PAR LE {{projectPartial}}   --}}
+
       {{/each}}
     </div>
   </div>

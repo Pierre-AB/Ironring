@@ -1,10 +1,12 @@
 <div class="project-card">
-  <img src="{{image_url}}" alt="">
+  {{#each projects}}
+  <img src="{{this.imageUrl}}" alt="">
   <div>
-    <p class="project-name">{{name}}Name</p>
-    <p class="project-date">{{year}}2016</p>
+    <p class="project-name">{{this.name}}</p>
+    <p class="project-date">{{this.year}}</p>
   </div>
   <div>
-    <p class="project-likes">{{likes}}72<i class="fas fa-heart"></i></p>
+    <p class="project-likes">{{this.likes}}72<i class="fas fa-heart"></i></p>
   </div>
+    {{/each}}
 </div>

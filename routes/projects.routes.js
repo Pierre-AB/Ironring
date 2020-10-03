@@ -25,11 +25,11 @@ router.get('/projects/:id/edit', (req, res, next) => {
     User.find().then(usersFromDb => {
 
       // parcours tous les users de la database pour vérifier qui a développé le projet 
-      usersFromDb.forEach((user, i) => {
-        if (projectFromDb.user.includes(user.id)) {
-          user.selected = true
-        }
-      })
+      // usersFromDb.forEach((user, i) => {
+      //   if (projectFromDb.user.includes(user.id)) {
+      //     user.selected = true
+      //   }
+      // })
 
       res.render('projects/project-edit', {   //// vérifier le nom du fichier hbs
         project: projectFromDb,
@@ -84,14 +84,14 @@ router.get('/projects/new', (req, res, next) => {
   
 })
 
-router.post('/projects/new', (req, res, next) => {
+router.post('/projects/new', fileUploader.single('image'), (req, res, next) => {
   const { owners_id, owners_mail, course, module, campus, imageUrl, name, description, theme, year_creation, techno, url, github, rank, likes  } = req.body;
   Project.create({
     owners_mail,
     course, 
     module, 
     campus, 
-    // imageUrl: req.file.path || undefined, 
+    imageUrl: req.file.path, 
     name, 
     description, 
     theme, 

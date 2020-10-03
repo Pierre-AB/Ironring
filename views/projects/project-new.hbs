@@ -80,7 +80,7 @@
   <div class="content-container">
     <h1 class="general-subtitle">Add a new project</h1>
 
-    <form class="new-project-form" action="/projects/new" method="POST">
+    <form class="new-project-form" action="/projects/new" method="POST" enctype="multipart/form-data">
       {{!-- owners_id, owners_mail, , , , , , url, github, likes  --}}
 
       <div class="project-fields">
@@ -144,7 +144,7 @@
         <label for="" class="rank-input"><input type="checkbox" class="" name="rank" value="1">1st</label>
         <label for="" class="rank-input"><input type="checkbox" class="" name="rank" value="2">2nd</label>
         <label for="" class="rank-input"><input type="checkbox" class="" name="rank" value="3">3rd</label>
-        <label for=""><input type="checkbox" class="" name="rank">Not ranked this time</label>
+        <label for=""><input type="checkbox" class="" name="rank" value="not ranked">Not ranked this time</label>
 
 
 
@@ -154,10 +154,10 @@
         <label> Github:</label>
         <input type="text" name="github">
 
-        {{!-- <div class="project-images">
+        <div class="project-images">
         <label for="image-input">Image:</label>
         <input type="file" name="image" id="image-input" class="form-control-file" />
-      </div> --}}
+      </div>
 
         <button type="submit" class="small-btn blue-btn">Submit this project</button>
       </div>

@@ -48,7 +48,7 @@ const projectSchema = new Schema({
   github: String,
   rank: {
     type: String,
-    enum: ['1', '2', '3']
+    enum: ['1', '2', '3', 'not ranked']
   },
   likes: [{type: Schema.Types.ObjectId, ref: 'User'}]
 }, 
