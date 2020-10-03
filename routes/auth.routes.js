@@ -53,8 +53,10 @@ router.post("/signup", uploader.single('image'), (req, res, next) => {
   const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
   if (!regex.test(password)) {
     res.render("auth/signup", {
-      errorMessage:
-        "Password needs to have at least 6 chars and must contain at least one number, one lowercase and one uppercase letter.",
+      errorMessage: "Password needs to have at least 6 chars and must contain at least one number, one lowercase and one uppercase letter.",
+      values: { email, ironhacker: ironhacker === "true" ? true : false
+        
+        , firstName, lastName, expertise, campus, course }
     });
     return;
   }

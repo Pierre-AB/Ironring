@@ -4,7 +4,7 @@ const router = express.Router();
 const Project = require('../models/Project.model');
 const User = require('../models/User.model');
 const fileUploader = require('../configs/cloudinary.config.js');
-
+const routeGuard = require('../configs/route-guard.config.js');
 /*
  _______                                                     __               
 |       \                                                   |  \              
@@ -33,6 +33,11 @@ const fileUploader = require('../configs/cloudinary.config.js');
 
 router.get('/projects/:id/edit', (req, res, next) => {
   Project.findById(req.params.id).then(projectFromDb => {
+    if (req.session.currentUser._id != projectFromDb.uploader_id) {
+      res.redirect(`/projects/${projectFromDb._id}`);
+      console.log('😭');
+      return;
+    }
     User.find().then(usersFromDb => {
 
       // parcours tous les users de la database pour vérifier qui a développé le projet 
@@ -65,7 +70,7 @@ router.post('/projects/:id/edit', fileUploader.single('image'), (req, res, next)
   } else {
     imageUrl = req.body.existingImage;
   }
-  console.log(req.session.currentUser)
+  // console.log(req.session.currentUser)
   Project.findByIdAndUpdate(req.params.id, {
     owners_mail,
     course,
@@ -203,7 +208,7 @@ router.get('/projects', (req, res, next) => {
 
 // GET -> PROJECT DETAILS
 
-router.get('/projects/:id', (req, res, next) => {
+router.get('/projects/:id', routeGuard, (req, res, next) => {
   const id = req.params.id
 
   Project.findOne({ _id: id })
@@ -248,6 +253,11 @@ router.get('/projects/:id', (req, res, next) => {
 router.post('/projects/:id/delete', (req, res, next) => {
   // 
   Project.findByIdAndDelete(req.params.id).then(() => {
+    // if (req.session.currentUser._id != projectFromDb.uploader_id) {
+    //   res.redirect(`/projects/${projectFromDb._id}`);
+    //   console.log('😭');
+    //   return;
+    // }
     res.redirect('/projects')
   }).catch(err => next(err))
 
