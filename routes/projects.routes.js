@@ -226,6 +226,11 @@ router.get('/projects/:id', routeGuard, (req, res, next) => {
 router.post('/projects/:id/delete', (req, res, next) => {
   // 
   Project.findByIdAndDelete(req.params.id).then(() => {
+    // if (req.session.currentUser._id != projectFromDb.uploader_id) {
+    //   res.redirect(`/projects/${projectFromDb._id}`);
+    //   console.log('😭');
+    //   return;
+    // }
     res.redirect('/projects')
   }).catch(err => next(err))
 

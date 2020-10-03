@@ -85,15 +85,15 @@
       {{!-- {{projectPartial}} --}}
 
       {{!-- A REMPLACER PAR LE {{projectPartial}}   --}}
-      <div>
+      <div class="{{campus}} {{course}} {{module}}">
         <h3>
           <a href="/projects/{{id}}">{{this.name}}</a>
           <p> <img src="{{this.imageUrl}}" alt></p>
           <p>{{this.description}}</p>
         </h3>
-        <a href="/projects/{{id}}/edit">Edit</a>
+        {{!-- <a href="/projects/{{id}}/edit">Edit</a>
 
-        <form action="/projects/{{id}}/delete" method="POST"><button>supprimer</button></form>
+        <form action="/projects/{{id}}/delete" method="POST"><button>supprimer</button></form> --}}
 
       </div>
       {{!-- A REMPLACER PAR LE {{projectPartial}}   --}}

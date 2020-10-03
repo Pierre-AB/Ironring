@@ -18,3 +18,15 @@ document.addEventListener('DOMContentLoaded', () => {
 //       console.log('jsuis dans le else')
 //   }
 // }
+
+
+
+/*
+FILTERS TO DISPLAY:
+1 - course
+2 - module
+3 - techno
+4 - campus
+5 - year_creation
+*/
+
