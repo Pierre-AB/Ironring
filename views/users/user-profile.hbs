@@ -1,5 +1,5 @@
 {{!-- views/users/userProfile.hbs --}}
-<div id='profile'>
+<div id="profile">
   {{#if user.ironhacker}}
   <h2>Welcome, {{ user.firstName }}!</h2>
   <p>This is your profile page!</p>
@@ -25,6 +25,14 @@
   <button>
     <a href="/userEdit">Edit your profile</a>
   </button>
+
+
+  {{!-- Edit btn only if owner of the profile --}}
+  {{#if userIsUploader}} {{!-- ATTENTION, MAUVAISE VERIFICATION, CHANGER ! --}}
+    <a class="small-btn" href="/userEdit">Edit</a> 
+  {{/if}}
+
+
   {{else}}
   <h2>Welcome, {{ user.email }}!</h2>
 

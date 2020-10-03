@@ -83,3 +83,29 @@ const projectRouter = require("./routes/projects.routes");
 app.use("/", projectRouter);
 
 module.exports = app;
+
+
+/***
+ *    ##     ##    ###    ##    ## ########  ##       ######## ########     ###    ########   ######  
+ *    ##     ##   ## ##   ###   ## ##     ## ##       ##       ##     ##   ## ##   ##     ## ##    ## 
+ *    ##     ##  ##   ##  ####  ## ##     ## ##       ##       ##     ##  ##   ##  ##     ## ##       
+ *    ######### ##     ## ## ## ## ##     ## ##       ######   ########  ##     ## ########   ######  
+ *    ##     ## ######### ##  #### ##     ## ##       ##       ##     ## ######### ##   ##         ## 
+ *    ##     ## ##     ## ##   ### ##     ## ##       ##       ##     ## ##     ## ##    ##  ##    ## 
+ *    ##     ## ##     ## ##    ## ########  ######## ######## ########  ##     ## ##     ##  ######  
+ */
+
+hbs.registerHelper('ifCond', function(v1, v2, options) {
+  if(v1 === v2) {
+    return options.fn(this);
+  }
+  return options.inverse(this);
+});
+
+// How to use it, in .hbs view :
+
+// {{#ifCond v1 v2}}
+//     {{v1}} is equal to {{v2}}
+// {{else}}
+//     {{v1}} is not equal to {{v2}}
+// {{/ifCond}}

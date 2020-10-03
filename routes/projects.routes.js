@@ -100,11 +100,38 @@ router.post('/projects/:id/edit', fileUploader.single('image'), (req, res, next)
 // GET - NEW PROJECT CREATION
 
 router.get('/projects/new', (req, res, next) => {
-  User.find({}).then(usersFromDb => {
+  User.find({})
+  .then(usersFromDb => {
+    console.log('user', req.session.currentUser)
+    var courseWebDev;
+    if (req.session.currentUser.course === "Web-Dev") {
+      courseWebDev = true;
+    }
+
+    var courseUX;
+    if (req.session.currentUser.course === "UX/UI") {
+      courseUX = true;
+    }
+
+    var courseData;
+    if (req.session.currentUser.course === "Data") {
+      courseData = true;
+    }
+
+    var courseCyber;
+    if (req.session.currentUser.course === "Cyber_Security") {
+      courseCyber = true;
+    }
+
     res.render('projects/project-new', {   //// vérifier le nom du fichier hbs
-      users: usersFromDb
+      users: usersFromDb,
+      courseWebDev,
+      courseUX,
+      courseData,
+      courseCyber
     })
-  }).catch(err => next(err))
+  })
+  .catch(err => next(err))
 
 
 })
