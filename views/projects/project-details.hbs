@@ -6,7 +6,11 @@
 <br>
 <p> <img src="{{project.imageUrl}}" alt></p>
 
+{{#if userIsUploader}}
+
 <a href="/projects/{{project.id}}/edit">Edit</a> 
 <form action="/projects/{{project.id}}/delete" method="POST"><button>supprimer</button></form>
+
+{{/if}}
 
 </div>

@@ -91,6 +91,10 @@
        <p> <img src="{{this.imageUrl}}" alt></p>
        <p>{{this.description}}</p>
       </h3> 
+      <a href="/projects/{{id}}/edit">Edit</a> 
+
+      <form action="/projects/{{id}}/delete" method="POST"><button>supprimer</button></form>
+
     </div>
         {{!-- A REMPLACER PAR LE {{projectPartial}}   --}}
 

@@ -52,7 +52,7 @@ router.post('/projects/:id/edit', fileUploader.single('image'), (req, res, next)
   } else {
     imageUrl = req.body.existingImage;
   }
-
+  console.log(req.session.currentUser)
   Project.findByIdAndUpdate(req.params.id, {
     owners_mail, 
     course,
@@ -85,9 +85,11 @@ router.get('/projects/new', (req, res, next) => {
 })
 
 router.post('/projects/new', fileUploader.single('image'), (req, res, next) => {
-  const { owners_id, owners_mail, course, module, campus, imageUrl, name, description, theme, year_creation, techno, url, github, rank, likes  } = req.body;
+  const {uploader_id, owners_id, owners_mail, course, module, campus, imageUrl, name, description, theme, year_creation, techno, url, github, rank, likes  } = req.body;
   Project.create({
-    owners_mail,
+    uploader_id: req.session.currentUser._id,
+    owners_id,
+    owners_mail: req.session.currentUser.email,
     course, 
     module, 
     campus, 
@@ -102,7 +104,7 @@ router.post('/projects/new', fileUploader.single('image'), (req, res, next) => {
     rank: rank || undefined, 
     likes: likes || undefined
   }).then(newProject => {
-    res.redirect('/projects');
+    res.redirect(`/projects/${newProject.id}`);
   }).catch(err => {
     next(err);
   });
@@ -110,6 +112,7 @@ router.post('/projects/new', fileUploader.single('image'), (req, res, next) => {
 })
 
 router.get('/projects', (req, res, next) => {
+  console.log('user: 🤑', req.session.currentUser)
   Project.find({})
     .then((allProjectsFromDb) => {
       //
@@ -124,14 +127,23 @@ router.get('/projects', (req, res, next) => {
 })
 
 router.get('/projects/:id', (req, res, next) => {
-  const id = req.params.id 
+  const id = req.params.id
+  
   Project.findOne({_id: id})
     .populate('user') //vérifier nom
     .then((project) => {
-      console.log('project', project)
-
+      console.log('project 🤠', project.uploader_id, 'user 🙄', req.session.currentUser)
+      if (project.uploader_id === req.session.currentUser._id) {
+        var userIsUploader = true
+        console.log("👻")
+        res.render('projects/project-details', {
+          project: project,
+          userIsUploader
+        })
+      }
       res.render('projects/project-details', {
-        project: project
+        project: project,
+        userIsUploader
       })
     })
     .catch(err => {

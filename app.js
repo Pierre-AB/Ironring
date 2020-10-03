@@ -58,6 +58,13 @@ app.use(favicon(path.join(__dirname, "public", "images", "favicon.ico")));
 // default value for title local
 app.locals.title = "Ironring";
 
+app.use(function (req, res, next) { // variable global pour users accessible partout 
+  res.locals.user = req.session.currentUser // {{#if }}
+  next()
+})
+
+
+
 // ########   #######  ##     ## ######## ######## ########   ######
 // ##     ## ##     ## ##     ##    ##    ##       ##     ## ##    ##
 // ##     ## ##     ## ##     ##    ##    ##       ##     ## ##

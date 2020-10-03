@@ -2,7 +2,8 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const projectSchema = new Schema({
-  uploader_id:{type: Schema.Types.ObjectId, ref: 'User'}, // vérifier la ref
+  // uploader_id:{type: Schema.Types.ObjectId, ref: 'User'}, // vérifier la ref
+  uploader_id: String,
   owners_id: [String], // push rec.body.co-users_mail,
   owners_mail: [String], 
   course: {  // "webdev"

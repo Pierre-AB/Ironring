@@ -6,6 +6,7 @@
     "start": "node ./bin/www",
     "start-dev": "nodemon ./bin/www",
     "dev": "DEBUG=ironring:* nodemon ./bin/www",
+    "inspect": "nodemon --inspect ./bin/www",
     "dev-windows": "nodemon ./bin/www"
   },
   "dependencies": {
