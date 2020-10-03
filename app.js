@@ -10,6 +10,7 @@ const logger = require("morgan");
 const path = require("path");
 
 mongoose
+  // .connect(process.env.MONGODB_URI)    // ATLAS
   .connect("mongodb://localhost/ironring", { useNewUrlParser: true })
   .then((x) => {
     console.log(
