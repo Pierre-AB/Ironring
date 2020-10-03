@@ -1,2 +1,21 @@
-je suis l'edit
+<h2>Edit the Project: {{project.name}}</h2>
+ 
+<form action="/projects/{{project.id}}/edit" method="POST">
+  <label>
+    Title:
+    <input type="text" name="name" value="{{project.name}}" />
+  </label>
+ 
+  <label>
+    Description:
+    <textarea name="description" cols="30" rows="4">{{project.description}}</textarea>
+  </label>
 
+  <label for="image-input">Image:</label>
+  <input type="file" name="image" id="image-input" class="form-control-file" />
+  <input type="text" name="existingImage" hidden id="" value="{{project.imageUrl}}">
+  </div>
+
+ 
+  <button type="submit">Save changes</button>
+</form>

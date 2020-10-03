@@ -1,1 +1,12 @@
-Je suis le détail du project
+<div class="content-container">
+
+<h1>{{project.name}}</h1>
+
+<p>{{project.description}}</p>
+<br>
+<p> <img src="{{project.imageUrl}}" alt></p>
+
+<a href="/projects/{{project.id}}/edit">Edit</a> 
+<form action="/projects/{{project.id}}/delete" method="POST"><button>supprimer</button></form>
+
+</div>
