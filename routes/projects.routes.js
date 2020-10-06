@@ -106,36 +106,37 @@ router.post('/projects/:id/edit', fileUploader.single('image'), (req, res, next)
 
 router.get('/projects/new', (req, res, next) => {
   User.find({})
-  .then(usersFromDb => {
-    console.log('user', req.session.currentUser)
-    var courseWebDev;
-    if (req.session.currentUser.course === "Web-Dev") {
-      courseWebDev = true;
-    }
+    .then(usersFromDb => {
+      console.log('user', req.session.currentUser)
+      var courseWebDev;
+      if (req.session.currentUser.course === "Web-Dev") {
+        courseWebDev = true;
+      }
 
-    var courseUX;
-    if (req.session.currentUser.course === "UX/UI") {
-      courseUX = true;
-    }
+      var courseUX;
+      if (req.session.currentUser.course === "UX/UI") {
+        courseUX = true;
+      }
 
-    // Renvoie true or undefined
-    var courseData;
-    if (req.session.currentUser.course === "Data") {
-      courseData = true;
-    }
+      // Renvoie true or undefined
+      var courseData;
+      if (req.session.currentUser.course === "Data") {
+        courseData = true;
+      }
 
-    // Permet de renvoyer forcément true ou false
-    var courseCyber = req.session.currentUser.course === "Cyber_Security";
+      // Permet de renvoyer forcément true ou false
+      var courseCyber = req.session.currentUser.course === "Cyber_Security";
 
-    res.render('projects/project-new', {   //// vérifier le nom du fichier hbs
-      users: usersFromDb,
-      courseWebDev,
-      courseUX,
-      courseData,
-      courseCyber
+      res.render('projects/project-new', {   //// vérifier le nom du fichier hbs
+        users: usersFromDb,
+        courseWebDev,
+        courseUX,
+        courseData,
+        courseCyber
+      })
+
     })
-  })
-  .catch(err => next(err))
+    .catch(err => next(err))
 
 
 })
@@ -144,6 +145,14 @@ router.get('/projects/new', (req, res, next) => {
 
 router.post('/projects/new', fileUploader.single('image'), (req, res, next) => {
   const { uploader_id, owners_id, owners_mail, course, module, campus, imageUrl, name, description, year_creation, techno, url, github, rank, likes } = req.body;
+  // if (!name) {
+  //   res.render("/projects/new", { errorMessage: "Please enter your project's name" });
+  // }
+
+  // if (!imageUrl) {
+  //   res.render("/projects/new", { errorMessage: "Please enter your project's name" });
+  // }
+
   Project.create({
     uploader_id: req.session.currentUser._id,
     owners_id,
@@ -161,6 +170,14 @@ router.post('/projects/new', fileUploader.single('image'), (req, res, next) => {
     rank: rank || undefined,
     likes: likes || undefined
   }).then(newProject => {
+    console.log('PROJECT ID=', newProject.id)
+
+    User.findById(req.session.currentUser._id)
+      .then(user => {
+        user.projects.push(newProject.id);
+        user.save().then(userSaved => { console.log('PROJECT ADDED TO USER', userSaved) }).catch(err => next(err))
+      })
+      .catch(err => next(err))
     res.redirect(`/projects/${newProject.id}`);
   }).catch(err => {
     next(err);

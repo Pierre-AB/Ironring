@@ -26,7 +26,7 @@ const routeGuard = require('../configs/route-guard.config');
 // GET -> Sign Up page
 router.get("/signup", (req, res, next) => res.render("auth/signup"));
 
-router.post("/signup", uploader.single('image'), (req, res, next) => {
+router.post("/signup", /*uploader.single('image'),*/ (req, res, next) => {
 
 
   /*uploader to add*/
@@ -111,7 +111,7 @@ router.post("/signup", uploader.single('image'), (req, res, next) => {
         expertise,
         campus: campus || undefined,
         course: course || undefined,
-        // profileImgSrc //WARNING: Uploader not set up yet.
+        // profileImgSrc: req.file.path
       });
     })
     .then((userFromDB) => {
@@ -167,6 +167,75 @@ router.post('/login', (req, res, next) => {
 
 })
 
+// ######## ########  #### ######## 
+// ##       ##     ##  ##     ##    
+// ##       ##     ##  ##     ##    
+// ######   ##     ##  ##     ##    
+// ##       ##     ##  ##     ##    
+// ##       ##     ##  ##     ##    
+// ######## ########  ####    ##
+
+//GET -> USER EDIT
+router.get('/userEdit', routeGuard, (req, res) => {
+  res.render('users/user-edit', { user: req.session.currentUser });
+});
+
+// POST -> USER EDIT
+
+router.post('/userEdit', uploader.single('image'), (req, res) => {
+
+  const {
+    email,
+    // password, CHANGE PASSWORD FEATURES
+    ironhacker,
+    firstName,
+    lastName,
+    expertise,
+    campus,
+    course,
+    // profileImgSrc, CHANGE PROFILE IMAGE
+  } = req.body;
+
+  let profileImgSrc;
+  if (req.file) {
+    profileImgSrc = req.file.path;
+  } else {
+    profileImgSrc = req.body.existingImage;
+  }
+
+  User.findByIdAndUpdate(req.session.currentUser._id, {
+    email,
+    // password,
+    ironhacker,
+    profileImgSrc,
+    firstName,
+    lastName,
+    expertise,
+    gitHub,
+    linkedIn,
+    course,
+    promo,
+    campus,
+    format
+  }, { new: true }).then(updatedUser => {
+    console.log('USER UPDATED ===', updatedUser)
+    res.redirect('users/userProfile')
+  }).catch(err => next(err));
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // ##        #######   ######    #######  ##     ## ######## 
 // ##       ##     ## ##    ##  ##     ## ##     ##    ##    
@@ -193,8 +262,5 @@ router.get('/userProfile', routeGuard, (req, res) => {
 });
 
 
-router.get('/userEdit'), routeGuard, (req, res) => {
-  res.render('users/user-edit', { user: req.session.currentUser });
-}
 
 module.exports = router;

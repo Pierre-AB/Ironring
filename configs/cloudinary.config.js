@@ -17,6 +17,15 @@ const storage = new CloudinaryStorage({
   }
 });
 
+// const profileStorage = new CloudinaryStorage({
+//   cloudinary: cloudinary,
+//   params: { 
+//     folder: 'IronringProfile', 
+//     allowedFormats: ['jpg', 'png'],
+//     public_id: (req, file) => file.originalname 
+//   }
+// });
+
 const uploadCloud = multer({ storage });
 
 module.exports = uploadCloud; 

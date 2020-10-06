@@ -40,10 +40,11 @@ const userSchema = new Schema(
     },
     format: { type: String, enum: ['Full-Time', 'Part-Time'] }, // PART-TIME OU FULL-TIME
     current_location: String, //WHAT LOCATION ATTRIBUTE IS ABOUT?
-    projects: {
+    projects: [{
       type: Schema.Types.ObjectId,
       ref: 'Project'
-    },
+    }],
+    // projects: [String]
     // OBJET DANS OBJET POUR user AND recruiter MODEL REQUIRED FIELD ? REQUIRED = WE CAN'T MISS IT
     //   recruiter: {
     //     type: Boolean,
