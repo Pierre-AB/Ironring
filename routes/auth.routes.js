@@ -54,9 +54,11 @@ router.post("/signup", uploader.single('image'), (req, res, next) => {
   if (!regex.test(password)) {
     res.render("auth/signup", {
       errorMessage: "Password needs to have at least 6 chars and must contain at least one number, one lowercase and one uppercase letter.",
-      values: { email, ironhacker: ironhacker === "true" ? true : false
-        
-        , firstName, lastName, expertise, campus, course }
+      values: {
+        email, ironhacker: ironhacker === "true" ? true : false
+
+        , firstName, lastName, expertise, campus, course
+      }
     });
     return;
   }
@@ -174,11 +176,15 @@ router.post('/login', (req, res, next) => {
 // ##       ##     ## ##    ##  ##     ## ##     ##    ##    
 // ########  #######   ######    #######   #######     ##    
 
-
-router.post('/logout', (req, res) => {
+router.get('/logout', (req, res) => {
   req.session.destroy();
   res.redirect('/');
 });
+
+// router.post('/logout', (req, res) => {
+//   req.session.destroy();
+//   res.redirect('/');
+// });
 
 //ROUTEGUARD INCLUDED
 

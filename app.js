@@ -11,8 +11,8 @@ const path = require("path");
 
 mongoose
   //UNCOMMENT R14 AND COMMENT R15 -> TO CONNECT TO ATLAS - DONE
-  .connect(process.env.MONGODB_URI, { useNewUrlParser: true })    // ATLAS
-  // .connect("mongodb://localhost/ironring", { useNewUrlParser: true })
+  // .connect(process.env.MONGODB_URI, { useNewUrlParser: true })    // ATLAS
+  .connect("mongodb://localhost/ironring", { useNewUrlParser: true })
   .then((x) => {
     console.log(
       `Connected to Mongo! Database name: "${x.connections[0].name}"`
@@ -97,8 +97,8 @@ module.exports = app;
  *    ##     ## ##     ## ##    ## ########  ######## ######## ########  ##     ## ##     ##  ######  
  */
 
-hbs.registerHelper('ifCond', function(v1, v2, options) {
-  if(v1 === v2) {
+hbs.registerHelper('ifCond', function (v1, v2, options) {
+  if (v1 === v2) {
     return options.fn(this);
   }
   return options.inverse(this);
