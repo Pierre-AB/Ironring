@@ -2,22 +2,26 @@
   <h1 class="general-subtitle">List of all projects</h1>
   <div class="filters">Filters</div>
   <div class="all-projects">
-    {{#each projects}}
+
     {{!-- {{projectPartial}} --}}
 
     {{!-- A REMPLACER PAR LE {{projectPartial}}   --}}
-    <div class="{{campus}} {{course}} {{module}}">
-      <h3>
-          <a href="/projects/{{id}}">{{this.name}}</a>
-          <p> <img src="{{this.imageUrl}}" alt></p>
-          <p>{{this.description}}</p>
-      </h3>
-      {{!-- <a href="/projects/{{id}}/edit">Edit</a>
-
-      <form action="/projects/{{id}}/delete" method="POST"><button>supprimer</button></form> --}}
-
+    {{#each projects}}
+    <div class="project-card {{campus}} {{course}} {{module}}">
+      <img src="{{this.imageUrl}}" alt="">
+      <div>
+        <p class="project-name">{{this.name}}</p>
+        <p class="project-date">{{this.year_creation}}</p>
+      </div>
+      {{!-- <div>
+        <p class="project-likes">{{this.likes}}72<i class="fas fa-heart"></i></p>
+      </div> --}}
     </div>
+    {{/each}}
     {{!-- A REMPLACER PAR LE {{projectPartial}}   --}}
 
-    {{/each}}
+    {{!-- <a href="/projects/{{id}}/edit">Edit</a>
+    <form action="/projects/{{id}}/delete" method="POST"><button>supprimer</button></form> --}}
+
   </div>
+</div>

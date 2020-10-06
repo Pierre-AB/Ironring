@@ -118,15 +118,14 @@ router.get('/projects/new', (req, res, next) => {
       courseUX = true;
     }
 
+    // Renvoie true or undefined
     var courseData;
     if (req.session.currentUser.course === "Data") {
       courseData = true;
     }
 
-    var courseCyber;
-    if (req.session.currentUser.course === "Cyber_Security") {
-      courseCyber = true;
-    }
+    // Permet de renvoyer forcément true ou false
+    var courseCyber = req.session.currentUser.course === "Cyber_Security";
 
     res.render('projects/project-new', {   //// vérifier le nom du fichier hbs
       users: usersFromDb,

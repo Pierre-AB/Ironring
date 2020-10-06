@@ -1,43 +1,50 @@
-{{!-- views/users/userProfile.hbs --}}
-<div id="profile">
-  {{#if user.ironhacker}}
-  <h2>Welcome, {{ user.firstName }}!</h2>
-  <p>This is your profile page!</p>
+<div id="profile" class="profile-page grey-bg">
+
+  {{!-- {{#if user.ironhacker}} --}}
 
   <div>
-    <p>Lastname: {{user.lastName}}</p>
-    {{#if user.expertise}}
-    <p>Expertise: {{user.expertise}}</p>
-    {{/if}}
-    <p>GitHub: {{user.github}}</p>
-    <p>LinkedIn: {{user.linkedIn}}</p>
-    <p>course: {{user.course}}</p>
-    <p>Campus: {{user.campus}}</p>
-    <p>Format: {{user.format}}</p>
-    <p>Projects: {{#each user.projects}}
-      <li>{{projects}}</li>
-      {{/each}}
-    </p>
+    <div class="hexagon">
+      <div class="hexTop"></div>
+      <div class="hexBottom"></div>
+    </div>
+
+    {{!-- <img class="profile-picture" source="{{user.profileImgSrc}}"/> --}}
+    <p>XX projects</p>
   </div>
 
+  <div>
+    <p class="profile-name">{{user.lastName}} {{user.firstName}}</p>
+    {{#if user.expertise}}<p class="profile-expertise">{{user.expertise}}</p>{{/if}}
+    <p class="profile-campus">{{user.campus}}</p>
+    <p>{{user.github}}</p>
+    <p>{{user.linkedIn}}</p>
 
-
-  <button>
-    <a href="/userEdit">Edit your profile</a>
-  </button>
+    <div>Filtres</div>
+  </div>
 
 
   {{!-- Edit btn only if owner of the profile --}}
   {{#if userIsUploader}} {{!-- ATTENTION, MAUVAISE VERIFICATION, CHANGER ! --}}
     <a class="small-btn" href="/userEdit">Edit</a> 
   {{/if}}
+  
+  <button>
+    <a href="/userEdit">Edit your profile</a>
+  </button>
 
 
-  {{else}}
-  <h2>Welcome, {{ user.email }}!</h2>
+  {{#each user.projects}}
+  <div class="project-card {{campus}} {{course}} {{module}}">
+    <img src="{{this.imageUrl}}" alt="">
+    <div>
+      <p class="project-name">{{this.name}}</p>
+      <p class="project-date">{{this.year_creation}}</p>
+    </div>
+    {{!-- <div>
+      <p class="project-likes">{{this.likes}}72<i class="fas fa-heart"></i></p>
+    </div> --}}
+  </div>
+  {{/each}}
 
-
-
-  {{/if}}
-
+  {{!-- {{/if}} --}}
 </div>
