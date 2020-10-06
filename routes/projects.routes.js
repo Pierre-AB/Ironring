@@ -153,6 +153,20 @@ router.post('/projects/new', fileUploader.single('image'), (req, res, next) => {
   //   res.render("/projects/new", { errorMessage: "Please enter your project's name" });
   // }
 
+  // if (!year_creation) {
+  //   res.render("/projects/new", { errorMessage: "Please enter the year"});
+  // }
+
+  // if (!description) {
+  //   res.render("/projects/new", { errorMessage: "Please describe your project" });
+  // }
+
+  // if (!url || !url) {
+  //   res.render("/projects/new", { errorMessage: "Please describe your project" });
+  // }
+
+
+
   Project.create({
     uploader_id: req.session.currentUser._id,
     owners_id,

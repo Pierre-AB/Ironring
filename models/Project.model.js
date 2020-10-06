@@ -18,7 +18,7 @@ const projectSchema = new Schema({
   },
   name: { //'IronSecurity' // ON VIEW
     type: String,
-    required: [true, 'Your project name is required.']
+    // required: [true, 'Your project name is required.']
   },
   description: { //project description // ON VIEW
     type: String,
