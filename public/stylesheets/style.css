@@ -19,7 +19,8 @@ a {
 
 a:active,
 a:hover,
-a:focus {
+a:focus,
+.active {
   color: #2dc5fa; }
 
 /***
@@ -89,19 +90,23 @@ a:focus {
 
 .course a:active,
 .course a:hover,
-.course a:focus {
+.course a:focus,
+.course .active {
   display: inline-block;
   background: rgba(45, 197, 250, 0.1);
   text-align: center;
-  border-bottom: solid 3px #2dc5fa; }
+  border-bottom: solid 3px #2dc5fa;
+  padding: calc( 2vh + 4px) 2vw; }
 
 .course-nav ul {
   display: flex;
   list-style-type: none; }
 
 .course-nav li {
-  padding: 1vw;
   align-self: center; }
+
+.top-nav-items a {
+  padding: calc( 2vh + 4px) 2vw; }
 
 .course-nav li .fa, .course-nav li .fas {
   font-size: 14px; }
@@ -117,7 +122,8 @@ a:focus {
   width: 3.8vh;
   height: 3.8vh;
   border-radius: 50%;
-  object-fit: cover; }
+  object-fit: cover;
+  margin-left: 2vw; }
 
 .add-project .fa, .add-project .fas {
   padding-right: .5vw; }
@@ -187,7 +193,8 @@ a:focus {
 
 .left-nav a:active,
 .left-nav a:hover,
-.left-nav a:focus {
+.left-nav a:focus,
+.left-nav .active {
   background: rgba(45, 197, 250, 0.1);
   width: 100%;
   text-align: center;
@@ -395,76 +402,44 @@ input[type="checkbox"] {
 
 .profile-page {
   display: flex;
-  flex-direction: column;
-  align-items: baseline;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
   height: calc( 100vh - 7vh);
   width: 100vw;
   padding: 4vh 8vh; }
 
 .profile-picture {
-  background: red; }
+  background: #c0c4d0;
+  width: 20vh;
+  height: 20vh;
+  border-radius: 50%;
+  object-fit: cover; }
+
+.profile-informations {
+  flex-grow: 1;
+  padding-left: 5vw; }
 
 .profile-name {
-  text-transform: uppercase; }
+  text-transform: uppercase;
+  font-size: 2em;
+  font-weight: 700; }
 
-.hexagon {
-  position: relative;
-  width: 250px;
-  height: 144.34px;
-  margin: 72.17px 0;
-  background-image: url(http://csshexagon.com/img/meow.jpg);
-  background-size: auto 288.6751px;
-  background-position: center; }
+.profile-filters {
+  padding-top: 3vh; }
 
-.hexTop,
-.hexBottom {
-  position: absolute;
+.user-project-quantity {
+  background: #2DC5FA;
+  text-transform: uppercase;
+  padding: 0.5em 1em;
+  margin-top: -30px;
   z-index: 1;
-  width: 176.78px;
-  height: 176.78px;
-  overflow: hidden;
-  -webkit-transform: scaleY(0.5774) rotate(-45deg);
-  -ms-transform: scaleY(0.5774) rotate(-45deg);
-  transform: scaleY(0.5774) rotate(-45deg);
-  background: inherit;
-  left: 36.61px; }
-
-/*counter transform the bg image on the caps*/
-.hexTop:after,
-.hexBottom:after {
-  content: "";
-  position: absolute;
-  width: 250.0000px;
-  height: 144.33756729740645px;
-  -webkit-transform: rotate(45deg) scaleY(1.7321) translateY(-72.1688px);
-  -ms-transform: rotate(45deg) scaleY(1.7321) translateY(-72.1688px);
-  transform: rotate(45deg) scaleY(1.7321) translateY(-72.1688px);
-  -webkit-transform-origin: 0 0;
-  -ms-transform-origin: 0 0;
-  transform-origin: 0 0;
-  background: inherit; }
-
-.hexTop {
-  top: -88.3883px; }
-
-.hexTop:after {
-  background-position: center top; }
-
-.hexBottom {
-  bottom: -88.3883px; }
-
-.hexBottom:after {
-  background-position: center bottom; }
-
-.hexagon:after {
-  content: "";
-  position: absolute;
-  top: 0.0000px;
-  left: 0;
-  width: 250.0000px;
-  height: 144.3376px;
-  z-index: 2;
-  background: inherit; }
+  color: white;
+  border-radius: 8px;
+  z-index: 1;
+  z-index: 1;
+  text-align: center;
+  position: relative; }
 
 /***
  *    ########  ########   #######        ## ########  ######  ########    ##       ####  ######  ######## 
@@ -497,6 +472,56 @@ input[type="checkbox"] {
   margin-bottom: 1vh; }
 
 .project-date {
+  color: #c0c4d0; }
+
+/***
+ *    ########  ########   #######        ## ########  ######  ########    ########  ######## ########    ###    #### ##        ######  
+ *    ##     ## ##     ## ##     ##       ## ##       ##    ##    ##       ##     ## ##          ##      ## ##    ##  ##       ##    ## 
+ *    ##     ## ##     ## ##     ##       ## ##       ##          ##       ##     ## ##          ##     ##   ##   ##  ##       ##       
+ *    ########  ########  ##     ##       ## ######   ##          ##       ##     ## ######      ##    ##     ##  ##  ##        ######  
+ *    ##        ##   ##   ##     ## ##    ## ##       ##          ##       ##     ## ##          ##    #########  ##  ##             ## 
+ *    ##        ##    ##  ##     ## ##    ## ##       ##    ##    ##       ##     ## ##          ##    ##     ##  ##  ##       ##    ## 
+ *    ##        ##     ##  #######   ######  ########  ######     ##       ########  ########    ##    ##     ## #### ########  ######  
+ */
+.projects-details-page {
+  width: calc( 100vw - 4vw);
+  padding: 4vw; }
+
+.project-detail-picture {
+  width: 100%;
+  max-height: 45vh;
+  object-fit: cover;
+  margin-bottom: 5vh; }
+
+.projects-details-name {
+  text-transform: uppercase;
+  font-size: 1.5em;
+  font-weight: 700;
+  margin-bottom: 1vh; }
+
+.project-detail-module {
+  font-size: 1.2em; }
+
+.projects-details-infos .fa, .projects-details-infos .fas {
+  color: #2DC5FA; }
+
+.projects-details-infos {
+  margin-bottom: 1vh; }
+
+.projects-details-answer {
+  color: #c0c4d0; }
+
+.project-detail-data {
+  display: flex;
+  flex-direction: row; }
+
+.project-detail-col1 {
+  flex-grow: 0.5; }
+
+.project-detail-data h1, .project-detail-module {
+  display: inline-block; }
+
+.projects-details-description {
   color: #c0c4d0; }
 
 /*# sourceMappingURL=style.css.map */
