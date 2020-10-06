@@ -3,35 +3,25 @@
   {{!-- {{#if user.ironhacker}} --}}
 
   <div>
-    <div class="hexagon">
-      <div class="hexTop"></div>
-      <div class="hexBottom"></div>
-    </div>
-
-    {{!-- <img class="profile-picture" source="{{user.profileImgSrc}}"/> --}}
-    <p>XX projects</p>
+    <img class="profile-picture" source="{{user.profileImgSrc}}"/>
+    <p class="user-project-quantity">{{#if user.projects.length}} {{user.projects.length}} {{else}} 0{{/if}} projects</p>
   </div>
 
-  <div>
+  <div class="profile-informations">
     <p class="profile-name">{{user.lastName}} {{user.firstName}}</p>
     {{#if user.expertise}}<p class="profile-expertise">{{user.expertise}}</p>{{/if}}
     <p class="profile-campus">{{user.campus}}</p>
     <p>{{user.github}}</p>
     <p>{{user.linkedIn}}</p>
 
-    <div>Filtres</div>
+    <div class="profile-filters">Filtres</div>
   </div>
-
 
   {{!-- Edit btn only if owner of the profile --}}
   {{#if userIsUploader}} {{!-- ATTENTION, MAUVAISE VERIFICATION, CHANGER ! --}}
-    <a class="small-btn" href="/userEdit">Edit</a> 
+    <a class="small-btn blue-btn" href="/userEdit">Edit your profile</a> 
   {{/if}}
   
-  <button>
-    <a href="/userEdit">Edit your profile</a>
-  </button>
-
 
   {{#each user.projects}}
   <div class="project-card {{campus}} {{course}} {{module}}">

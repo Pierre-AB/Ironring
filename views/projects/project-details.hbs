@@ -1,12 +1,30 @@
-<h1>{{project.name}}</h1>
+<div class="projects-details-page grey-bg">
 
-<p>{{project.description}}</p>
-<br>
-<p> <img src="{{project.imageUrl}}" alt></p>
+  <img class="project-detail-picture" src="{{project.imageUrl}}" alt="project-picture"/>
+
+  <div class="project-detail-data">
+    <div class="project-detail-col1">
+      <h1 class="projects-details-name">{{project.name}} &#8226; </h1><p class="project-detail-module">&nbsp;{{project.module}}</p>
+      <p class="projects-details-description">{{project.description}}</p>
+    </div>
+
+    <div>
+      <p class="projects-details-name">Details</p>
+      <p class="projects-details-infos"><i class="fas fa-user"></i>Creator</p>
+      <p>{{project.owner}}</p>
+      <p class="projects-details-infos"><i class="fas fa-microchip"></i>Tech used</p>
+      <p>{{project.techno}}</p>
+      <p class="projects-details-infos"><i class="fas fa-calendar"></i>Creation date</p>
+      <p class="projects-details-answer">{{project.year_creation}}</p>
+    </div>
+
+  </div>
 
 {{#if userIsUploader}}
-
-<a href="/projects/{{project.id}}/edit">Edit</a> 
-<form action="/projects/{{project.id}}/delete" method="POST"><button>supprimer</button></form>
-
+<div>
+  <a class="small-btn blue-btn" href="/projects/{{project.id}}/edit">Edit</a> 
+  <form action="/projects/{{project.id}}/delete" method="POST"><button>supprimer</button></form>
+</div>
 {{/if}}
+
+</div>
