@@ -235,6 +235,10 @@ router.get('/projects', (req, res, next) => {
 // ##     ## ##          ##    ##     ##  ##  ##       ##    ##            ##        ##    ##  ##     ## ##    ## ##       ##    ##    ##    
 // ########  ########    ##    ##     ## #### ########  ######             ##        ##     ##  #######   ######  ########  ######     ##    
 
+router.get('/filters'), (req, res, next) => {
+  console.log('QUERY===', req.query);
+}
+
 
 // GET -> PROJECT DETAILS
 
