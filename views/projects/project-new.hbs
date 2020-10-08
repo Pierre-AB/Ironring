@@ -2,7 +2,7 @@
   <h1 class="general-subtitle">Add a new project</h1>
 
   <form class="new-project-form" action="/projects/new" method="POST" enctype="multipart/form-data">
-  {{!-- owners_id, owners_mail, , , , , , url, github, likes  --}}
+    {{!-- owners_id, owners_mail, , , , , , url, github, likes  --}}
 
     <div class="project-fields">
 
@@ -18,65 +18,66 @@
       <label for="">Creation year:</label>
       <input type="number" class="" name="year_creation" min="1970" step="1" max="2099">
 
-      <!-- FIELD - Modules --><!-- Modules regarding user course -->
+      <!-- FIELD - Modules -->
+      <!-- Modules regarding user course -->
       <label for="">Module</label>
 
-        <!-- WebDev -->
-        {{#if courseWebDev}}
-          <select name="module" id="">
-            <option value="">--Please select your module--</option>
-            <option value="1">1: Responsive design</option>
-            <option value="2">2: Back-end</option>
-            <option value="3">3: Front-end</option>
-            <option value="Personal">Personal project</option>
-          </select>
-        {{/if}}
+      <!-- WebDev -->
+      {{#if courseWebDev}}
+      <select name="module" id="">
+        <option value="">--Please select your module--</option>
+        <option value="1">1: Responsive design</option>
+        <option value="2">2: Back-end</option>
+        <option value="3">3: Front-end</option>
+        <option value="Personal">Personal project</option>
+      </select>
+      {{/if}}
 
-        <!-- UX/UI -->
-        {{#if courseUX}}
-          <select name="module" id="">
-            <option value="">--Please select your module--</option>
-            <option value="1">1: User experience</option>
-            <option value="2">2: Design user interfaces</option>
-            <option value="3">3: Design implementation</option>
-            <option value="Personal">Personal project</option>
-          </select>
-        {{/if}}
+      <!-- UX/UI -->
+      {{#if courseUX}}
+      <select name="module" id="">
+        <option value="">--Please select your module--</option>
+        <option value="1">1: User experience</option>
+        <option value="2">2: Design user interfaces</option>
+        <option value="3">3: Design implementation</option>
+        <option value="Personal">Personal project</option>
+      </select>
+      {{/if}}
 
-        <!-- Data Analyse -->
-        {{#if courseData}}
-          <select name="module" id="">
-            <option value="">--Please select your module--</option>
-            <option value="1">1: SQL to and Python</option>
-            <option value="2">2: Advanced Data Analytics</option>
-            <option value="3">3: Machine learning</option>
-            <option value="Personal">Personal project</option>
-          </select>
-        {{/if}}
+      <!-- Data Analyse -->
+      {{#if courseData}}
+      <select name="module" id="">
+        <option value="">--Please select your module--</option>
+        <option value="1">1: SQL to and Python</option>
+        <option value="2">2: Advanced Data Analytics</option>
+        <option value="3">3: Machine learning</option>
+        <option value="Personal">Personal project</option>
+      </select>
+      {{/if}}
 
-        <!-- Cybersecurity -->
-        {{#if courseCyber}}
-          <select name="module" id="">
-            <option value="">--Please select your module--</option>
-            <option value="Front">1: Basics of Cybersecurity</option>
-            <option value="Back">2: Security and Threats</option>
-            <option value="React">3: Real projects</option>
-            <option value="Personal">Personal project</option>
-          </select>
-        {{/if}}
+      <!-- Cybersecurity -->
+      {{#if courseCyber}}
+      <select name="module" id="">
+        <option value="">--Please select your module--</option>
+        <option value="Front">1: Basics of Cybersecurity</option>
+        <option value="Back">2: Security and Threats</option>
+        <option value="React">3: Real projects</option>
+        <option value="Personal">Personal project</option>
+      </select>
+      {{/if}}
 
-      <!-- FIELD - Course -->
-      <label> Course</label>
+      <!-- FIELD - Course WE GOT IT THROUGH SESSION -->
+      {{!-- <label> Course</label>
       <select name="course" id="input-course">
         <option value="">--Please select your course--</option>
         <option value="Web-Dev">Web Development</option>
         <option value="UX/UI">UX/UI Design</option>
         <option value="Data">Data Analytics</option>
         <option value="Cyber_Security">Cybersecurity</option>
-      </select>
+      </select> --}}
 
-      <!-- FIELD - Campus -->
-      <label for="input-campus">Campus*</label>
+      <!-- FIELD - Campus WE GOT IT THROUGH SESSION -->
+      {{!-- <label for="input-campus">Campus*</label>
       <select name="campus" id="input-campus">
         <option value="">--Please select your campus--</option>
         <option value="Amsterdam">Amsterdam</option>
@@ -89,46 +90,47 @@
         <option value="Paris">Paris</option>
         <option value="Remote">Remote</option>
         <option value="Sao Paulo">Sao Paulo</option>
-      </select>
+      </select> --}}
 
-      <!-- FIELD - Tech used --><!-- Tech used regarding user course -->
+      <!-- FIELD - Tech used -->
+      <!-- Tech used regarding user course -->
       <label for="">Tech used</label>
 
-        <!-- WebDev -->
-        {{#if courseWebDev}}
-          <label class="inline"><input type="checkbox" class="" name="" value="">HTML5 - CSS3</label>
-          <label class="inline"><input type="checkbox" class="" name="" value="">JavaScript</label>
-          <label class="inline"><input type="checkbox" class="" name="" value="">NodeJS</label>
-          <label class="inline"><input type="checkbox" class="" name="" value="">ExpressJS</label>
-          <label class="inline"><input type="checkbox" class="" name="" value="">MongoDB</label>
-          <label class="inline"><input type="checkbox" class="" name="" value="">ReactJS</label>
-        {{/if}}
+      <!-- WebDev -->
+      {{#if courseWebDev}}
+      <label class="inline"><input type="checkbox" class="" name="" value="">HTML5 - CSS3</label>
+      <label class="inline"><input type="checkbox" class="" name="" value="">JavaScript</label>
+      <label class="inline"><input type="checkbox" class="" name="" value="">NodeJS</label>
+      <label class="inline"><input type="checkbox" class="" name="" value="">ExpressJS</label>
+      <label class="inline"><input type="checkbox" class="" name="" value="">MongoDB</label>
+      <label class="inline"><input type="checkbox" class="" name="" value="">ReactJS</label>
+      {{/if}}
 
-        <!-- UX/UI -->
-        {{#if courseUX}}
-          <label class="inline"><input type="checkbox" class="" name="" value="">UI</label>
-          <label class="inline"><input type="checkbox" class="" name="" value="">UX</label>
-          <label class="inline"><input type="checkbox" class="" name="" value="">With prototypes</label>
-          <label class="inline"><input type="checkbox" class="" name="" value="">Une autre idée ?</label>
-          <label class="inline"><input type="checkbox" class="" name="" value="">HTML5 - CSS3</label>
-        {{/if}}
+      <!-- UX/UI -->
+      {{#if courseUX}}
+      <label class="inline"><input type="checkbox" class="" name="" value="">UI</label>
+      <label class="inline"><input type="checkbox" class="" name="" value="">UX</label>
+      <label class="inline"><input type="checkbox" class="" name="" value="">With prototypes</label>
+      <label class="inline"><input type="checkbox" class="" name="" value="">Une autre idée ?</label>
+      <label class="inline"><input type="checkbox" class="" name="" value="">HTML5 - CSS3</label>
+      {{/if}}
 
-        <!-- Data Analyse -->
-        {{#if courseData}}
-          <label class="inline"><input type="checkbox" class="" name="" value="">Python</label>
-          <label class="inline"><input type="checkbox" class="" name="" value="">MySQL</label>
-          <label class="inline"><input type="checkbox" class="" name="" value="">Statistical analysis</label>
-          <label class="inline"><input type="checkbox" class="" name="" value="">Connected to API</label>
-          <label class="inline"><input type="checkbox" class="" name="" value="">With IA</label>
-        {{/if}}
+      <!-- Data Analyse -->
+      {{#if courseData}}
+      <label class="inline"><input type="checkbox" class="" name="" value="">Python</label>
+      <label class="inline"><input type="checkbox" class="" name="" value="">MySQL</label>
+      <label class="inline"><input type="checkbox" class="" name="" value="">Statistical analysis</label>
+      <label class="inline"><input type="checkbox" class="" name="" value="">Connected to API</label>
+      <label class="inline"><input type="checkbox" class="" name="" value="">With IA</label>
+      {{/if}}
 
-        <!-- Cybersecurity -->
-        {{#if courseCyber}}
-          <label class="inline"><input type="checkbox" class="" name="" value="">Around networking traffic</label>
-          <label class="inline"><input type="checkbox" class="" name="" value="">Around fingerprinting</label>
-          <label class="inline"><input type="checkbox" class="" name="" value="">Encrypting data</label>
-          <label class="inline"><input type="checkbox" class="" name="" value="">Backup and recovery</label>
-        {{/if}}
+      <!-- Cybersecurity -->
+      {{#if courseCyber}}
+      <label class="inline"><input type="checkbox" class="" name="" value="">Around networking traffic</label>
+      <label class="inline"><input type="checkbox" class="" name="" value="">Around fingerprinting</label>
+      <label class="inline"><input type="checkbox" class="" name="" value="">Encrypting data</label>
+      <label class="inline"><input type="checkbox" class="" name="" value="">Backup and recovery</label>
+      {{/if}}
 
       <!-- FIELD - Ranking -->
       <label for="">Ranking</label>
@@ -156,7 +158,7 @@
 
       <!-- BUTTON - Submit button -->
       <button type="submit" class="small-btn blue-btn">Submit this project</button>
-      
+
     </div>
 
 
