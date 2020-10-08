@@ -173,7 +173,7 @@ router.post('/projects/new', fileUploader.single('image'), (req, res, next) => {
     owners_mail: req.session.currentUser.email,
     course: req.session.currentUser.course,
     module,
-    campus,
+    campus: req.session.currentUser.campus,
     imageUrl: req.file.path,
     name,
     description,
@@ -189,6 +189,7 @@ router.post('/projects/new', fileUploader.single('image'), (req, res, next) => {
     User.findById(req.session.currentUser._id)
       .then(user => {
         user.projects.push(newProject.id);
+        console.log('USER PROJECT LIST===', user.projects);
         user.save().then(userSaved => { console.log('PROJECT ADDED TO USER', userSaved) }).catch(err => next(err))
       })
       .catch(err => next(err))
@@ -212,7 +213,8 @@ router.post('/projects/new', fileUploader.single('image'), (req, res, next) => {
 
 router.get('/projects', (req, res, next) => {
   console.log('user: 🤑', req.session.currentUser)
-  Project.find({})
+  console.log(req.query);
+  Project.find()
     .then((allProjectsFromDb) => {
       //
       res.render('projects/projects-list', { //// vérifier le nom du fichier hbs
@@ -235,9 +237,9 @@ router.get('/projects', (req, res, next) => {
 // ##     ## ##          ##    ##     ##  ##  ##       ##    ##            ##        ##    ##  ##     ## ##    ## ##       ##    ##    ##    
 // ########  ########    ##    ##     ## #### ########  ######             ##        ##     ##  #######   ######  ########  ######     ##    
 
-router.get('/filters'), (req, res, next) => {
-  console.log('QUERY===', req.query);
-}
+// router.get('/filters'), (req, res, next) => {
+//   console.log('QUERY===', req.query);
+// }
 
 
 // GET -> PROJECT DETAILS
@@ -253,7 +255,6 @@ router.get('/projects/:id', routeGuard, (req, res, next) => {
       // VALIDATION IF USER
       if (project.uploader_id === req.session.currentUser._id) {
         userIsUploader = true
-        console.log("👻")
       }
       res.render('projects/project-details', {
         project: project,
@@ -286,14 +287,37 @@ router.get('/projects/:id', routeGuard, (req, res, next) => {
 
 router.post('/projects/:id/delete', (req, res, next) => {
   // 
-  Project.findByIdAndDelete(req.params.id).then(() => {
-    // if (req.session.currentUser._id != projectFromDb.uploader_id) {
-    //   res.redirect(`/projects/${projectFromDb._id}`);
-    //   console.log('😭');
-    //   return;
-    // }
-    res.redirect('/projects')
-  }).catch(err => next(err))
+  Project.findById(req.params.id).then((projectToDelete) => {
+
+    console.log('PROJECT TO DELETE===', projectToDelete);
+
+    //find the project to delete within the user database.
+    User.findById(projectToDelete.uploader_id).then((userToModify) => {
+      let indexToDelete = userToModify.projects.indexOf(req.params.id)
+      userToModify.projects.splice(indexToDelete, 1);
+      userToModify.save().then(
+        Project.findByIdAndDelete(projectToDelete._id)
+          .then(() => {
+            console.log('🙌🏻  DELETE COMPLETE')
+            res.redirect('/projects')
+          })
+          .catch(err => {
+            console.log('COULD NOT FIND PROJECT TO DELETE', err)
+            next(err)
+          })
+      ).catch(next);
+    }).catch(err => {
+      console.log('NO USER PROJECTS DELETION POSSIBLE ===', err)
+      next(err)
+    })
+
+    //find the the project and delete it
+
+
+  }).catch(err => {
+    console.log("COMPLETE DELETION FAILED", err)
+    next(err)
+  })
 
 })
 
