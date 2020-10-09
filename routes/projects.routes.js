@@ -145,25 +145,45 @@ router.get('/projects/new', (req, res, next) => {
 
 router.post('/projects/new', fileUploader.single('image'), (req, res, next) => {
   const { uploader_id, owners_id, owners_mail, course, module, campus, imageUrl, name, description, year_creation, techno, url, github, rank, likes } = req.body;
-  // if (!name) {
-  //   res.render("/projects/new", { errorMessage: "Please enter your project's name" });
+  if (!name) {
+    res.render("projects/project-new", { errorMessage: "Please enter your project's name" });
+    return
+  }
+
+  if (!description) {
+    res.render("projects/project-new", { errorMessage: "Please describe your project" });
+    return
+  }
+
+  if (!year_creation) {
+    res.render("projects/project-new", { errorMessage: "Please enter the year when it was created"});
+    return
+  }
+
+  if (!module) {
+    res.render("projects/project-new", { errorMessage: "Please enter select your module"});
+    return
+  }
+
+  // if (!techno) {
+  //   res.render("projects/project-new", { errorMessage: "Please select at least one techno"});
+  //   return
   // }
+
+  if (!rank) {
+    res.render("projects/project-new", { errorMessage: "Please select your project's ranking"});
+    return
+  }
+
+  if (!url && !github) {
+    res.render("projects/project-new", { errorMessage: "Please enter at least your github or your URL" });
+    return
+  }
 
   // if (!imageUrl) {
-  //   res.render("/projects/new", { errorMessage: "Please enter your project's name" });
-  // }
-
-  // if (!year_creation) {
-  //   res.render("/projects/new", { errorMessage: "Please enter the year"});
-  // }
-
-  // if (!description) {
-  //   res.render("/projects/new", { errorMessage: "Please describe your project" });
-  // }
-
-  // if (!url || !url) {
-  //   res.render("/projects/new", { errorMessage: "Please describe your project" });
-  // }
+  //   res.render("projects/project-new", { errorMessage: "Please add an image" });
+  //   return
+  // }  
 
 
 

@@ -26,7 +26,7 @@ const routeGuard = require('../configs/route-guard.config');
 // GET -> Sign Up page
 router.get("/signup", (req, res, next) => res.render("auth/signup"));
 
-router.post("/signup", /*uploader.single('image'),*/(req, res, next) => {
+router.post("/signup", uploader.single('image'),(req, res, next) => {
 
 
   /*uploader to add*/
@@ -111,7 +111,7 @@ router.post("/signup", /*uploader.single('image'),*/(req, res, next) => {
         expertise,
         campus: campus || undefined,
         course: course || undefined,
-        // profileImgSrc: req.file.path
+        profileImgSrc: req.file.path
       });
     })
     .then((userFromDB) => {
