@@ -122,9 +122,15 @@ router.post("/signup", uploader.single('image'),(req, res, next) => {
       return;
     })
     .catch((error) => {
+<<<<<<< HEAD
       console.log("💥 USER ERROR =", error);
       res.render('auth/login', { errorMessage: "Please login - email is already existing" });
       next(error);
+=======
+      console.log("💥 USER ERROR =");
+      res.render('auth/login', { errorMessage: "Please login - email is already existing" });
+
+>>>>>>> ba8f5618476b0dc040bd45e5602e73ab1cb3a9df
       return;
     });
 
@@ -195,6 +201,10 @@ router.post('/userEdit', uploader.single('image'), (req, res) => {
     expertise,
     campus,
     course,
+    gitHub,
+    linkedIn,
+    promo,
+    format
     // profileImgSrc, CHANGE PROFILE IMAGE
   } = req.body;
 
@@ -221,7 +231,7 @@ router.post('/userEdit', uploader.single('image'), (req, res) => {
     format
   }, { new: true }).then(updatedUser => {
     console.log('USER UPDATED ===', updatedUser)
-    res.redirect('users/userProfile')
+    res.redirect('/userProfile')
   }).catch(err => next(err));
 });
 

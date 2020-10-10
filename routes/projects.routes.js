@@ -32,8 +32,13 @@ const routeGuard = require('../configs/route-guard.config.js');
 // GET -> SINGLE PROJECT EDIT
 
 router.get('/projects/:id/edit', (req, res, next) => {
-  // Permet de renvoyer forcément true ou false
+  // Permet de renvoyer forcément true ou false  
+
   var courseCyber = req.session.currentUser.course === "Cyber_Security";
+  var courseWebDev = req.session.currentUser.course === "Web-Dev";
+  var courseUX = req.session.currentUser.course === "UX/UI";
+  var courseData = req.session.currentUser.course === "Data";
+
 
   Project.findById(req.params.id).then(projectFromDb => {
     if (req.session.currentUser._id != projectFromDb.uploader_id) {
@@ -168,7 +173,8 @@ router.get('/projects/new', (req, res, next) => {
 router.post('/projects/new', fileUploader.single('image'), (req, res, next) => {
   const { uploader_id, owners_id, owners_mail, course, module, campus, imageUrl, name, description, year_creation, techno, url, github, rank, likes } = req.body;
   if (!name) {
-    res.render("projects/project-new", { errorMessage: "Please enter your project's name" });
+    res.render("projects/project-new", { errorMessage: "Please enter your project's name" },
+    );
     return
   }
 
@@ -255,7 +261,20 @@ router.post('/projects/new', fileUploader.single('image'), (req, res, next) => {
 
 router.get('/projects', (req, res, next) => {
   console.log('user: 🤑', req.session.currentUser)
-  console.log(req.query);
+  console.log("❓  ", req.query);
+  // ---------
+  //   var query = {};
+  // if(req.query.module) query.module = req.query.module;
+  // if(req.query.campus) query.campus = req.query.campus;
+  // if(req.query.techno) query.techno = req.query.techno;
+
+
+  // Project.find(query, function (err, filteredProject) {
+  //     if(err) return res.json({status : 500, error : err});
+  //     if(!filteredProject) return res.json({status : 404, error : "Project not found"});
+  //     return res.json(filteredProject);
+  // });   
+  // ---------
   Project.find()
     .then((allProjectsFromDb) => {
       //
@@ -268,6 +287,69 @@ router.get('/projects', (req, res, next) => {
       next(err); // 
     })
 })
+
+/*
+███████ ██ ██   ████████ ███████ ██████  ███████ 
+██      ██ ██      ██    ██      ██   ██ ██      
+█████   ██ ██      ██    █████   ██████  ███████ 
+██      ██ ██      ██    ██      ██   ██      ██ 
+██      ██ ███████ ██    ███████ ██   ██ ███████ 
+*/
+
+
+// GET ONLY FILTERED PROJECTS
+router.get('/projects/q', function(req, res){
+
+  var query = {};
+  if(req.query.module) query.module = req.query.module;
+  if(req.query.campus) query.campus = req.query.campus;
+  if(req.query.techno) query.techno = req.query.techno;
+
+  // A supprimer, simplement pour retourner de JSON
+
+  // Project.find(query, function (err, filteredProject) {
+  //     if(err) return res.json({status : 500, error : err});
+  //     if(!filteredProject) return res.json({status : 404, error : "Project not found"});
+  //     return res.json(filteredProject);
+  // })
+  Project.find(query)
+  .then((filteredProject) => {
+
+    // J'ai besoin de marquer le course comme true pour les autres filtres
+
+    // var courseWebDev;
+    // if (req.query.campus === "Paris") {
+    //   courseWebDev = true;
+    //   console.log("WE ARE LOOKING FOR PARIS 🗼🇫🇷", filteredProject)
+    // }
+    // var courseUX;
+    // if (req.query.course === "UX/UI") {
+    //   courseUX = true;
+    // }
+
+    // // Renvoie true or undefined
+    // var courseData;
+    // if (req.query.course === "Data") {
+    //   courseData = true;
+    // }
+
+    // var courseCyber;
+    // if (req.query.course === "Cyber_Security") {
+    //   courseData = true;
+    // }
+
+    res.render('projects/project-filtered', { //// vérifier le nom du fichier hbs
+      filteredProject
+    })
+  })
+  .catch(err => {
+    console.log('💥', err)
+    next(err); // 
+  })  
+
+})
+
+
 
 
 
@@ -308,6 +390,8 @@ router.get('/projects/:id', routeGuard, (req, res, next) => {
       next(err);
     })
 })
+
+
 
 
 

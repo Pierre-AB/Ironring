@@ -1,0 +1,74 @@
+<div class="projects-list-page grey-bg">
+  <h1 class="general-subtitle">List of filtered projects</h1>
+
+  <div class="all-projects">
+
+    {{!-- {{projectPartial}} --}}
+
+    {{!-- A REMPLACER PAR LE {{projectPartial}}   --}}
+    {{#each filteredProject}}
+    <div class="project-card {{campus}} {{course}} {{module}}">
+      <a href="/projects/{{this.id}}"><img src="{{this.imageUrl}}" alt=""></a>
+      <div>
+        <a href="/projects/{{this.id}}"></a><p class="project-name">{{this.name}}</p></a>
+        <p class="project-date">{{this.year_creation}}</p>
+      </div>
+      {{!-- <div>
+        <p class="project-likes">{{this.likes}}72<i class="fas fa-heart"></i></p>
+      </div> --}}
+    </div>
+    {{/each}}
+    {{!-- A REMPLACER PAR LE {{projectPartial}}   --}}
+
+    {{!-- <a href="/projects/{{id}}/edit">Edit</a>
+    <form action="/projects/{{id}}/delete" method="POST"><button>supprimer</button></form> --}}
+
+  </div>
+</div>
+  <form class="new-project-form" action="/projects/new" method="POST" enctype="multipart/form-data">
+    <div class="project-fields">
+
+      <label for="">Tech used</label>
+
+      <!-- WebDev -->
+      {{#if courseWebDev}}
+      <label class="inline"><input type="checkbox" class="" name="" value="">HTML5 - CSS3</label>
+      <label class="inline"><input type="checkbox" class="" name="" value="">JavaScript</label>
+      <label class="inline"><input type="checkbox" class="" name="" value="">NodeJS</label>
+      <label class="inline"><input type="checkbox" class="" name="" value="">ExpressJS</label>
+      <label class="inline"><input type="checkbox" class="" name="" value="">MongoDB</label>
+      <label class="inline"><input type="checkbox" class="" name="" value="">ReactJS</label>
+      {{/if}}
+
+      <!-- UX/UI -->
+      {{#if courseUX}}
+      <label class="inline"><input type="checkbox" class="" name="" value="">UI</label>
+      <label class="inline"><input type="checkbox" class="" name="" value="">UX</label>
+      <label class="inline"><input type="checkbox" class="" name="" value="">With prototypes</label>
+      <label class="inline"><input type="checkbox" class="" name="" value="">Une autre idée ?</label>
+      <label class="inline"><input type="checkbox" class="" name="" value="">HTML5 - CSS3</label>
+      {{/if}}
+
+      <!-- Data Analyse -->
+      {{#if courseData}}
+      <label class="inline"><input type="checkbox" class="" name="" value="">Python</label>
+      <label class="inline"><input type="checkbox" class="" name="" value="">MySQL</label>
+      <label class="inline"><input type="checkbox" class="" name="" value="">Statistical analysis</label>
+      <label class="inline"><input type="checkbox" class="" name="" value="">Connected to API</label>
+      <label class="inline"><input type="checkbox" class="" name="" value="">With IA</label>
+      {{/if}}
+
+      <!-- Cybersecurity -->
+      {{#if courseCyber}}
+      <label class="inline"><input type="checkbox" class="" name="" value="">Around networking traffic</label>
+      <label class="inline"><input type="checkbox" class="" name="" value="">Around fingerprinting</label>
+      <label class="inline"><input type="checkbox" class="" name="" value="">Encrypting data</label>
+      <label class="inline"><input type="checkbox" class="" name="" value="">Backup and recovery</label>
+      {{/if}}
+
+    <button type="submit" class="small-btn blue-btn">Submit this project</button>
+    </div>
+    {{#if errorMessage}}
+    <p class="error">{{errorMessage}}</p>
+    {{/if}}
+  </form>
