@@ -1,6 +1,51 @@
 <div class="projects-list-page grey-bg">
   <h1 class="general-subtitle">List of all projects</h1>
-  <div class="filters">Filters</div>
+  <div class="filters">Filters
+
+    <form action="/projects" method="GET">
+      <label for="module">Module</label>
+      <select name="module" id="filter-module">
+        <option value="">--Module--</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+      </select>
+
+      <label for="campus">Campus</label>
+      <select name="campus" id="filter-campus">
+        <option value="">--Campus--</option>
+        <option value="Amsterdam">Amsterdam</option>
+        <option value="Barcelona">Barcelona</option>
+        <option value="Berlin">Berlin</option>
+        <option value="Lisboa">Lisboa</option>
+        <option value="Madrid">Madrid</option>
+        <option value="Mexico">Mexico</option>
+        <option value="Miami">Miami</option>
+        <option value="Paris">Paris</option>
+        <option value="Remote">Remote</option>
+        <option value="Sao Paulo">Sao Paulo</option>
+      </select>
+
+      <label for="rank">Rank</label>
+      <select name="rank" id="filter-rank">
+        <option value="">--Rank--</option>
+        <option value="1st">1st</option>
+        <option value="2nd">2nd</option>
+        <option value="3rd">3rd</option>
+        <option value="not_ranked">Not Ranked</option>
+      </select>
+
+      <label for="techno">Techno</label>
+      <select name="techno" id="filter-techno">
+        <option value="">--techno--</option>
+        {{!-- populate techno here --}}
+      </select>
+
+      <button type="submit">Search</button>
+    </form>
+
+  </div>
+
   <div class="all-projects">
 
     {{!-- {{projectPartial}} --}}

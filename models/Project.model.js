@@ -18,7 +18,7 @@ const projectSchema = new Schema({
   },
   name: { //'IronSecurity' // ON VIEW
     type: String,
-    required: [true, 'Your project name is required.']
+    // required: [true, 'Your project name is required.']
   },
   description: { //project description // ON VIEW
     type: String,
@@ -34,12 +34,12 @@ const projectSchema = new Schema({
   },
   url: { // ON VIEW
     type: String,
-    required: [true, 'The url of creation is required.']
+    // required: [true, 'The url of creation is required.']
   },
   github: String, // ON VIEW
   rank: {
     type: String,
-    enum: ['1st', '2nd', '3rd', 'not ranked']
+    enum: ['1st', '2nd', '3rd', 'not_ranked']
   },
   likes: [{ type: Schema.Types.ObjectId, ref: 'User' }] // ON VIEW
 },

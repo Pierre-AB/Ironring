@@ -26,7 +26,7 @@ const routeGuard = require('../configs/route-guard.config');
 // GET -> Sign Up page
 router.get("/signup", (req, res, next) => res.render("auth/signup"));
 
-router.post("/signup", /*uploader.single('image'),*/ (req, res, next) => {
+router.post("/signup", uploader.single('image'),(req, res, next) => {
 
 
   /*uploader to add*/
@@ -111,7 +111,7 @@ router.post("/signup", /*uploader.single('image'),*/ (req, res, next) => {
         expertise,
         campus: campus || undefined,
         course: course || undefined,
-        // profileImgSrc: req.file.path
+        profileImgSrc: req.file.path
       });
     })
     .then((userFromDB) => {
@@ -123,7 +123,8 @@ router.post("/signup", /*uploader.single('image'),*/ (req, res, next) => {
     })
     .catch((error) => {
       console.log("💥 USER ERROR =", error);
-      next(error)
+      res.render('auth/login', { errorMessage: "Please login - email is already existing" });
+      next(error);
       return;
     });
 
@@ -225,16 +226,20 @@ router.post('/userEdit', uploader.single('image'), (req, res) => {
 });
 
 
+// ##     ## ##    ##         ########  ########   #######        ## ########  ######  ########  ######  
+// ###   ###  ##  ##          ##     ## ##     ## ##     ##       ## ##       ##    ##    ##    ##    ## 
+// #### ####   ####           ##     ## ##     ## ##     ##       ## ##       ##          ##    ##       
+// ## ### ##    ##    ####### ########  ########  ##     ##       ## ######   ##          ##     ######  
+// ##     ##    ##            ##        ##   ##   ##     ## ##    ## ##       ##          ##          ## 
+// ##     ##    ##            ##        ##    ##  ##     ## ##    ## ##       ##    ##    ##    ##    ## 
+// ##     ##    ##            ##        ##     ##  #######   ######  ########  ######     ##     ######  
 
 
+//FAIRE UNE ROUTE PARAM
 
-
-
-
-
-
-
-
+router.get('/myProjects', routeGuard, (req, res, next) => {
+  res.render('users/user-projects', { user: req.session.currentUser });
+})
 
 
 
@@ -259,7 +264,10 @@ router.get('/logout', (req, res) => {
 //ROUTEGUARD INCLUDED
 
 router.get('/userProfile', routeGuard, (req, res) => {
-  res.render('users/user-profile', { user: req.session.currentUser });
+  if (req.session.currentUser._id) {
+    res.render('users/user-profile', { user: req.session.currentUser });
+  }
+
 });
 
 

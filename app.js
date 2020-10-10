@@ -11,8 +11,8 @@ const path = require("path");
 
 mongoose
   //UNCOMMENT R14 AND COMMENT R15 -> TO CONNECT TO ATLAS - DONE
-  // .connect(process.env.MONGODB_URI, { useNewUrlParser: true })    // ATLAS
-  .connect("mongodb://localhost/ironring", { useNewUrlParser: true })
+  .connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })    // ATLAS
+  // .connect("mongodb://localhost/ironring", { useNewUrlParser: true })
   .then((x) => {
     console.log(
       `Connected to Mongo! Database name: "${x.connections[0].name}"`

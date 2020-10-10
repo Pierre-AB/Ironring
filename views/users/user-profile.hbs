@@ -3,8 +3,9 @@
   {{!-- {{#if user.ironhacker}} --}}
 
   <div>
-    <img class="profile-picture" source="{{user.profileImgSrc}}"/>
-    <p class="user-project-quantity">{{#if user.projects.length}} {{user.projects.length}} {{else}} 0{{/if}} projects</p>
+    <img class="profile-picture" source="{{user.profileImgSrc}}" />
+    <p class="user-project-quantity">{{#if user.projects.length}} {{user.projects.length}} {{else}} 0{{/if}} projects
+    </p>
   </div>
 
   <div class="profile-informations">
@@ -19,9 +20,9 @@
 
   {{!-- Edit btn only if owner of the profile --}}
   {{#if userIsUploader}} {{!-- ATTENTION, MAUVAISE VERIFICATION, CHANGER ! --}}
-    <a class="small-btn blue-btn" href="/userEdit">Edit your profile</a> 
+  <a class="small-btn blue-btn" href="/userEdit">Edit your profile</a>
   {{/if}}
-  
+
 
   {{#each user.projects}}
   <div class="project-card {{campus}} {{course}} {{module}}">
