@@ -68,16 +68,18 @@ app.use(function (req, res, next) { // variable global pour users accessible par
 
 // middleware to update req.session
 
-// app.use((req, res, next) => {
-//   if (req.session.currentUser) {
-//     User.findById(req.session.currentUser._id)
-//       .then(user => {
-//         req.session.currentUser = user; // ♻️
-//         next()
-//       })
-//       .catch(next)
-//   }
-// })
+app.use((req, res, next) => {
+  if (req.session.currentUser) {
+    User.findById(req.session.currentUser._id)
+      .then(user => {
+        req.session.currentUser = user; // ♻️
+        next()
+      })
+      .catch(next)
+  } else {
+    next()
+  }
+})
 
 app.use((req, res, next) => {
   switch (req.query.course) {

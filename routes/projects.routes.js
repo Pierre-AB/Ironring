@@ -401,18 +401,24 @@ router.get('/projects/:id', routeGuard, (req, res, next) => {
     .populate('user') //vérifier nom
     .then((project) => {
       var userIsUploader
-      console.log('project 🤠', project.uploader_id, 'user 🙄', req.session.currentUser)
+      console.log('project 🤠', project, 'user 🙄', req.session.currentUser)
       // VALIDATION IF USER
       if (project.uploader_id === req.session.currentUser._id) {
         userIsUploader = true
       }
-      res.render('projects/project-details', {
-        project: project,
-        userIsUploader
+      User.findById(project.uploader_id).then((creator) => {
+        res.render('projects/project-details', {
+          project: project,
+          userIsUploader,
+          creator
+        })
+      }).catch(err => {
+        console.log('CREATOR NOT FOUND===', err);
+        next(err);
       })
     })
     .catch(err => {
-      console.log('boom', err);
+      console.log('PROJECT NOT FOUND', err);
       next(err);
     })
 })

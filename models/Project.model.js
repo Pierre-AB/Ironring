@@ -2,7 +2,10 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const projectSchema = new Schema({
-  // uploader_id:{type: Schema.Types.ObjectId, ref: 'User'}, // vérifier la ref
+  // uploader_id: { type: Schema.Types.ObjectId, ref: 'User' }, // vérifier la ref
+
+  //MODIFICATION ==> Comment line 5 uncomment line 9.
+
   uploader_id: String, // OFF VIEW
   owners_id: [String], // push rec.body.co-users_mail, // OFF VIEW
   owners_mail: [String], // OFF VIEW

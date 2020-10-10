@@ -1,17 +1,20 @@
 <div class="projects-details-page grey-bg">
 
-  <img class="project-detail-picture" src="{{project.imageUrl}}" alt="project-picture"/>
+  <img class="project-detail-picture" src="{{project.imageUrl}}" alt="project-picture" />
 
   <div class="project-detail-data">
     <div class="project-detail-col1">
-      <h1 class="projects-details-name">{{project.name}} &#8226; </h1><p class="project-detail-module">&nbsp;{{project.module}}</p>
+      <h1 class="projects-details-name">{{project.name}} &#8226; </h1>
+      <p class="project-detail-module">&nbsp; Module {{project.module}}</p>
       <p class="projects-details-description">{{project.description}}</p>
     </div>
 
     <div>
       <p class="projects-details-name">Details</p>
       <p class="projects-details-infos"><i class="fas fa-user"></i>Creator</p>
-      <p>{{project.owner}}</p>
+      <p>
+        <a href="/userProfile/{{creator._id}}">{{creator.firstName}} {{creator.lastName}}</a>
+      </p>
       <p class="projects-details-infos"><i class="fas fa-microchip"></i>Tech used</p>
       <p>{{project.techno}}</p>
       <p class="projects-details-infos"><i class="fas fa-calendar"></i>Creation date</p>
@@ -20,11 +23,11 @@
 
   </div>
 
-{{#if userIsUploader}}
-<div>
-  <a class="small-btn blue-btn" href="/projects/{{project.id}}/edit">Edit</a> 
-  <form action="/projects/{{project.id}}/delete" method="POST"><button>supprimer</button></form>
-</div>
-{{/if}}
+  {{#if userIsUploader}}
+  <div>
+    <a class="small-btn blue-btn" href="/projects/{{project.id}}/edit">Edit</a>
+    <form action="/projects/{{project.id}}/delete" method="POST"><button>supprimer</button></form>
+  </div>
+  {{/if}}
 
 </div>

@@ -199,35 +199,120 @@ router.post('/userEdit', uploader.single('image'), (req, res) => {
     gitHub,
     linkedIn,
     promo,
-    format,
+    format
   } = req.body;
 
-  let profileImgSrc;
-  if (req.file) {
-    profileImgSrc = req.file.path;
-  } else {
-    profileImgSrc = req.body.existingImage;
+  //update image picture
+
+
+  function editProfileInfos() {
+    User.findByIdAndUpdate(req.session.currentUser._id, {
+      // email,
+      // password,
+      ironhacker,
+      firstName,
+      lastName,
+      expertise,
+      gitHub,
+      linkedIn,
+      course,
+      promo,
+      campus,
+      format
+    }, { new: true }).then(updatedUser => {
+      console.log('USER UPDATED ===', updatedUser)
+      res.redirect('/userProfile')
+    }).catch(err => next(err));
   }
 
-  User.findByIdAndUpdate(req.session.currentUser._id, {
-    // email,
-    // password,
-    ironhacker,
-    profileImgSrc,
-    firstName,
-    lastName,
-    expertise,
-    gitHub,
-    linkedIn,
-    course,
-    promo,
-    campus,
-    format
-  }, { new: true }).then(updatedUser => {
-    console.log('USER UPDATED ===', updatedUser)
-    res.redirect('/userProfile')
+  if (req.file) {
+    User.findById(req.session.currentUser._id).then((user) => {
+      user.profileImgSrc = req.file.path;
+      user.save()
+        .then(
+          editProfileInfos()
+        ).catch(err => next(err))
+    }).catch(err => {
+      console.log('PROFILE PICTURE UPDATE FAILED', err);
+      next(err)
+    })
+  } else {
+    editProfileInfos();
+  }
+
+
+  // User.findById(req.session.currentUser._id).then((user) => {
+  //   if (ironhacker != user.ironhacker) {
+  //     user.ironhacker = ironhacker;
+  //   }
+  //   if (req.file != user.profileImgSrc) {
+  //     user.profileImgSrc = profileImgSrc;
+  //   }
+  //   if (firstName != user.firstName) {
+  //     user.firstName = firstName;
+  //   }
+  //   if (lastName != user.lastName) {
+  //     user.lastName = lastName;
+  //   }
+  //   if (expertise != user.expertise) {
+  //     user.expertise = expertise;
+  //   }
+  //   if (gitHub != user.gitHub) {
+  //     user.gitHub = gitHub;
+  //   }
+  //   if (linkedIn != user.linkedIn) {
+  //     user.linkedIn = linkedIn;
+  //   }
+  //   if (course != user.course) {
+  //     user.course = course;
+  //   }
+  //   if (promo != user.promo) {
+  //     user.promo = promo;
+  //   }
+  //   if (campus != user.campus) {
+  //     user.campus = campus;
+  //   }
+  //   if (format != user.format) {
+  //     user.format = format;
+  //   }
+
+
+  //   user.save().then((updatedUser) => {
+  //     console.log('USER UPDATED ===', updatedUser)
+  //     res.redirect('/userProfile')
+  //   }).catch(err => {
+  //     console.log('UPDATED USER NOT SAVED ===', err);
+  //     next(err);
+  //   })
+  // }).catch(err => {
+  //   console.log('USER UPDATE FAILED===', err);
+  //   next(err);
+  // });
+
+});
+
+
+// ########     ###    ########     ###    ##     ##  ######     ########  ########   #######  ######## #### ##       ######## 
+// ##     ##   ## ##   ##     ##   ## ##   ###   ### ##    ##    ##     ## ##     ## ##     ## ##        ##  ##       ##       
+// ##     ##  ##   ##  ##     ##  ##   ##  #### #### ##          ##     ## ##     ## ##     ## ##        ##  ##       ##       
+// ########  ##     ## ########  ##     ## ## ### ##  ######     ########  ########  ##     ## ######    ##  ##       ######   
+// ##        ######### ##   ##   ######### ##     ##       ##    ##        ##   ##   ##     ## ##        ##  ##       ##       
+// ##        ##     ## ##    ##  ##     ## ##     ## ##    ##    ##        ##    ##  ##     ## ##        ##  ##       ##       
+// ##        ##     ## ##     ## ##     ## ##     ##  ######     ##        ##     ##  #######  ##       #### ######## ######## 
+
+
+//ROUTE TO DISPLAY CREATOR PROFILE PAGE
+
+router.get('/userProfile/:id', (req, res, next) => {
+  const id = req.params.id;
+
+  User.findById(id).then(user => {
+    res.render('users/user-profile', user);
   }).catch(err => next(err));
 });
+
+
+
 
 
 // ##     ## ##    ##         ########  ########   #######        ## ########  ######  ########  ######  
@@ -273,6 +358,9 @@ router.get('/userProfile', routeGuard, (req, res) => {
   }
 
 });
+
+
+
 
 
 
