@@ -32,6 +32,9 @@ const routeGuard = require('../configs/route-guard.config.js');
 // GET -> SINGLE PROJECT EDIT
 
 router.get('/projects/:id/edit', (req, res, next) => {
+  // Permet de renvoyer forcément true ou false
+  var courseCyber = req.session.currentUser.course === "Cyber_Security";
+
   Project.findById(req.params.id).then(projectFromDb => {
     if (req.session.currentUser._id != projectFromDb.uploader_id) {
       res.redirect(`/projects/${projectFromDb._id}`);
@@ -39,6 +42,24 @@ router.get('/projects/:id/edit', (req, res, next) => {
       return;
     }
     User.find().then(usersFromDb => {
+      console.log('user', req.session.currentUser)
+
+      var courseWebDev;
+      if (req.session.currentUser.course === "Web-Dev") {
+        courseWebDev = true;
+        console.log("🤖 we have a future web dev here !!" )
+      }
+    
+      var courseUX;
+      if (req.session.currentUser.course === "UX/UI") {
+        courseUX = true;
+     }
+    
+      // Renvoie true or undefined
+      var courseData;
+      if (req.session.currentUser.course === "Data") {
+        courseData = true;
+      }
 
       // parcours tous les users de la database pour vérifier qui a développé le projet 
       // usersFromDb.forEach((user, i) => {
@@ -46,6 +67,7 @@ router.get('/projects/:id/edit', (req, res, next) => {
       //     user.selected = true
       //   }
       // })
+
 
       res.render('projects/project-edit', {   //// vérifier le nom du fichier hbs
         project: projectFromDb,

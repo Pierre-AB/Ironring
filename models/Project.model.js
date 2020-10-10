@@ -34,7 +34,7 @@ const projectSchema = new Schema({
   },
   url: { // ON VIEW
     type: String,
-    required: [true, 'The url of creation is required.']
+    // required: [true, 'The url of creation is required.']
   },
   github: String, // ON VIEW
   rank: {
