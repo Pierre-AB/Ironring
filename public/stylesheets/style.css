@@ -23,6 +23,9 @@ a:focus,
 .active {
   color: #2dc5fa; }
 
+ol, ul {
+  margin: 0; }
+
 /***
  *    ######## ##     ## ######## ########  ##    ## ##      ## ##     ## ######## ########  ######## 
  *    ##       ##     ## ##       ##     ##  ##  ##  ##  ##  ## ##     ## ##       ##     ## ##       
@@ -52,7 +55,7 @@ a:focus,
 
 .big-btn {
   padding: 1rem 2rem;
-  font-size: 1rem; }
+  font-size: 1em; }
 
 .blue-btn:hover {
   background: #00b4ff none repeat scroll 0% 0%; }
@@ -106,7 +109,7 @@ a:focus,
   align-self: center; }
 
 .top-nav-items a {
-  padding: calc( 2vh + 4px) 2vw; }
+  padding: .5vh 2vw; }
 
 .course-nav li .fa, .course-nav li .fas {
   font-size: 14px; }
@@ -473,10 +476,71 @@ input[type="checkbox"] {
   margin-bottom: 1vh; }
 
 .project-card img {
-  max-width: 20%; }
+  max-width: 20%;
+  min-width: 100%;
+  height: 30vh;
+  object-fit: cover;
+  margin-bottom: 1vh; }
 
 .project-date {
   color: #c0c4d0; }
+
+/* BLUE HOVER STYLE */
+.figure {
+  width: 300px;
+  height: 200px;
+  margin: 0;
+  padding: 0;
+  background: #fff;
+  overflow: hidden;
+  position: relative; }
+
+.column-effect span {
+  position: absolute;
+  bottom: 10px;
+  display: block;
+  width: 300px;
+  margin: 0;
+  padding: 0;
+  color: white;
+  font-size: 18px;
+  text-decoration: none;
+  text-align: center;
+  -webkit-transition: .3s ease-in-out;
+  transition: .3s ease-in-out;
+  opacity: 0;
+  text-transform: uppercase; }
+
+.column-effect:hover span {
+  opacity: 1; }
+
+.hover-effect .figure {
+  background: #2DC5FA; }
+
+.hover-effect .figure img {
+  opacity: 1;
+  -webkit-transition: .3s ease-in-out;
+  transition: .3s ease-in-out; }
+
+.hover-effect .figure:hover img {
+  opacity: .3; }
+
+/***
+ *    ######## #### ##       ######## ######## ########   ######  
+ *    ##        ##  ##          ##    ##       ##     ## ##    ## 
+ *    ##        ##  ##          ##    ##       ##     ## ##       
+ *    ######    ##  ##          ##    ######   ########   ######  
+ *    ##        ##  ##          ##    ##       ##   ##         ## 
+ *    ##        ##  ##          ##    ##       ##    ##  ##    ## 
+ *    ##       #### ########    ##    ######## ##     ##  ######  
+ */
+.filters-form {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 4vh; }
+
+.align-bottom {
+  align-self: end; }
 
 /***
  *    ########  ########   #######        ## ########  ######  ########    ########  ######## ########    ###    #### ##        ######  
