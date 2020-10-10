@@ -58,11 +58,11 @@
   <nav class="course-nav">
 
     <ul class="course top-nav-items">
-      <li><a class="active" {{#if all}}active{{/if}} href="/">All</a></li>
-      <li><a href="/projects/q?course=Web-Dev" {{#if webdev}}active{{/if}} name="course" value="Web-Dev">Webdev</a></li>
-      <li><a href="/projects/q?course=UX/UI" {{#if uxui}}active{{/if}} name="course" value="UX/UI">UX/UI design</a></li>
-      <li><a href="/projects/q?course=Data" {{#if data}}active{{/if}} name="course" value="Data">Data</a></li>
-      <li><a href="/projects/q?course=Cyber_Security" {{#if security}}active{{/if}} name="course" value="Cyber_Security">Cyber Security</a></li>
+      <li><a class="{{#if all}}active{{/if}}"  href="/projects">All</a></li>
+      <li><a href="/projects/q?course=Web-Dev" class="{{#if courseWebDevFilter}}active{{/if}}" name="course" value="Web-Dev">Webdev</a></li>
+      <li><a href="/projects/q?course=UX/UI" class="{{#if courseUXFilter}}active{{/if}}" name="course" value="UX/UI">UX/UI design</a></li>
+      <li><a href="/projects/q?course=Data" class="{{#if courseDataFilter}}active{{/if}}" name="course" value="Data">Data</a></li>
+      <li><a href="/projects/q?course=Cyber_Security" class="{{#if courseCyberFilter}}active{{/if}}" name="course" value="Cyber_Security">Cyber Security</a></li>
     </ul>
 
     <!-- If logged in -->

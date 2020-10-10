@@ -315,6 +315,7 @@ router.get('/projects/q', function(req, res){
   if(req.query.campus) query.campus = req.query.campus;
   if(req.query.techno) query.techno = req.query.techno;
   if(req.query.course) query.course = req.query.course;
+  if(req.query.rank) query.rank = req.query.rank;
 
 
   console.log("❓❓❓❓  ", req.query);

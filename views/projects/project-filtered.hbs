@@ -4,7 +4,7 @@
     <form class="filters-form" action="/projects/q" method="GET">
 
     {{!-- <form action="/projects/q" method="GET"> --}}
-      <input type="hidden" name="course" value="{{course}}">
+      <input type="hidden" name="course" value="{{#if courseWebDevFilter}}Web-Dev{{/if}}{{#if courseUXFilter}}UX/UI{{/if}}{{#if courseDataFilter}}Data{{/if}}{{#if courseCyberFilter}}Cyber_Security{{/if}}">
 
       <!-- Module -->
       <div>
