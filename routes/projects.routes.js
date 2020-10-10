@@ -310,41 +310,46 @@ router.get('/projects/q', function(req, res){
   console.log("❓❓❓❓  ", req.query);
 
 
-  // A supprimer, simplement pour retourner de JSON
+  // A supprimer, c'est simplement pour retourner de JSON pour tester
 
   // Project.find(query, function (err, filteredProject) {
   //     if(err) return res.json({status : 500, error : err});
   //     if(!filteredProject) return res.json({status : 404, error : "Project not found"});
   //     return res.json(filteredProject);
   // })
+
   Project.find(query)
   .then((filteredProject) => {
 
     // J'ai besoin de marquer le course comme true pour les autres filtres
 
-    var courseWebDev;
-    if (req.query.campus === "Paris") {
-      courseWebDev = true;
+    var courseWebDevFilter;
+    if (req.query.course === "Web-Dev") {
+      courseWebDevFilter = true;
       console.log("WE ARE LOOKING FOR PARIS 🗼🇫🇷", filteredProject)
     }
-    var courseUX;
+    var courseUXFilter;
     if (req.query.course === "UX/UI") {
-      courseUX = true;
+      courseUXFilter = true;
     }
 
     // Renvoie true or undefined
-    var courseData;
+    var courseDataFilter;
     if (req.query.course === "Data") {
-      courseData = true;
+      courseDataFilter = true;
     }
 
-    var courseCyber;
+    var courseCyberFilter;
     if (req.query.course === "Cyber_Security") {
-      courseData = true;
+      courseCyberFilter = true;
     }
 
     res.render('projects/project-filtered', { //// vérifier le nom du fichier hbs
-      filteredProject
+      filteredProject,
+      courseWebDevFilter,
+      courseUXFilter,
+      courseDataFilter,
+      courseCyberFilter
     })
   })
   .catch(err => {
@@ -353,6 +358,8 @@ router.get('/projects/q', function(req, res){
   })  
 
 })
+
+
 
 
 

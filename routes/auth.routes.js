@@ -111,13 +111,13 @@ router.post("/signup", uploader.single('image'),(req, res, next) => {
         expertise,
         campus: campus || undefined,
         course: course || undefined,
-        profileImgSrc: req.file.path
+        profileImgSrc: req?.file?.path || ''    // à voir avec Antoine
       });
     })
     .then((userFromDB) => {
       console.log("🙌🏻 USER CREATED =", userFromDB);
       req.session.currentUser = userFromDB;
-      res.redirect('/userProfile'); //REDIRECT ON ROUTEGUARD 
+      res.redirect('/'); //REDIRECT ON ROUTEGUARD   //changed by Gonzalo 
       //PROBABLY REDIRECT ON PROJECTS VIEW WITH ALL FILTERS AVAILABLE
       return;
     })
