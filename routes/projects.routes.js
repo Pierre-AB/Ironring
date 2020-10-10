@@ -304,6 +304,11 @@ router.get('/projects/q', function(req, res){
   if(req.query.module) query.module = req.query.module;
   if(req.query.campus) query.campus = req.query.campus;
   if(req.query.techno) query.techno = req.query.techno;
+  if(req.query.course) query.course = req.query.course;
+
+
+  console.log("❓❓❓❓  ", req.query);
+
 
   // A supprimer, simplement pour retourner de JSON
 
@@ -317,26 +322,26 @@ router.get('/projects/q', function(req, res){
 
     // J'ai besoin de marquer le course comme true pour les autres filtres
 
-    // var courseWebDev;
-    // if (req.query.campus === "Paris") {
-    //   courseWebDev = true;
-    //   console.log("WE ARE LOOKING FOR PARIS 🗼🇫🇷", filteredProject)
-    // }
-    // var courseUX;
-    // if (req.query.course === "UX/UI") {
-    //   courseUX = true;
-    // }
+    var courseWebDev;
+    if (req.query.campus === "Paris") {
+      courseWebDev = true;
+      console.log("WE ARE LOOKING FOR PARIS 🗼🇫🇷", filteredProject)
+    }
+    var courseUX;
+    if (req.query.course === "UX/UI") {
+      courseUX = true;
+    }
 
-    // // Renvoie true or undefined
-    // var courseData;
-    // if (req.query.course === "Data") {
-    //   courseData = true;
-    // }
+    // Renvoie true or undefined
+    var courseData;
+    if (req.query.course === "Data") {
+      courseData = true;
+    }
 
-    // var courseCyber;
-    // if (req.query.course === "Cyber_Security") {
-    //   courseData = true;
-    // }
+    var courseCyber;
+    if (req.query.course === "Cyber_Security") {
+      courseData = true;
+    }
 
     res.render('projects/project-filtered', { //// vérifier le nom du fichier hbs
       filteredProject

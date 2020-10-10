@@ -122,9 +122,9 @@ router.post("/signup", uploader.single('image'),(req, res, next) => {
       return;
     })
     .catch((error) => {
-      console.log("💥 USER ERROR =");
+      console.log("💥 USER ERROR =", error);
       res.render('auth/login', { errorMessage: "Please login - email is already existing" });
-
+      next(error);
       return;
     });
 
