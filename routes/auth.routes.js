@@ -195,6 +195,10 @@ router.post('/userEdit', uploader.single('image'), (req, res) => {
     expertise,
     campus,
     course,
+    gitHub,
+    linkedIn,
+    promo,
+    format
     // profileImgSrc, CHANGE PROFILE IMAGE
   } = req.body;
 
@@ -221,7 +225,7 @@ router.post('/userEdit', uploader.single('image'), (req, res) => {
     format
   }, { new: true }).then(updatedUser => {
     console.log('USER UPDATED ===', updatedUser)
-    res.redirect('users/userProfile')
+    res.redirect('/userProfile')
   }).catch(err => next(err));
 });
 

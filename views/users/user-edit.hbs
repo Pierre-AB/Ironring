@@ -5,7 +5,7 @@
     <p class="user-project-quantity">{{#if user.projects.length}} {{user.projects.length}} {{else}} 0{{/if}} projects</p>
   </div>
 
-  <form action="/userEdit" method="POST">
+  <form action="/userEdit" method="POST" enctype="multipart/form-data">
 
     <div>
       <h1 class="form-title">Edit my profile</h1>
@@ -115,7 +115,7 @@
         </div>
 
         <label for="input-github">Github</label>
-        <input type="text" id="input-github" name="Github" placeholder="https://github.com/myAccount" value="{{user.gitHub}}">
+        <input type="text" id="input-github" name="github" placeholder="https://github.com/myAccount" value="{{user.gitHub}}">
 
         <label for="input-linkedin">linkedIn</label>
         <input type="text" id="input-linkedin" name="linkedIn" placeholder="https://www.linkedin.com/in/my-account/" value="{{user.linkedIn}}">
