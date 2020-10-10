@@ -168,7 +168,15 @@ router.get('/projects/new', (req, res, next) => {
 router.post('/projects/new', fileUploader.single('image'), (req, res, next) => {
   const { uploader_id, owners_id, owners_mail, course, module, campus, imageUrl, name, description, year_creation, techno, url, github, rank, likes } = req.body;
   if (!name) {
-    res.render("projects/project-new", { errorMessage: "Please enter your project's name" });
+    res.render("projects/project-new", { errorMessage: "Please enter your project's name" },
+    {  
+      users: usersFromDb,
+      courseWebDev,
+      courseUX,
+      courseData,
+      courseCyber
+    }
+    );
     return
   }
 
