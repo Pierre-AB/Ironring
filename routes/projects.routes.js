@@ -52,14 +52,14 @@ router.get('/projects/:id/edit', (req, res, next) => {
       var courseWebDev;
       if (req.session.currentUser.course === "Web-Dev") {
         courseWebDev = true;
-        console.log("🤖 we have a future web dev here !!" )
+        console.log("🤖 we have a future web dev here !!")
       }
-    
+
       var courseUX;
       if (req.session.currentUser.course === "UX/UI") {
         courseUX = true;
-     }
-    
+      }
+
       // Renvoie true or undefined
       var courseData;
       if (req.session.currentUser.course === "Data") {
@@ -165,7 +165,7 @@ router.get('/projects/new', (req, res, next) => {
       console.log('user', req.session.currentUser)
 
       const courses = userCourses(req.session.currentUser)
-      
+
       res.render('projects/project-new', {   //// vérifier le nom du fichier hbs
         users: usersFromDb,
         ...courses
@@ -181,9 +181,9 @@ router.post('/projects/new', fileUploader.single('image'), (req, res, next) => {
 
   const { uploader_id, owners_id, owners_mail, course, module, campus, imageUrl, name, description, year_creation, techno, url, github, rank, likes } = req.body;
   const courses = userCourses(req.session.currentUser)
-  
+
   if (!name) {
-    res.render("projects/project-new", { errorMessage: "Please enter your project's name", ...courses }, 
+    res.render("projects/project-new", { errorMessage: "Please enter your project's name", ...courses },
     );
     return
   }
@@ -308,14 +308,14 @@ router.get('/projects', (req, res, next) => {
 
 
 // GET ONLY FILTERED PROJECTS
-router.get('/projects/q', function(req, res){
+router.get('/projects/q', function (req, res) {
 
   var query = {};
-  if(req.query.module) query.module = req.query.module;
-  if(req.query.campus) query.campus = req.query.campus;
-  if(req.query.techno) query.techno = req.query.techno;
-  if(req.query.course) query.course = req.query.course;
-  if(req.query.rank) query.rank = req.query.rank;
+  if (req.query.module) query.module = req.query.module;
+  if (req.query.campus) query.campus = req.query.campus;
+  if (req.query.techno) query.techno = req.query.techno;
+  if (req.query.course) query.course = req.query.course;
+  if (req.query.rank) query.rank = req.query.rank;
 
 
   console.log("❓❓❓❓  ", req.query);
@@ -330,43 +330,46 @@ router.get('/projects/q', function(req, res){
   // })
 
   Project.find(query)
-  .then((filteredProject) => {
+    .then((filteredProject) => {
 
-    // J'ai besoin de marquer le course comme true pour les autres filtres
+      // J'ai besoin de marquer le course comme true pour les autres filtres
 
-    var courseWebDevFilter;
-    if (req.query.course === "Web-Dev") {
-      courseWebDevFilter = true;
-      console.log("WE ARE LOOKING FOR PARIS 🗼🇫🇷", filteredProject)
-    }
-    var courseUXFilter;
-    if (req.query.course === "UX/UI") {
-      courseUXFilter = true;
-    }
+      var courseWebDevFilter;
+      var courseName = req.query.course
+      if (req.query.course === "Web-Dev") {
+        courseWebDevFilter = true;
+        console.log("WE ARE LOOKING FOR PARIS 🗼🇫🇷", filteredProject)
+      }
+      var courseUXFilter;
+      if (req.query.course === "UX/UI") {
+        courseUXFilter = true;
+      }
 
-    // Renvoie true or undefined
-    var courseDataFilter;
-    if (req.query.course === "Data") {
-      courseDataFilter = true;
-    }
+      // Renvoie true or undefined
+      var courseDataFilter;
+      if (req.query.course === "Data") {
+        courseDataFilter = true;
+      }
 
-    var courseCyberFilter;
-    if (req.query.course === "Cyber_Security") {
-      courseCyberFilter = true;
-    }
+      var courseCyberFilter;
+      if (req.query.course === "Cyber_Security") {
+        courseName = 'Cyber Security'
+        courseCyberFilter = true;
+      }
 
-    res.render('projects/project-filtered', { //// vérifier le nom du fichier hbs
-      filteredProject,
-      courseWebDevFilter,
-      courseUXFilter,
-      courseDataFilter,
-      courseCyberFilter
+      res.render('projects/project-filtered', { //// vérifier le nom du fichier hbs
+        filteredProject,
+        courseWebDevFilter,
+        courseUXFilter,
+        courseDataFilter,
+        courseCyberFilter,
+        courseName
+      })
     })
-  })
-  .catch(err => {
-    console.log('💥', err)
-    next(err); // 
-  })  
+    .catch(err => {
+      console.log('💥', err)
+      next(err); // 
+    })
 
 })
 

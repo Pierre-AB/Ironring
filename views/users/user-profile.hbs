@@ -9,13 +9,12 @@
   </div>
 
   <div class="profile-informations">
-    <p class="profile-name">{{user.lastName}} {{user.firstName}}</p>
-    {{#if user.expertise}}<p class="profile-expertise">{{user.expertise}}</p>{{/if}}
-    <p class="profile-campus">{{user.campus}}</p>
-    <p>{{user.github}}</p>
-    <p>{{user.linkedIn}}</p>
-
-    <div class="profile-filters">Filtres</div>
+    <p class="profile-name"> {{user.firstName}} {{user.lastName}}</p>
+    {{#if user.expertise}}<p class="profile-expertise">Expertise: {{user.expertise}}</p>{{/if}}
+    <p class="profile-campus">Campus: {{user.campus}}</p>
+    <p><a href="{{user.gitHub}}">Github: {{user.gitHub}}</a></p>
+    <p><a href="{{user.linkedIn}}">linkedIn: {{user.linkedIn}}</a></p>
+    {{!-- <div class="profile-filters">Filtres</div> --}}
   </div>
 
   {{!-- Edit btn only if owner of the profile --}}

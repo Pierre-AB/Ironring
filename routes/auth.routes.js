@@ -26,7 +26,7 @@ const routeGuard = require('../configs/route-guard.config');
 // GET -> Sign Up page
 router.get("/signup", (req, res, next) => res.render("auth/signup"));
 
-router.post("/signup", uploader.single('image'),(req, res, next) => {
+router.post("/signup", uploader.single('image'), (req, res, next) => {
 
 
   /*uploader to add*/
@@ -199,8 +199,7 @@ router.post('/userEdit', uploader.single('image'), (req, res) => {
     gitHub,
     linkedIn,
     promo,
-    format
-    // profileImgSrc, CHANGE PROFILE IMAGE
+    format,
   } = req.body;
 
   let profileImgSrc;
@@ -211,7 +210,7 @@ router.post('/userEdit', uploader.single('image'), (req, res) => {
   }
 
   User.findByIdAndUpdate(req.session.currentUser._id, {
-    email,
+    // email,
     // password,
     ironhacker,
     profileImgSrc,

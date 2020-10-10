@@ -8,7 +8,8 @@
   <title>{{title}}</title>
   <!-- FOR FILTERS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.5/css/bootstrap-select.min.css">
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.5/css/bootstrap-select.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.5/js/bootstrap-select.min.js"></script>
@@ -58,11 +59,15 @@
   <nav class="course-nav">
 
     <ul class="course top-nav-items">
-      <li><a class="{{#if all}}active{{/if}}"  href="/projects">All</a></li>
-      <li><a href="/projects/q?course=Web-Dev" class="{{#if courseWebDevFilter}}active{{/if}}" name="course" value="Web-Dev">Webdev</a></li>
-      <li><a href="/projects/q?course=UX/UI" class="{{#if courseUXFilter}}active{{/if}}" name="course" value="UX/UI">UX/UI design</a></li>
-      <li><a href="/projects/q?course=Data" class="{{#if courseDataFilter}}active{{/if}}" name="course" value="Data">Data</a></li>
-      <li><a href="/projects/q?course=Cyber_Security" class="{{#if courseCyberFilter}}active{{/if}}" name="course" value="Cyber_Security">Cyber Security</a></li>
+      <li><a class="{{#if all}}active{{/if}}" href="/projects">All</a></li>
+      <li><a href="/projects/q?course=Web-Dev" class="{{#if courseWebDevFilter}}active{{/if}}" name="course"
+          value="Web-Dev">Webdev</a></li>
+      <li><a href="/projects/q?course=UX/UI" class="{{#if courseUXFilter}}active{{/if}}" name="course"
+          value="UX/UI">UX/UI design</a></li>
+      <li><a href="/projects/q?course=Data" class="{{#if courseDataFilter}}active{{/if}}" name="course"
+          value="Data">Data</a></li>
+      <li><a href="/projects/q?course=Cyber_Security" class="{{#if courseCyberFilter}}active{{/if}}" name="course"
+          value="Cyber_Security">Cyber Security</a></li>
     </ul>
 
     <!-- If logged in -->
@@ -72,13 +77,14 @@
       <!-- If user is an ironhacker -->
       {{#if user.ironhacker}}
       <ul>
-        <li><a class="add-project blue-btn small-btn" href="/projects/new"><i class="fas fa-plus"></i>Add a project</a></li>
+        <li><a class="add-project blue-btn small-btn" href="/projects/new"><i class="fas fa-plus"></i>Add a project</a>
+        </li>
       </ul>
       {{/if}}
 
       <div class="dropdown">
         <ul>
-          <li><img class="user-picture" src="{{user.profileImgSrc}}"/></li>
+          <li><a href="/userProfile"><img class="user-picture" src="{{user.profileImgSrc}}" /></a></li>
           <div class="dropdown-content">
             <li><a class="" href="/userProfile"><i class="fas fa-project-diagram"></i></i>My projects</a></li>
             <li><a class="" href="/userEdit"><i class="fas fa-user-edit"></i>Edit profile</a></li>
@@ -102,9 +108,9 @@
   <!-- Left navbar -->
   <div class="left-nav">
     <a class="ico active" href="#" onclick="activeOnClickLeft(this)"><i class="fas fa-home"></i></a>
-    <a class="ico" href="#" onclick="activeOnClickLeft(this)"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-        xmlns:svgjs="http://svgjs.com/svgjs" version="1.1" width="20" height="20" x="0" y="0" viewBox="0 0 500 500"
-        xml:space="preserve" class="">
+    <a class="ico" href="#" onclick="activeOnClickLeft(this)"><svg xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" version="1.1" width="20"
+        height="20" x="0" y="0" viewBox="0 0 500 500" xml:space="preserve" class="">
         <g>
           <path d="M497.052,301.696l-19.097-39.063c-2.06-4.214-2.06-9.049,0-13.263l19.096-39.065
             c10.632-21.751,2.208-47.676-19.178-59.024l-38.409-20.378c-4.144-2.199-6.986-6.11-7.796-10.729l-7.512-42.828
@@ -127,19 +133,20 @@
             c-1.132,0.267-2.271,0.396-3.396,0.397c-5.495,0-10.661-3.08-13.203-8.164l-16.323-32.647l-16.323,32.647
             c-3.062,6.127-9.932,9.341-16.599,7.767c-6.665-1.574-11.373-7.522-11.373-14.37V196.94c0-8.154,6.611-14.765,14.765-14.765
             c8.154,0,14.765,6.611,14.765,14.765v55.575l1.558-3.117c2.501-5.002,7.614-8.162,13.207-8.162s10.705,3.16,13.207,8.162
-            l1.558,3.117V196.94c0-8.154,6.611-14.765,14.765-14.765c8.154,0,14.765,6.611,14.765,14.765V315.06z"/>
+            l1.558,3.117V196.94c0-8.154,6.611-14.765,14.765-14.765c8.154,0,14.765,6.611,14.765,14.765V315.06z" />
         </g>
       </svg>
     </a>
-    <a class="ico" href="#" onclick="activeOnClickLeft(this)"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-        xmlns:svgjs="http://svgjs.com/svgjs" version="1.1" width="20" height="20" x="0" y="0"
-        viewBox="0 0 475 520" xml:space="preserve" class="">
+    <a class="ico" href="#" onclick="activeOnClickLeft(this)"><svg xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" version="1.1" width="20"
+        height="20" x="0" y="0" viewBox="0 0 475 520" xml:space="preserve" class="">
         <g>
           <g xmlns="http://www.w3.org/2000/svg">
-          <g>
-              <path d="M256,433.231c-41.108,0-79.738-10.789-113.231-29.664v93.664c0,5.012,2.541,9.682,6.75,12.403
+            <g>
+              <path
+                d="M256,433.231c-41.108,0-79.738-10.789-113.231-29.664v93.664c0,5.012,2.541,9.682,6.75,12.403
                 c4.208,2.721,9.509,3.122,14.08,1.065L256,469.119l92.401,41.579c1.935,0.871,4,1.301,6.059,1.301
-                c2.803,0,5.594-0.798,8.021-2.366c4.208-2.72,6.75-7.391,6.75-12.402v-93.664C335.738,422.441,297.108,433.231,256,433.231z"/>
+                c2.803,0,5.594-0.798,8.021-2.366c4.208-2.72,6.75-7.391,6.75-12.402v-93.664C335.738,422.441,297.108,433.231,256,433.231z" />
             </g>
           </g>
           <g>
@@ -183,20 +190,20 @@
                 c-19.002,0-34.462-15.459-34.462-34.462v-49.231c0-19.002,15.459-34.462,34.462-34.462h19.692
                 c19.002,0,34.462,15.459,34.462,34.462V226.462z M398.77,182.154c0,19.002-15.459,34.461-34.462,34.461h-24.615v29.539
                 c0,8.157-6.613,14.769-14.769,14.769s-14.769-6.613-14.769-14.769v-68.923c0-19.002,15.459-34.462,34.461-34.462h19.692
-                c19.002,0,34.462,15.459,34.462,34.462V182.154z"/>
+                c19.002,0,34.462,15.459,34.462,34.462V182.154z" />
             </g>
           </g>
           <g>
             <g>
               <path d="M364.308,172.308h-19.692c-2.715,0-4.923,2.208-4.923,4.923v9.846h24.615c2.715,0,4.923-2.208,4.923-4.923v-4.923
-                C369.231,174.516,367.023,172.308,364.308,172.308z"/>
+                C369.231,174.516,367.023,172.308,364.308,172.308z" />
             </g>
           </g>
           <g>
             <g>
               <path d="M265.846,172.308h-19.692c-2.715,0-4.923,2.208-4.923,4.923v49.231c0,2.715,2.208,4.923,4.923,4.923h19.692
-                c2.715,0,4.923-2.208,4.923-4.923v-49.231C270.77,174.516,268.561,172.308,265.846,172.308z"/>
-          </g>
+                c2.715,0,4.923-2.208,4.923-4.923v-49.231C270.77,174.516,268.561,172.308,265.846,172.308z" />
+            </g>
           </g>
         </g>
       </svg>

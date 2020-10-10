@@ -8,6 +8,7 @@ const hbs = require("hbs");
 const mongoose = require("mongoose");
 const logger = require("morgan");
 const path = require("path");
+const User = require("./models/User.model");
 
 mongoose
   //UNCOMMENT R14 AND COMMENT R15 -> TO CONNECT TO ATLAS - DONE
@@ -60,10 +61,23 @@ app.use(favicon(path.join(__dirname, "public", "images", "favicon.ico")));
 // default value for title local
 app.locals.title = "Ironring";
 
-app.use(function (req, res, next) { // variable global pour users accessible partout 
+app.use(function (req, res, next) { // variable global pour users accessible partout dans les vues
   res.locals.user = req.session.currentUser // {{#if }}
   next()
 })
+
+// middleware to update req.session
+
+// app.use((req, res, next) => {
+//   if (req.session.currentUser) {
+//     User.findById(req.session.currentUser._id)
+//       .then(user => {
+//         req.session.currentUser = user; // ♻️
+//         next()
+//       })
+//       .catch(next)
+//   }
+// })
 
 app.use((req, res, next) => {
   switch (req.query.course) {

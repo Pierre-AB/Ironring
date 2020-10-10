@@ -5,10 +5,11 @@ module.exports = (app) => {
   app.use(
     session({
       secret: process.env.SESS_SECRET,
-      resave: false,
+      resave: false, // default = false
+      // rolling: true, // ADDED FOR TEST PURPOSE
       saveUninitialized: true,
       cookie: {
-        maxAge: 2147483647,
+        maxAge: 200000000,
       },
       store: new MongoStore({
         mongooseConnection: mongoose.connection,

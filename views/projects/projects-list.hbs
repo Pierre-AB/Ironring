@@ -1,69 +1,75 @@
 <div class="projects-list-page grey-bg">
   <h1 class="general-subtitle">List of all projects</h1>
+  {{#if user}}
   <div class="filters">
+
     <form class="filters-form" action="/projects/q" method="GET">
 
       <!-- Module -->
       <div>
         <label for="module">Module</label>
         <select name="module" id="filter-module" class="selectpicker" data-style="btn-light" multiple>
-            <!-- Si filtre WebDev -->
-            {{#if courseWebDev}} <!-- ATTENTION MAUVAIS FILTRE !! -->
+          <!-- Si filtre WebDev -->
+          {{#if courseWebDev}}
+          <!-- ATTENTION MAUVAIS FILTRE !! -->
+          <option value="1">1: Responsive design</option>
+          <option value="2">2: Back-end</option>
+          <option value="3">3: Front-end</option>
+          <option value="Personal">Personal project</option>
+          {{else}}
+          <!-- Si filtre UX/UI -->
+          {{#if courseUX}}
+          <!-- ATTENTION MAUVAIS FILTRE !! -->
+          <option value="1">1: User experience</option>
+          <option value="2">2: Design user interfaces</option>
+          <option value="3">3: Design implementation</option>
+          <option value="Personal">Personal project</option>
+          {{else}}
+          <!-- Si filtre Data Analyse -->
+          {{#if courseData}}
+          <!-- ATTENTION MAUVAIS FILTRE !! -->
+          <option value="1">1: SQL to and Python</option>
+          <option value="2">2: Advanced Data Analytics</option>
+          <option value="3">3: Machine learning</option>
+          <option value="Personal">Personal project</option>
+          {{else}}
+          <!-- Si filtre Cybersecurity -->
+          {{#if courseCyber}}
+          <!-- ATTENTION MAUVAIS FILTRE !! -->
+          <option value="1">1: Basics of Cybersecurity</option>
+          <option value="2">2: Security and Threats</option>
+          <option value="3">3: Real projects</option>
+          <option value="Personal">Personal project</option>
+          {{else}}
+          <!-- No filter - Everyone -->
+          <optgroup label="WebDev">
             <option value="1">1: Responsive design</option>
             <option value="2">2: Back-end</option>
             <option value="3">3: Front-end</option>
             <option value="Personal">Personal project</option>
-              {{else}}
-              <!-- Si filtre UX/UI -->
-              {{#if courseUX}} <!-- ATTENTION MAUVAIS FILTRE !! -->
-              <option value="1">1: User experience</option>
-              <option value="2">2: Design user interfaces</option>
-              <option value="3">3: Design implementation</option>
-              <option value="Personal">Personal project</option>
-                {{else}}
-                <!-- Si filtre Data Analyse -->
-                {{#if courseData}} <!-- ATTENTION MAUVAIS FILTRE !! -->
-                <option value="1">1: SQL to and Python</option>
-                <option value="2">2: Advanced Data Analytics</option>
-                <option value="3">3: Machine learning</option>
-                <option value="Personal">Personal project</option>
-                  {{else}}
-                  <!-- Si filtre Cybersecurity -->
-                  {{#if courseCyber}} <!-- ATTENTION MAUVAIS FILTRE !! -->
-                  <option value="1">1: Basics of Cybersecurity</option>
-                  <option value="2">2: Security and Threats</option>
-                  <option value="3">3: Real projects</option>
-                  <option value="Personal">Personal project</option>
-                    {{else}}
-                    <!-- No filter - Everyone -->
-                      <optgroup label="WebDev">
-                        <option value="1">1: Responsive design</option>
-                        <option value="2">2: Back-end</option>
-                        <option value="3">3: Front-end</option>
-                        <option value="Personal">Personal project</option>
-                      </optgroup>
-                      <optgroup label="UX/UI">
-                        <option value="1">1: User experience</option>
-                        <option value="2">2: Design user interfaces</option>
-                        <option value="3">3: Design implementation</option>
-                        <option value="Personal">Personal project</option>
-                      </optgroup>
-                      <optgroup label="Data Analyse">
-                        <option value="1">1: SQL to and Python</option>
-                        <option value="2">2: Advanced Data Analytics</option>
-                        <option value="3">3: Machine learning</option>
-                        <option value="Personal">Personal project</option>
-                      </optgroup>
-                      <optgroup label="Cybersecurity">
-                        <option value="1">1: Basics of Cybersecurity</option>
-                        <option value="2">2: Security and Threats</option>
-                        <option value="3">3: Real projects</option>
-                        <option value="Personal">Personal project</option>
-                      </optgroup>
-                  {{/if}}
-                {{/if}}
-              {{/if}}
-            {{/if}}          
+          </optgroup>
+          <optgroup label="UX/UI">
+            <option value="1">1: User experience</option>
+            <option value="2">2: Design user interfaces</option>
+            <option value="3">3: Design implementation</option>
+            <option value="Personal">Personal project</option>
+          </optgroup>
+          <optgroup label="Data Analyse">
+            <option value="1">1: SQL to and Python</option>
+            <option value="2">2: Advanced Data Analytics</option>
+            <option value="3">3: Machine learning</option>
+            <option value="Personal">Personal project</option>
+          </optgroup>
+          <optgroup label="Cybersecurity">
+            <option value="1">1: Basics of Cybersecurity</option>
+            <option value="2">2: Security and Threats</option>
+            <option value="3">3: Real projects</option>
+            <option value="Personal">Personal project</option>
+          </optgroup>
+          {{/if}}
+          {{/if}}
+          {{/if}}
+          {{/if}}
         </select>
       </div>
 
@@ -100,77 +106,81 @@
         <label for="techno">Techno</label>
 
         <!-- Si filtre WebDev -->
-        {{#if courseWebDev}} <!-- ATTENTION MAUVAIS FILTRE !! -->
-          <select name="techno" id="filter-techno" class="selectpicker" data-style="btn-light" multiple></select>
-          <option>HTML5 - CSS3</option>
-          <option>JavaScript</option>
-          <option>NodeJS</option>
-          <option>ExpressJS</option>
-          <option>MongoDB</option>
-          <option>ReactJS</option>
+        {{#if courseWebDev}}
+        <!-- ATTENTION MAUVAIS FILTRE !! -->
+        <select name="techno" id="filter-techno" class="selectpicker" data-style="btn-light" multiple></select>
+        <option>HTML5 - CSS3</option>
+        <option>JavaScript</option>
+        <option>NodeJS</option>
+        <option>ExpressJS</option>
+        <option>MongoDB</option>
+        <option>ReactJS</option>
 
-          {{else}}
-            <!-- Si filtre UX/UI -->
-            {{#if courseUX}} <!-- ATTENTION MAUVAIS FILTRE !! -->
-            <select name="techno" id="filter-techno" class="selectpicker" data-style="btn-light" multiple></select>
+        {{else}}
+        <!-- Si filtre UX/UI -->
+        {{#if courseUX}}
+        <!-- ATTENTION MAUVAIS FILTRE !! -->
+        <select name="techno" id="filter-techno" class="selectpicker" data-style="btn-light" multiple></select>
+        <option>UI</option>
+        <option>UX</option>
+        <option>With prototypes</option>
+        <option>HTML5 - CSS3</option>
+
+        {{else}}
+        <!-- Si filtre Data Analyse -->
+        {{#if courseData}}
+        <!-- ATTENTION MAUVAIS FILTRE !! -->
+        <select name="techno" id="filter-techno" class="selectpicker" data-style="btn-light" multiple></select>
+        <option>Python</option>
+        <option>MySQL</option>
+        <option>Statistical analysis</option>
+        <option>Connected to API</option>
+        <option>With IA</option>
+
+        {{else}}
+        <!-- Si filtre Cybersecurity -->
+        {{#if courseCyber}}
+        <!-- ATTENTION MAUVAIS FILTRE !! -->
+        <select name="techno" id="filter-techno" class="selectpicker" data-style="btn-light" multiple></select>
+        <option>Around networking traffic</option>
+        <option>Around fingerprinting</option>
+        <option>Encrypting data</option>
+        <option>Backup and recovery</option>
+
+        {{else}}
+        <!-- No filter - Everyone -->
+        <select name="techno" id="filter-techno" class="selectpicker" data-style="btn-light" multiple>
+          <optgroup label="Web-Dev">
+            <option>HTML5 - CSS3</option>
+            <option>JavaScript</option>
+            <option>NodeJS</option>
+            <option>ExpressJS</option>
+            <option>MongoDB</option>
+            <option>ReactJS</option>
+          </optgroup>
+          <optgroup label="UX/UI">
             <option>UI</option>
             <option>UX</option>
             <option>With prototypes</option>
             <option>HTML5 - CSS3</option>
-
-              {{else}}
-                <!-- Si filtre Data Analyse -->
-                {{#if courseData}} <!-- ATTENTION MAUVAIS FILTRE !! -->
-                <select name="techno" id="filter-techno" class="selectpicker" data-style="btn-light" multiple></select>
-                <option>Python</option>
-                <option>MySQL</option>
-                <option>Statistical analysis</option>
-                <option>Connected to API</option>
-                <option>With IA</option>
-
-                  {{else}}
-                    <!-- Si filtre Cybersecurity -->
-                    {{#if courseCyber}} <!-- ATTENTION MAUVAIS FILTRE !! -->
-                    <select name="techno" id="filter-techno" class="selectpicker" data-style="btn-light" multiple></select>
-                    <option>Around networking traffic</option>
-                    <option>Around fingerprinting</option>
-                    <option>Encrypting data</option>
-                    <option>Backup and recovery</option>
-
-                      {{else}}
-                      <!-- No filter - Everyone -->
-                      <select name="techno" id="filter-techno" class="selectpicker" data-style="btn-light" multiple>
-                        <optgroup label="Web-Dev">
-                          <option>HTML5 - CSS3</option>
-                          <option>JavaScript</option>
-                          <option>NodeJS</option>
-                          <option>ExpressJS</option>
-                          <option>MongoDB</option>
-                          <option>ReactJS</option>
-                        </optgroup>
-                        <optgroup label="UX/UI">
-                          <option>UI</option>
-                          <option>UX</option>
-                          <option>With prototypes</option>
-                          <option>HTML5 - CSS3</option>
-                        </optgroup>
-                        <optgroup label="Data Analyse">
-                          <option>Python</option>
-                          <option>MySQL</option>
-                          <option>Statistical analysis</option>
-                          <option>Connected to API</option>
-                          <option>With IA</option>
-                        </optgroup>
-                        <optgroup label="Cybersecurity">
-                          <option>Around networking traffic</option>
-                          <option>Around fingerprinting</option>
-                          <option>Encrypting data</option>
-                          <option>Backup and recovery</option>
-                        </optgroup>
-                      </select>
-                    {{/if}}
-                {{/if}}
-            {{/if}}
+          </optgroup>
+          <optgroup label="Data Analyse">
+            <option>Python</option>
+            <option>MySQL</option>
+            <option>Statistical analysis</option>
+            <option>Connected to API</option>
+            <option>With IA</option>
+          </optgroup>
+          <optgroup label="Cybersecurity">
+            <option>Around networking traffic</option>
+            <option>Around fingerprinting</option>
+            <option>Encrypting data</option>
+            <option>Backup and recovery</option>
+          </optgroup>
+        </select>
+        {{/if}}
+        {{/if}}
+        {{/if}}
         {{/if}}
       </div>
 
@@ -178,53 +188,9 @@
       <button class="small-btn blue-btn align-bottom" type="submit">Search</button>
     </form>
 
-
-    {{!-- <form action="/projects" method="GET">
-<<<<<<< HEAD
->>>>>>> 323b62ea4ff64ce1f60c36dfa78a0556dda1579e
-=======
->>>>>>> 5653e771caa81a1adfb45baaf400537381ce2918
-      <label for="module">Module</label>
-      <select name="module" id="filter-module">
-        <option value="">--Module--</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-      </select>
-
-      <label for="campus">Campus</label>
-      <select name="campus" id="filter-campus">
-        <option value="">--Campus--</option>
-        <option value="Amsterdam">Amsterdam</option>
-        <option value="Barcelona">Barcelona</option>
-        <option value="Berlin">Berlin</option>
-        <option value="Lisboa">Lisboa</option>
-        <option value="Madrid">Madrid</option>
-        <option value="Mexico">Mexico</option>
-        <option value="Miami">Miami</option>
-        <option value="Paris">Paris</option>
-        <option value="Remote">Remote</option>
-        <option value="Sao Paulo">Sao Paulo</option>
-      </select>
-
-      <label for="rank">Rank</label>
-      <select name="rank" id="filter-rank">
-        <option value="">--Rank--</option>
-        <option value="1st">1st</option>
-        <option value="2nd">2nd</option>
-        <option value="3rd">3rd</option>
-        <option value="not_ranked">Not Ranked</option>
-      </select>
-
-      <label for="techno">Techno</label>
-      <select name="techno" id="filter-techno">
-        <option value="">--techno--</option>
-        <!-- populate techno here -->
-      </select>
-
-      <button type="submit">Search</button>
-    </form> --}}
   </div>
+  {{/if}}
+
 
   <div class="all-projects">
 
@@ -233,9 +199,11 @@
     {{!-- A REMPLACER PAR LE {{projectPartial}}   --}}
     {{#each projects}}
     <div class="hover-effect column-effect project-card {{campus}} {{course}} {{module}}">
-      <div class="figure"><a href="/projects/{{this.id}}"><img src="{{this.imageUrl}}" alt=""><span>+ View this project</span></div></a>
+      <div class="figure"><a href="/projects/{{this.id}}"><img src="{{this.imageUrl}}" alt=""><span>+ View this
+            project</span></div></a>
       <div>
-        <a href="/projects/{{this.id}}"></a><p class="project-name">{{this.name}}</p></a>
+        <a href="/projects/{{this.id}}"></a>
+        <p class="project-name">{{this.name}}</p></a>
         <p class="project-date">{{this.year_creation}}</p>
       </div>
       {{!-- <div>

@@ -1,8 +1,9 @@
 <div class="user-edit profile-page grey-bg">
 
   <div>
-    <img class="profile-picture" src="{{user.profileImgSrc}}"/>
-    <p class="user-project-quantity">{{#if user.projects.length}} {{user.projects.length}} {{else}} 0{{/if}} projects</p>
+    <img class="profile-picture" src="{{user.profileImgSrc}}" />
+    <p class="user-project-quantity">{{#if user.projects.length}} {{user.projects.length}} {{else}} 0{{/if}} projects
+    </p>
   </div>
 
   <form action="/userEdit" method="POST" enctype="multipart/form-data">
@@ -11,23 +12,22 @@
       <h1 class="form-title">Edit my profile</h1>
 
       <label for="input-email">Email</label>
-      <input type="email" id="input-email" name="email" value="{{user.email}}"
-        placeholder="sheldon_cooper@caltech.edu">
+      <input type="email" id="input-email" name="email" value="{{user.email}}" placeholder="sheldon_cooper@caltech.edu">
 
-      <label for="input-password">Password</label>
-      <input type="password" name="password" id="input-password" placeholder="********">
+      {{!-- <label for="input-password">Password</label>
+      <input type="password" name="password" id="input-password" placeholder="********"> --}}
 
-      
+
       <!-- FIELD - Profile picture -->
       <div class="profile-images">
-        <label for="image-input">Profile picture</label>
-        <input type="file" name="image" id="image-input" class="form-control-file" value="{{user.profileImgSrc}}"/>
+        <label for="image-input">Change your profile picture</label>
+        <input type="file" name="image" id="image-input" class="form-control-file" value="{{user.profileImgSrc}}" />
       </div>
 
-      {{#if user.ironhacker}}<label for="ironhacker"><input type="checkbox" class="ironhacker-check" id="ironhacker"
+      {{#if user.ironhacker}}<label for="ironhacker"><input type="hidden" class="ironhacker-check" id="ironhacker"
           onclick="ironhackerSignupBox()" name="ironhacker" value="true" {{#if user.ironhacker}}checked{{/if}}>I
         am an Ironhacker</label>
-        
+
       {{else}}
 
       <label for="ironhacker"><input type="checkbox" class="ironhacker-check" id="ironhacker"
@@ -46,7 +46,8 @@
     </div>
 
     <!--Part displayed if ironhacker-->
-    <div class="ironhacker-signup-box <!--invisible-->" id="ironhacker-signup-box" {{#if user.ironhacker}}style="display: block;"{{/if}}>
+    <div class="ironhacker-signup-box <!--invisible-->" id="ironhacker-signup-box"
+      {{#if user.ironhacker}}style="display: block;" {{/if}}>
 
       <div>
 
@@ -63,7 +64,8 @@
         </div>
 
         <label for="input-expertise">Expertise</label>
-        <input type="text" id="input-expertise" name="expertise" placeholder="super-asymmetry" value="{{user.expertise}}">
+        <input type="text" id="input-expertise" name="expertise" placeholder="super-asymmetry"
+          value="{{user.expertise}}">
 
         <div class="flex">
           <div>
@@ -84,8 +86,9 @@
           </div>
 
           <div>
-          <label for="input-location">Current location</label>
-          <input type="text" id="input-location" name="location" placeholder="Paris, France" value="{{user.current_location}}">
+            <label for="input-location">Current location</label>
+            <input type="text" id="input-location" name="location" placeholder="Paris, France"
+              value="{{user.current_location}}">
           </div>
         </div>
 
@@ -110,15 +113,18 @@
 
           <div>
             <label for="input-promo">Promo</label>
-            <input type="month" id="input-promo" name="Promo" placeholder="2020-06" min="2013-01" value="{{user.promo}}">
+            <input type="month" id="input-promo" name="Promo" placeholder="2020-06" min="2013-01"
+              value="{{user.promo}}">
           </div>
         </div>
 
         <label for="input-github">Github</label>
-        <input type="text" id="input-github" name="github" placeholder="https://github.com/myAccount" value="{{user.gitHub}}">
+        <input type="text" id="input-github" name="gitHub" placeholder="https://github.com/myAccount"
+          value="{{user.gitHub}}">
 
         <label for="input-linkedin">linkedIn</label>
-        <input type="text" id="input-linkedin" name="linkedIn" placeholder="https://www.linkedin.com/in/my-account/" value="{{user.linkedIn}}">
+        <input type="text" id="input-linkedin" name="linkedIn" placeholder="https://www.linkedin.com/in/my-account/"
+          value="{{user.linkedIn}}">
 
         <p class="mandatory">* mandatory</p>
 
