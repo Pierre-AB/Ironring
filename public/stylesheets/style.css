@@ -148,8 +148,8 @@ a:focus,
   border-radius: 0.6rem;
   box-shadow: rgba(87, 93, 112, 0.1) 0px 1.6rem 3.2rem;
   right: 0;
-  top: 7vh;
-  min-width: 10vw;
+  top: 4vh;
+  min-width: 13vw;
   padding-top: 1.5vh; }
 
 .dropdown-content li {
@@ -345,6 +345,7 @@ input[type="email"],
 textarea,
 input[type="file"],
 input[type="number"],
+input[type="month"],
 select {
   border: 2px solid #e1e8ee;
   border-radius: 6px;
@@ -406,8 +407,8 @@ input[type="checkbox"] {
   align-items: flex-start;
   justify-content: space-between;
   height: calc( 100vh - 7vh);
-  width: 100vw;
-  padding: 4vh 8vh; }
+  width: calc( 100vw - 9vh);
+  padding: 5vh 9vh 0; }
 
 .profile-picture {
   background: #c0c4d0;
@@ -471,6 +472,9 @@ input[type="checkbox"] {
   object-fit: cover;
   margin-bottom: 1vh; }
 
+.project-card img {
+  max-width: 20%; }
+
 .project-date {
   color: #c0c4d0; }
 
@@ -523,5 +527,36 @@ input[type="checkbox"] {
 
 .projects-details-description {
   color: #c0c4d0; }
+
+/***
+ *    ######## ########  #### ########    ########  ########   #######  ######## #### ##       ######## 
+ *    ##       ##     ##  ##     ##       ##     ## ##     ## ##     ## ##        ##  ##       ##       
+ *    ##       ##     ##  ##     ##       ##     ## ##     ## ##     ## ##        ##  ##       ##       
+ *    ######   ##     ##  ##     ##       ########  ########  ##     ## ######    ##  ##       ######   
+ *    ##       ##     ##  ##     ##       ##        ##   ##   ##     ## ##        ##  ##       ##       
+ *    ##       ##     ##  ##     ##       ##        ##    ##  ##     ## ##        ##  ##       ##       
+ *    ######## ########  ####    ##       ##        ##     ##  #######  ##       #### ######## ######## 
+ */
+.user-edit.profile-page {
+  justify-content: flex-start; }
+
+.profile-page form {
+  flex-direction: row;
+  padding-left: 6vw; }
+
+.profile-page form > :first-child {
+  align-self: baseline; }
+
+#updateAccount {
+  margin-top: 2vh; }
+
+.user-edit input[type="text"], .user-edit input[type="password"], .user-edit input[type="email"], .user-edit input[type="month"], .user-edit textarea, .user-edit input[type="file"], .user-edit input[type="number"], .user-edit select {
+  width: 250px; }
+
+#input-github, #input-linkedin {
+  width: 550px; }
+
+.user-edit .ironhacker-signup-box {
+  margin-left: 0; }
 
 /*# sourceMappingURL=style.css.map */
