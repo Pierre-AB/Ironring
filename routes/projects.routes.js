@@ -131,65 +131,75 @@ router.post('/projects/:id/edit', fileUploader.single('image'), (req, res, next)
 
 // GET - NEW PROJECT CREATION
 
+function userCourses(user) {
+  var courseWebDev;
+  if (user.course === "Web-Dev") {
+    courseWebDev = true;
+  }
+
+  var courseUX;
+  if (user.course === "UX/UI") {
+    courseUX = true;
+  }
+
+  // Renvoie true or undefined
+  var courseData;
+  if (user.course === "Data") {
+    courseData = true;
+  }
+
+  // Permet de renvoyer forcément true ou false
+  var courseCyber = user.course === "Cyber_Security";
+
+  return {
+    courseWebDev,
+    courseUX,
+    courseData,
+    courseCyber
+  }
+}
+
 router.get('/projects/new', (req, res, next) => {
   User.find({})
     .then(usersFromDb => {
       console.log('user', req.session.currentUser)
-      var courseWebDev;
-      if (req.session.currentUser.course === "Web-Dev") {
-        courseWebDev = true;
-      }
 
-      var courseUX;
-      if (req.session.currentUser.course === "UX/UI") {
-        courseUX = true;
-      }
-
-      // Renvoie true or undefined
-      var courseData;
-      if (req.session.currentUser.course === "Data") {
-        courseData = true;
-      }
-
-      // Permet de renvoyer forcément true ou false
-      var courseCyber = req.session.currentUser.course === "Cyber_Security";
-
+      const courses = userCourses(req.session.currentUser)
+      
       res.render('projects/project-new', {   //// vérifier le nom du fichier hbs
         users: usersFromDb,
-        courseWebDev,
-        courseUX,
-        courseData,
-        courseCyber
+        ...courses
       })
 
     })
     .catch(err => next(err))
-
-
 })
 
 // POST -> NEW PROJECT CREATION
 
 router.post('/projects/new', fileUploader.single('image'), (req, res, next) => {
+
   const { uploader_id, owners_id, owners_mail, course, module, campus, imageUrl, name, description, year_creation, techno, url, github, rank, likes } = req.body;
+  const courses = userCourses(req.session.currentUser)
+  
   if (!name) {
-    res.render("projects/project-new", { errorMessage: "Please enter your project's name" },
+    res.render("projects/project-new", { errorMessage: "Please enter your project's name", ...courses }, 
     );
     return
   }
 
   if (!description) {
-    res.render("projects/project-new", { errorMessage: "Please describe your project" });
+    res.render("projects/project-new", { errorMessage: "Please describe your project", ...courses });
     return
   }
 
   if (!year_creation) {
-    res.render("projects/project-new", { errorMessage: "Please enter the year when it was created"});
+    res.render("projects/project-new", { errorMessage: "Please enter the year when it was created", ...courses });
     return
   }
 
   if (!module) {
-    res.render("projects/project-new", { errorMessage: "Please enter select your module"});
+    res.render("projects/project-new", { errorMessage: "Please enter select your module", ...courses });
     return
   }
 
@@ -199,12 +209,12 @@ router.post('/projects/new', fileUploader.single('image'), (req, res, next) => {
   // }
 
   if (!rank) {
-    res.render("projects/project-new", { errorMessage: "Please select your project's ranking"});
+    res.render("projects/project-new", { errorMessage: "Please select your project's ranking", ...courses });
     return
   }
 
   if (!url && !github) {
-    res.render("projects/project-new", { errorMessage: "Please enter at least your github or your URL" });
+    res.render("projects/project-new", { errorMessage: "Please enter at least your github or your URL", ...courses });
     return
   }
 

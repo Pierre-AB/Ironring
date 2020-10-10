@@ -60,11 +60,11 @@
   <nav class="course-nav">
 
     <ul class="course top-nav-items">
-      <li><a class="active" href="/">All</a></li>
-      <li><a href="#">Webdev</a></li>
-      <li><a href="#">UX/UI design</a></li>
-      <li><a href="#">Data</a></li>
-      <li><a href="#">Cyber Security</a></li>
+      <li><a class="top-bar {{#if all}}active{{/if}}" href="#" onclick="activeOnClickTop(this)">All</a></li>
+      <li><a class="top-bar" href="#" onclick="activeOnClickTop(this)">Webdev</a></li>
+      <li><a class="top-bar" href="#" onclick="activeOnClickTop(this)">UX/UI design</a></li>
+      <li><a class="top-bar" href="#" onclick="activeOnClickTop(this)">Data</a></li>
+      <li><a class="top-bar" href="#" onclick="activeOnClickTop(this)">Cyber Security</a></li>
     </ul>
 
     <!-- If logged in -->
@@ -80,7 +80,7 @@
 
       <div class="dropdown">
         <ul>
-          <li><img class="user-picture" source="{{user.profileImgSrc}}"/></li>
+          <li><img class="user-picture" src="{{user.profileImgSrc}}"/></li>
           <div class="dropdown-content">
             <li><a class="" href="/userProfile"><i class="fas fa-project-diagram"></i></i>My projects</a></li>
             <li><a class="" href="/userEdit"><i class="fas fa-user-edit"></i>Edit profile</a></li>
@@ -103,8 +103,8 @@
 
   <!-- Left navbar -->
   <div class="left-nav">
-    <a class="ico active" href="/"><i class="fas fa-home"></i></a>
-    <a class="ico" href="#"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+    <a class="ico active" href="#" onclick="activeOnClickLeft(this)"><i class="fas fa-home"></i></a>
+    <a class="ico" href="#" onclick="activeOnClickLeft(this)"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
         xmlns:svgjs="http://svgjs.com/svgjs" version="1.1" width="20" height="20" x="0" y="0" viewBox="0 0 500 500"
         xml:space="preserve" class="">
         <g>
@@ -129,11 +129,11 @@
             c-1.132,0.267-2.271,0.396-3.396,0.397c-5.495,0-10.661-3.08-13.203-8.164l-16.323-32.647l-16.323,32.647
             c-3.062,6.127-9.932,9.341-16.599,7.767c-6.665-1.574-11.373-7.522-11.373-14.37V196.94c0-8.154,6.611-14.765,14.765-14.765
             c8.154,0,14.765,6.611,14.765,14.765v55.575l1.558-3.117c2.501-5.002,7.614-8.162,13.207-8.162s10.705,3.16,13.207,8.162
-            l1.558,3.117V196.94c0-8.154,6.611-14.765,14.765-14.765c8.154,0,14.765,6.611,14.765,14.765V315.06z" fill="#c0c4d0"/>
+            l1.558,3.117V196.94c0-8.154,6.611-14.765,14.765-14.765c8.154,0,14.765,6.611,14.765,14.765V315.06z"/>
         </g>
       </svg>
     </a>
-    <a class="ico" href="#"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+    <a class="ico" href="#" onclick="activeOnClickLeft(this)"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
         xmlns:svgjs="http://svgjs.com/svgjs" version="1.1" width="20" height="20" x="0" y="0"
         viewBox="0 0 475 520" xml:space="preserve" class="">
         <g>
@@ -141,7 +141,7 @@
           <g>
               <path d="M256,433.231c-41.108,0-79.738-10.789-113.231-29.664v93.664c0,5.012,2.541,9.682,6.75,12.403
                 c4.208,2.721,9.509,3.122,14.08,1.065L256,469.119l92.401,41.579c1.935,0.871,4,1.301,6.059,1.301
-                c2.803,0,5.594-0.798,8.021-2.366c4.208-2.72,6.75-7.391,6.75-12.402v-93.664C335.738,422.441,297.108,433.231,256,433.231z" fill="#c0c4d0"/>
+                c2.803,0,5.594-0.798,8.021-2.366c4.208-2.72,6.75-7.391,6.75-12.402v-93.664C335.738,422.441,297.108,433.231,256,433.231z"/>
             </g>
           </g>
           <g>
@@ -185,25 +185,25 @@
                 c-19.002,0-34.462-15.459-34.462-34.462v-49.231c0-19.002,15.459-34.462,34.462-34.462h19.692
                 c19.002,0,34.462,15.459,34.462,34.462V226.462z M398.77,182.154c0,19.002-15.459,34.461-34.462,34.461h-24.615v29.539
                 c0,8.157-6.613,14.769-14.769,14.769s-14.769-6.613-14.769-14.769v-68.923c0-19.002,15.459-34.462,34.461-34.462h19.692
-                c19.002,0,34.462,15.459,34.462,34.462V182.154z" fill="#c0c4d0"/>
+                c19.002,0,34.462,15.459,34.462,34.462V182.154z"/>
             </g>
           </g>
           <g>
             <g>
               <path d="M364.308,172.308h-19.692c-2.715,0-4.923,2.208-4.923,4.923v9.846h24.615c2.715,0,4.923-2.208,4.923-4.923v-4.923
-                C369.231,174.516,367.023,172.308,364.308,172.308z" fill="#c0c4d0"/>
+                C369.231,174.516,367.023,172.308,364.308,172.308z"/>
             </g>
           </g>
           <g>
             <g>
               <path d="M265.846,172.308h-19.692c-2.715,0-4.923,2.208-4.923,4.923v49.231c0,2.715,2.208,4.923,4.923,4.923h19.692
-                c2.715,0,4.923-2.208,4.923-4.923v-49.231C270.77,174.516,268.561,172.308,265.846,172.308z" fill="#c0c4d0"/>
+                c2.715,0,4.923-2.208,4.923-4.923v-49.231C270.77,174.516,268.561,172.308,265.846,172.308z"/>
           </g>
           </g>
         </g>
       </svg>
     </a>
-    <a class="ico" href="#"><i class="fas fa-heart"></i></a>
+    <a class="ico" href="#" onclick="activeOnClickLeft(this)"><i class="fas fa-heart"></i></a>
   </div>
 
   <!-- Page content -->
