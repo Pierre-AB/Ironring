@@ -67,16 +67,16 @@ app.use(function (req, res, next) { // variable global pour users accessible par
 
 app.use((req, res, next) => {
   switch (req.query.course) {
-    case 'web-dev':
+    case 'Web-Dev':
       res.locals.webdev = true;
       break;
-    case 'ux-ui':
+    case 'UX/UI':
       res.locals.uxui = true;
       break;
-    case 'data':
+    case 'Data':
       res.locals.data = true;
       break;
-    case 'security':
+    case 'Cyber_Security':
       res.locals.security = true;
       break;
     default:
