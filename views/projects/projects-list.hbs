@@ -3,8 +3,6 @@
   <div class="filters">
     <form class="filters-form" action="/projects/q" method="GET">
 
-    <form action="/projects/q" method="GET">
-
       <!-- Module -->
       <div>
         <label for="module">Module</label>
@@ -182,7 +180,10 @@
 
 
     {{!-- <form action="/projects" method="GET">
+<<<<<<< HEAD
 >>>>>>> 323b62ea4ff64ce1f60c36dfa78a0556dda1579e
+=======
+>>>>>>> 5653e771caa81a1adfb45baaf400537381ce2918
       <label for="module">Module</label>
       <select name="module" id="filter-module">
         <option value="">--Module--</option>
@@ -232,8 +233,7 @@
     {{!-- A REMPLACER PAR LE {{projectPartial}}   --}}
     {{#each projects}}
     <div class="hover-effect column-effect project-card {{campus}} {{course}} {{module}}">
-      <div class="figure"><a href="/projects/{{this.id}}"><img src="{{this.imageUrl}}" alt=""></a>
-      <span>+ View this project</span></div>
+      <div class="figure"><a href="/projects/{{this.id}}"><img src="{{this.imageUrl}}" alt=""><span>+ View this project</span></div></a>
       <div>
         <a href="/projects/{{this.id}}"></a><p class="project-name">{{this.name}}</p></a>
         <p class="project-date">{{this.year_creation}}</p>

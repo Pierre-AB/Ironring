@@ -21,7 +21,8 @@ a:active,
 a:hover,
 a:focus,
 .active {
-  color: #2dc5fa; }
+  color: #2dc5fa;
+  text-decoration: none; }
 
 ol, ul {
   margin: 0; }
@@ -61,7 +62,7 @@ ol, ul {
   background: #00b4ff none repeat scroll 0% 0%; }
 
 .fa, .fas {
-  font-size: 1.2rem; }
+  font-size: inherit; }
 
 .flex {
   display: flex; }
@@ -99,7 +100,7 @@ ol, ul {
   background: rgba(45, 197, 250, 0.1);
   text-align: center;
   border-bottom: solid 3px #2dc5fa;
-  padding: calc( 2vh + 4px) 2vw; }
+  padding: calc( 2vh + 5px) 2vw; }
 
 .course-nav ul {
   display: flex;
@@ -120,7 +121,7 @@ ol, ul {
   margin: 1.5vh 1.5vw; }
 
 .user-picture {
-  background: red;
+  background: #c0c4d0;
   display: inline-block;
   width: 3.8vh;
   height: 3.8vh;
@@ -191,8 +192,11 @@ ol, ul {
 .left-nav .ico {
   padding: 3vh 0; }
 
-.ico:hover {
-  fill: red; }
+.ico svg {
+  fill: #c0c4d0; }
+
+.ico:hover svg, .ico .active svg {
+  fill: #2dc5fa; }
 
 .left-nav a:active,
 .left-nav a:hover,
@@ -202,8 +206,8 @@ ol, ul {
   width: 100%;
   text-align: center;
   border-right: solid 3px #2dc5fa;
-  margin-right: -6px;
-  padding-left: 6px; }
+  margin-right: -5px;
+  padding-left: 5px; }
 
 /***
  *    ##     ##  #######  ##     ## ######## 
