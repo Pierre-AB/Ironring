@@ -111,7 +111,8 @@ router.post("/signup", uploader.single('image'),(req, res, next) => {
         expertise,
         campus: campus || undefined,
         course: course || undefined,
-        profileImgSrc: req?.file?.path || ''    // à voir avec Antoine
+        // profileImgSrc: req?.file?.path || ''    // à voir avec Antoine
+        profileImgSrc: req.file && req.file.path || 'https://res.cloudinary.com/dbsnbga7z/image/upload/v1602320361/Ironring/Profile.png.png'
       });
     })
     .then((userFromDB) => {
