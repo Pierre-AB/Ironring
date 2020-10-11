@@ -76,7 +76,10 @@ router.get('/projects/:id/edit', (req, res, next) => {
 
       res.render('projects/project-edit', {   //// vérifier le nom du fichier hbs
         project: projectFromDb,
-        users: usersFromDb
+        users: usersFromDb,
+        courseWebDev,
+        courseUX,
+        courseData
       })
     }).catch(err => next(err))
 
@@ -403,7 +406,7 @@ router.get('/projects/:id', routeGuard, (req, res, next) => {
       var userIsUploader
       console.log('project 🤠', project, 'user 🙄', req.session.currentUser)
       // VALIDATION IF USER
-      if (project.uploader_id === req.session.currentUser._id) {
+      if (project.uploader_id == req.session.currentUser._id) { // NOT THE SAME FORMAT ????
         userIsUploader = true
       }
       User.findById(project.uploader_id).then((creator) => {
