@@ -969,9 +969,13 @@ input[type="email"]:read-only, input[type="email"]:-moz-read-only {
   padding: 4vw;
 }
 
+// .projects-details-page .ico {
+//   margin-right: 1vw;
+// }
+
 .project-detail-picture {
   width: 100%;
-  max-height: 45vh;
+  max-height: 50vh;
   object-fit: cover;
   margin-bottom: 5vh;
 }
@@ -987,8 +991,9 @@ input[type="email"]:read-only, input[type="email"]:-moz-read-only {
   font-size: 1.2em;
 }
 
-.projects-details-infos .fa, .projects-details-infos .fas {
+.projects-details-page .ico, .projects-details-page .ico .fa, .projects-details-page .ico .fas {
   color: #2DC5FA;
+  margin-right: .5vw;
 }
 
 .projects-details-infos {
@@ -999,6 +1004,10 @@ input[type="email"]:read-only, input[type="email"]:-moz-read-only {
   color: #c0c4d0;
 }
 
+.project-detail-int-col a {
+  color: inherit
+}
+
 .project-detail-data {
   display: flex;
   flex-direction: row;
@@ -1006,6 +1015,25 @@ input[type="email"]:read-only, input[type="email"]:-moz-read-only {
 
 .project-detail-col1 {
   flex-grow: 0.5;
+  width: 50%;
+  margin-right: 5vw;
+}
+
+.project-detail-col1 h1 {
+  margin-top: 0;
+}
+
+.project-detail-col2 {
+  min-width: 40%;
+}
+
+.project-detail-col2:nth-child(2) {
+  margin-right: 5vw;
+}
+
+.project-detail-int-col {
+  min-width: 20%;
+  float: left;
 }
 
 .project-detail-data h1, .project-detail-module {
@@ -1014,6 +1042,8 @@ input[type="email"]:read-only, input[type="email"]:-moz-read-only {
 
 .projects-details-description {
   color: #c0c4d0;
+  margin: 1.5vh 0 3vh;
+  line-height: 1.5;
 }
 
 

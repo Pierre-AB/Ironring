@@ -484,8 +484,7 @@ input[type="email"]:read-only, input[type="email"]:-moz-read-only {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin-left: -2vw;
-  margin-right: -2vw;
+  margin: 5vh -2vw 0;
   min-width: 87vw; }
 
 .project-card {
@@ -580,7 +579,7 @@ input[type="email"]:read-only, input[type="email"]:-moz-read-only {
 
 .project-detail-picture {
   width: 100%;
-  max-height: 45vh;
+  max-height: 50vh;
   object-fit: cover;
   margin-bottom: 5vh; }
 
@@ -593,8 +592,9 @@ input[type="email"]:read-only, input[type="email"]:-moz-read-only {
 .project-detail-module {
   font-size: 1.2em; }
 
-.projects-details-infos .fa, .projects-details-infos .fas {
-  color: #2DC5FA; }
+.projects-details-page .ico, .projects-details-page .ico .fa, .projects-details-page .ico .fas {
+  color: #2DC5FA;
+  margin-right: .5vw; }
 
 .projects-details-infos {
   margin-bottom: 1vh; }
@@ -602,18 +602,38 @@ input[type="email"]:read-only, input[type="email"]:-moz-read-only {
 .projects-details-answer {
   color: #c0c4d0; }
 
+.project-detail-int-col a {
+  color: inherit; }
+
 .project-detail-data {
   display: flex;
   flex-direction: row; }
 
 .project-detail-col1 {
-  flex-grow: 0.5; }
+  flex-grow: 0.5;
+  width: 50%;
+  margin-right: 5vw; }
+
+.project-detail-col1 h1 {
+  margin-top: 0; }
+
+.project-detail-col2 {
+  min-width: 40%; }
+
+.project-detail-col2:nth-child(2) {
+  margin-right: 5vw; }
+
+.project-detail-int-col {
+  min-width: 20%;
+  float: left; }
 
 .project-detail-data h1, .project-detail-module {
   display: inline-block; }
 
 .projects-details-description {
-  color: #c0c4d0; }
+  color: #c0c4d0;
+  margin: 1.5vh 0 3vh;
+  line-height: 1.5; }
 
 /***
  *    ######## ########  #### ########    ########  ########   #######  ######## #### ##       ######## 
