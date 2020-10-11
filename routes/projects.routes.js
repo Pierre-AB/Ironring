@@ -408,6 +408,7 @@ router.get('/projects/:id', routeGuard, (req, res, next) => {
       // VALIDATION IF USER
       if (project.uploader_id == req.session.currentUser._id) { // NOT THE SAME FORMAT ????
         userIsUploader = true
+        console.log('📤📤📤📤 The current user is the uploader', userIsUploader) 
       }
       User.findById(project.uploader_id).then((creator) => {
         res.render('projects/project-details', {
