@@ -1,0 +1,41 @@
+<div id="profile" class="profile-page grey-bg">
+
+  {{!-- {{#if user.ironhacker}} --}}
+
+  <div>
+    <img class="profile-picture" src="{{creator.profileImgSrc}}" />
+    <p class="user-project-quantity">{{#if creator.projects.length}} {{creator.projects.length}} {{else}} 0{{/if}}
+      projects
+    </p>
+  </div>
+
+  <div class="profile-informations">
+    <p class="profile-name"> {{creator.firstName}} {{creator.lastName}}</p>
+    {{#if creator.expertise}}<p class="profile-expertise">Expertise: {{creator.expertise}}</p>{{/if}}
+    <p class="profile-campus">Campus: {{creator.campus}}</p>
+    <p><a href="{{creator.gitHub}}">Github</a></p>
+    <p><a href="{{creator.linkedIn}}">linkedIn</a></p>
+    {{!-- <div class="profile-filters">Filtres</div> --}}
+  </div>
+
+  {{!-- Edit btn only if owner of the profile --}}
+  {{#if userIsUploader}} {{!-- ATTENTION, MAUVAISE VERIFICATION, CHANGER ! --}}
+  <a class="small-btn blue-btn" href="/userEdit">Edit your profile</a>
+  {{/if}}
+
+
+  {{#each creator.projects}}
+  <div class="project-card {{campus}} {{course}} {{module}}">
+    <img src="{{this.imageUrl}}" alt="">
+    <div>
+      <p class="project-name">{{this.name}}</p>
+      <p class="project-date">{{this.year_creation}}</p>
+    </div>
+    {{!-- <div>
+      <p class="project-likes">{{this.likes}}72<i class="fas fa-heart"></i></p>
+    </div> --}}
+  </div>
+  {{/each}}
+
+  {{!-- {{/if}} --}}
+</div>

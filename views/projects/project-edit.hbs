@@ -1,11 +1,11 @@
 <h2>Edit the Project: {{project.name}}</h2>
- 
+
 <form action="/projects/{{project.id}}/edit" method="POST" enctype="multipart/form-data">
   <label>
     Title:
     <input type="text" name="name" value="{{project.name}}" />
   </label>
- 
+
   <label>
     Description:
     <textarea name="description" cols="30" rows="4">{{project.description}}</textarea>
@@ -13,11 +13,12 @@
 
   <!-- FIELD - Creation year -->
   <label for="">Creation year:</label>
-  <input type="number" class="" name="year_creation" min="1970" step="1" max="2099" value="{{project.year_creation}}" >
+  <input type="number" class="" name="year_creation" min="1970" step="1" max="2099" value="{{project.year_creation}}">
 
   <!-- FIELD - Modules -->
   <!-- Modules regarding user course -->
   <label for="">Module</label>
+
 
   <!-- WebDev -->
   {{#if courseWebDev}}
@@ -69,48 +70,64 @@
 
   <!-- WebDev -->
   {{#if courseWebDev}}
-  <label class="inline"><input type="checkbox" class="" name="" value="">HTML5 - CSS3</label>
-  <label class="inline"><input type="checkbox" class="" name="" value="">JavaScript</label>
-  <label class="inline"><input type="checkbox" class="" name="" value="">NodeJS</label>
-  <label class="inline"><input type="checkbox" class="" name="" value="">ExpressJS</label>
-  <label class="inline"><input type="checkbox" class="" name="" value="">MongoDB</label>
-  <label class="inline"><input type="checkbox" class="" name="" value="">ReactJS</label>
+  <label class="inline"><input type="checkbox" class="techno-input" name="techno" value="HTML5">HTML5</label>
+  <label class="inline"><input type="checkbox" class="techno-input" name="techno" value="CSS3">CSS3</label>
+  <label class="inline"><input type="checkbox" class="techno-input" name="techno" value="JavaScript">JavaScript</label>
+  <label class="inline"><input type="checkbox" class="techno-input" name="techno" value="NodeJS">NodeJS</label>
+  <label class="inline"><input type="checkbox" class="techno-input" name="techno" value="ExpressJS">ExpressJS</label>
+  <label class="inline"><input type="checkbox" class="techno-input" name="techno" value="MongoDB">MongoDB</label>
+  <label class="inline"><input type="checkbox" class="techno-input" name="techno" value="ReactJS">ReactJS</label>
   {{/if}}
 
   <!-- UX/UI -->
   {{#if courseUX}}
-  <label class="inline"><input type="checkbox" class="" name="" value="">UI</label>
-  <label class="inline"><input type="checkbox" class="" name="" value="">UX</label>
-  <label class="inline"><input type="checkbox" class="" name="" value="">With prototypes</label>
-  <label class="inline"><input type="checkbox" class="" name="" value="">Une autre idée ?</label>
-  <label class="inline"><input type="checkbox" class="" name="" value="">HTML5 - CSS3</label>
+  <label class="inline"><input type="checkbox" class="techno-input" name="techno" value="UI">UI</label>
+  <label class="inline"><input type="checkbox" class="techno-input" name="techno" value="UX">UX</label>
+  <label class="inline"><input type="checkbox" class="techno-input" name="techno" value="With_Prototypes">With
+    prototypes</label>
+  <label class="inline"><input type="checkbox" class="techno-input" name="techno" value="Other_idea">Une autre idée
+    ?</label>
+  <label class="inline"><input type="checkbox" class="techno-input" name="techno" value="HTML5 ">HTML5</label>
+  <label class="inline"><input type="checkbox" class="techno-input" name="techno" value="CSS3 ">CSS3</label>
   {{/if}}
 
   <!-- Data Analyse -->
   {{#if courseData}}
-  <label class="inline"><input type="checkbox" class="" name="" value="">Python</label>
-  <label class="inline"><input type="checkbox" class="" name="" value="">MySQL</label>
-  <label class="inline"><input type="checkbox" class="" name="" value="">Statistical analysis</label>
-  <label class="inline"><input type="checkbox" class="" name="" value="">Connected to API</label>
-  <label class="inline"><input type="checkbox" class="" name="" value="">With IA</label>
+  <label class="inline"><input type="checkbox" class="techno-input" name="techno" value="Python">Python</label>
+  <label class="inline"><input type="checkbox" class="techno-input" name="techno" value="MySQL">MySQL</label>
+  <label class="inline"><input type="checkbox" class="techno-input" name="techno"
+      value="Statistical_Analysis">Statistical
+    analysis</label>
+  <label class="inline"><input type="checkbox" class="techno-input" name="techno" value="Connected_to_API">Connected
+    to
+    API</label>
+  <label class="inline"><input type="checkbox" class="techno-input" name="techno" value="AI">With AI</label>
   {{/if}}
 
   <!-- Cybersecurity -->
   {{#if courseCyber}}
-  <label class="inline"><input type="checkbox" class="" name="" value="">Around networking traffic</label>
-  <label class="inline"><input type="checkbox" class="" name="" value="">Around fingerprinting</label>
-  <label class="inline"><input type="checkbox" class="" name="" value="">Encrypting data</label>
-  <label class="inline"><input type="checkbox" class="" name="" value="">Backup and recovery</label>
+  <label class="inline"><input type="checkbox" class="techno-input" name="techno" value="Net_traffic">Around
+    networking
+    traffic</label>
+  <label class="inline"><input type="checkbox" class="techno-input" name="techno" value="Finger_printing">Around
+    fingerprinting</label>
+  <label class="inline"><input type="checkbox" class="techno-input" name="techno" value="Encrypting_data">Encrypting
+    data</label>
+  <label class="inline"><input type="checkbox" class="techno-input" name="techno" value="Backup_and_recovery">Backup
+    and
+    recovery</label>
   {{/if}}
 
   <!-- FIELD - Ranking -->
   <label for="">Ranking</label>
-  <select name="rank" id="input-ranking">
-    <option class="rank-input" value="" {{#if selected}}selected="selected"{{/if}}>--Please select your ranking--</option>
-    <option class="rank-input" value="1st" {{#if selected}}selected="selected"{{/if}}>1st</option>
-    <option class="rank-input" value="2nd" {{#if selected}}selected="selected"{{/if}}>2nd</option>
-    <option class="rank-input" value="3rd" {{#if selected}}selected="selected"{{/if}}>3rd</option>
-    <option class="rank-input" value="not ranked" {{#if selected}}selected="selected"{{/if}}>Not ranked this time</option>
+  <select name="rank" id="input-ranking" multiple>
+    <option class="rank-input" value="" {{#if selected}}selected="selected" {{/if}}>--Please select your ranking--
+    </option>
+    <option class="rank-input" value="1st" {{#if selected}}selected="selected" {{/if}}>1st</option>
+    <option class="rank-input" value="2nd" {{#if selected}}selected="selected" {{/if}}>2nd</option>
+    <option class="rank-input" value="3rd" {{#if selected}}selected="selected" {{/if}}>3rd</option>
+    <option class="rank-input" value="not ranked" {{#if selected}}selected="selected" {{/if}}>Not ranked this time
+    </option>
   </select>
 
   <!-- FIELD - Project URL -->

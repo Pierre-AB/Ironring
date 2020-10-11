@@ -12,6 +12,27 @@ const routeGuard = require('../configs/route-guard.config');
 // UPLOADER
 
 
+// ########     ###    ########     ###    ##     ##  ######     ########  ########   #######  ######## #### ##       ######## 
+// ##     ##   ## ##   ##     ##   ## ##   ###   ### ##    ##    ##     ## ##     ## ##     ## ##        ##  ##       ##       
+// ##     ##  ##   ##  ##     ##  ##   ##  #### #### ##          ##     ## ##     ## ##     ## ##        ##  ##       ##       
+// ########  ##     ## ########  ##     ## ## ### ##  ######     ########  ########  ##     ## ######    ##  ##       ######   
+// ##        ######### ##   ##   ######### ##     ##       ##    ##        ##   ##   ##     ## ##        ##  ##       ##       
+// ##        ##     ## ##    ##  ##     ## ##     ## ##    ##    ##        ##    ##  ##     ## ##        ##  ##       ##       
+// ##        ##     ## ##     ## ##     ## ##     ##  ######     ##        ##     ##  #######  ##       #### ######## ######## 
+
+
+//ROUTE TO DISPLAY CREATOR PROFILE PAGE
+
+router.get('/creatorProfile/:id', (req, res, next) => {
+  const id = req.params.id;
+  console.log('🥶', id);
+  User.findById(id).then(creator => {
+    console.log("CREATOR===", creator)
+    res.render('users/creator-profile', { creator });
+  }).catch(err => next(err));
+});
+
+
 
 // PICTURE UPLOADER TO ADD
 
@@ -118,7 +139,7 @@ router.post("/signup", uploader.single('image'), (req, res, next) => {
     .then((userFromDB) => {
       console.log("🙌🏻 USER CREATED =", userFromDB);
       req.session.currentUser = userFromDB;
-      res.redirect('/'); //REDIRECT ON ROUTEGUARD   //changed by Gonzalo 
+      res.redirect('/projects'); //REDIRECT ON ROUTEGUARD   //changed by Gonzalo 
       //PROBABLY REDIRECT ON PROJECTS VIEW WITH ALL FILTERS AVAILABLE
       return;
     })
@@ -161,7 +182,7 @@ router.post('/login', (req, res, next) => {
       } else if (bcryptjs.compareSync(password, user.passwordHash)) {
         req.session.currentUser = user;
         console.log('REQ.SESSION.USER===', user);
-        res.redirect('/userProfile');
+        res.redirect('/projects');
       } else {
         res.render('auth/login', { errorMessage: 'Incorrect password.' });
       }
@@ -362,24 +383,7 @@ router.post('/userEdit', uploader.single('image'), (req, res) => {
 });
 
 
-// ########     ###    ########     ###    ##     ##  ######     ########  ########   #######  ######## #### ##       ######## 
-// ##     ##   ## ##   ##     ##   ## ##   ###   ### ##    ##    ##     ## ##     ## ##     ## ##        ##  ##       ##       
-// ##     ##  ##   ##  ##     ##  ##   ##  #### #### ##          ##     ## ##     ## ##     ## ##        ##  ##       ##       
-// ########  ##     ## ########  ##     ## ## ### ##  ######     ########  ########  ##     ## ######    ##  ##       ######   
-// ##        ######### ##   ##   ######### ##     ##       ##    ##        ##   ##   ##     ## ##        ##  ##       ##       
-// ##        ##     ## ##    ##  ##     ## ##     ## ##    ##    ##        ##    ##  ##     ## ##        ##  ##       ##       
-// ##        ##     ## ##     ## ##     ## ##     ##  ######     ##        ##     ##  #######  ##       #### ######## ######## 
 
-
-//ROUTE TO DISPLAY CREATOR PROFILE PAGE
-
-router.get('/userProfile/:id', (req, res, next) => {
-  const id = req.params.id;
-
-  User.findById(id).then(user => {
-    res.render('users/user-profile', user);
-  }).catch(err => next(err));
-});
 
 
 
