@@ -3,7 +3,8 @@
   <div class="flex">
     <div>
       <img class="profile-picture" src="{{creator.profileImgSrc}}" />
-      <p class="user-project-quantity">{{#if creator.projects.length}} {{creator.projects.length}} projects{{else}} 0 project{{/if}}
+      <p class="user-project-quantity">{{#if creator.projects.length}} {{creator.projects.length}} projects{{else}} 0
+        project{{/if}}
       </p>
     </div>
 
@@ -24,24 +25,28 @@
 
 
   <div class="all-projects">
-    {{#each creator.projects}}
+    {{#each projects}}
     <div class="hover-effect column-effect project-card">
-      <div class="figure"><a href="/projects/{{this.id}}"><img src="{{this.imageUrl}}" alt=""><span>+ View this
+      <div class="figure"><a href="/projects/{{id}}"><img src="{{imageUrl}}" alt=""><span>+ View this
             project</span></div></a>
       <div>
-        <a href="/projects/{{this.id}}"></a>
-        <p class="project-name">{{this.name}}</p></a>
-        <p class="project-date">{{this.year_creation}}</p>
+        <a href="/projects/{{id}}"></a>
+        <p class="project-name">{{name}}</p></a>
+        <p class="project-date">{{year_creation}}</p>
       </div>
       {{!-- <div>
         <p class="project-likes">{{this.likes}}72<i class="fas fa-heart"></i></p>
       </div> --}}
+      {{!-- {{#if ../userIsCreator}}
       <div class="flex">
-        <a href="/projects/{{id}}/edit" class="small-btn blue-btn">Edit</a>
-        <form action="/projects/{{id}}/delete" method="POST"><button class="small-btn light-btn">supprimer</button></form>
+        <a href="/projects/{{projects.id}}/edit" class="small-btn blue-btn">Edit</a>
+        <form action="/projects/{{projects.id}}/delete" method="POST"><button
+            class="small-btn light-btn">supprimer</button>
+        </form>
       </div>
+      {{/if}} --}}
     </div>
-    
+
     {{/each}}
   </div>
 

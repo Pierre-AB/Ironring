@@ -8,6 +8,7 @@ const uploader = require('../configs/cloudinary.config'); //pour ajouter l'image
 
 // ROUTE GUARD
 const routeGuard = require('../configs/route-guard.config');
+const Project = require("../models/Project.model");
 
 // UPLOADER
 
@@ -95,24 +96,35 @@ function userCourses(user) {
 
 
 
-// ########     ###    ########     ###    ##     ##  ######     ########  ########   #######  ######## #### ##       ######## 
-// ##     ##   ## ##   ##     ##   ## ##   ###   ### ##    ##    ##     ## ##     ## ##     ## ##        ##  ##       ##       
-// ##     ##  ##   ##  ##     ##  ##   ##  #### #### ##          ##     ## ##     ## ##     ## ##        ##  ##       ##       
-// ########  ##     ## ########  ##     ## ## ### ##  ######     ########  ########  ##     ## ######    ##  ##       ######   
-// ##        ######### ##   ##   ######### ##     ##       ##    ##        ##   ##   ##     ## ##        ##  ##       ##       
-// ##        ##     ## ##    ##  ##     ## ##     ## ##    ##    ##        ##    ##  ##     ## ##        ##  ##       ##       
-// ##        ##     ## ##     ## ##     ## ##     ##  ######     ##        ##     ##  #######  ##       #### ######## ######## 
-
+//  ######  ########  ########    ###    ########  #######  ########     ########  ########   #######  ######## #### ##       ######## 
+// ##    ## ##     ## ##         ## ##      ##    ##     ## ##     ##    ##     ## ##     ## ##     ## ##        ##  ##       ##       
+// ##       ##     ## ##        ##   ##     ##    ##     ## ##     ##    ##     ## ##     ## ##     ## ##        ##  ##       ##       
+// ##       ########  ######   ##     ##    ##    ##     ## ########     ########  ########  ##     ## ######    ##  ##       ######   
+// ##       ##   ##   ##       #########    ##    ##     ## ##   ##      ##        ##   ##   ##     ## ##        ##  ##       ##       
+// ##    ## ##    ##  ##       ##     ##    ##    ##     ## ##    ##     ##        ##    ##  ##     ## ##        ##  ##       ##       
+//  ######  ##     ## ######## ##     ##    ##     #######  ##     ##    ##        ##     ##  #######  ##       #### ######## ######## 
 
 //ROUTE TO DISPLAY CREATOR PROFILE PAGE
 
 router.get('/creatorProfile/:id', (req, res, next) => {
   const id = req.params.id;
   console.log('🥶', id);
-  User.findById(id).then(creator => {
-    const creatorCourses = userCourses(creator);
+  var userIsCreator;
+  if (req.session.currentUser._id == id) {
+    res.redirect('/userProfile');
+  }
+  User.findById(id).then((creator) => {
+    // const creatorCourses = userCourses(creator);
     console.log("CREATOR===", creator)
-    res.render('users/creator-profile', { creator, ...creatorCourses });
+    Project.find({ uploader_id: creator._id }).then((projects) => {
+      res.render('users/creator-profile', {
+        creator,
+        projects,
+        /*, ...creatorCourses*/
+      });
+    }).catch(err => next(err));
+
+
   }).catch(err => next(err));
 });
 
@@ -288,18 +300,18 @@ router.post('/login', (req, res, next) => {
 //GET -> USER EDIT
 router.get('/userEdit', routeGuard, (req, res, next) => {
   User.find({})
-  .then(usersFromDb => {
-    const campus = userCampus(req.session.currentUser);
-    const courses = userCourses(req.session.currentUser);
-    const format = userFormat(req.session.currentUser);
-    res.render('users/user-edit', {
-    user: req.session.currentUser,
-    ...campus,
-    ...courses,
-    ...format
+    .then(usersFromDb => {
+      const campus = userCampus(req.session.currentUser);
+      const courses = userCourses(req.session.currentUser);
+      const format = userFormat(req.session.currentUser);
+      res.render('users/user-edit', {
+        user: req.session.currentUser,
+        ...campus,
+        ...courses,
+        ...format
+      })
     })
-  })
-  .catch(err => next(err))
+    .catch(err => next(err))
 })
 
 
@@ -359,55 +371,6 @@ router.post('/userEdit', uploader.single('image'), (req, res) => {
     editProfileInfos();
   }
 
-
-  // User.findById(req.session.currentUser._id).then((user) => {
-  //   if (ironhacker != user.ironhacker) {
-  //     user.ironhacker = ironhacker;
-  //   }
-  //   if (req.file != user.profileImgSrc) {
-  //     user.profileImgSrc = profileImgSrc;
-  //   }
-  //   if (firstName != user.firstName) {
-  //     user.firstName = firstName;
-  //   }
-  //   if (lastName != user.lastName) {
-  //     user.lastName = lastName;
-  //   }
-  //   if (expertise != user.expertise) {
-  //     user.expertise = expertise;
-  //   }
-  //   if (gitHub != user.gitHub) {
-  //     user.gitHub = gitHub;
-  //   }
-  //   if (linkedIn != user.linkedIn) {
-  //     user.linkedIn = linkedIn;
-  //   }
-  //   if (course != user.course) {
-  //     user.course = course;
-  //   }
-  //   if (promo != user.promo) {
-  //     user.promo = promo;
-  //   }
-  //   if (campus != user.campus) {
-  //     user.campus = campus;
-  //   }
-  //   if (format != user.format) {
-  //     user.format = format;
-  //   }
-
-
-  //   user.save().then((updatedUser) => {
-  //     console.log('USER UPDATED ===', updatedUser)
-  //     res.redirect('/userProfile')
-  //   }).catch(err => {
-  //     console.log('UPDATED USER NOT SAVED ===', err);
-  //     next(err);
-  //   })
-  // }).catch(err => {
-  //   console.log('USER UPDATE FAILED===', err);
-  //   next(err);
-  // });
-
 });
 
 
@@ -454,13 +417,34 @@ router.get('/logout', (req, res) => {
 
 //ROUTEGUARD INCLUDED
 
+
+// ##     ##  ######  ######## ########     ########  ########   #######  ######## #### ##       ######## 
+// ##     ## ##    ## ##       ##     ##    ##     ## ##     ## ##     ## ##        ##  ##       ##       
+// ##     ## ##       ##       ##     ##    ##     ## ##     ## ##     ## ##        ##  ##       ##       
+// ##     ##  ######  ######   ########     ########  ########  ##     ## ######    ##  ##       ######   
+// ##     ##       ## ##       ##   ##      ##        ##   ##   ##     ## ##        ##  ##       ##       
+// ##     ## ##    ## ##       ##    ##     ##        ##    ##  ##     ## ##        ##  ##       ##       
+//  #######   ######  ######## ##     ##    ##        ##     ##  #######  ##       #### ######## ######## 
+
+
+
 router.get('/userProfile', routeGuard, (req, res) => {
   if (req.session.currentUser._id) {
     const courses = userCourses(req.session.currentUser);
-    res.render('users/user-profile', {
-       user: req.session.currentUser,
-       ...courses 
-      });
+    const lookedUpProjects = [];
+    // console.log("USER PROFILE PROJECTS===", req.session.currentUser.projects);
+
+    Project.find({ uploader_id: req.session.currentUser._id })
+      .populate('projects')
+      .then((projects) => {
+        console.log("PROJECTS===", projects);
+        res.render('users/user-profile', {
+          user: req.session.currentUser,
+          projects,
+          ...courses
+        });
+      }).catch(err => next(err));
+
   }
 });
 

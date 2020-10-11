@@ -72,59 +72,61 @@ function userCourses(user) {
 
 router.get('/projects/:id/edit', (req, res, next) => {
   // Permet de renvoyer forcément true ou false  
+  if (req.session.currentUser.projects.includes(req.params.id)) {
+    var courseCyber = req.session.currentUser.course === "Cyber_Security";
+    var courseWebDev = req.session.currentUser.course === "Web-Dev";
+    var courseUX = req.session.currentUser.course === "UX/UI";
+    var courseData = req.session.currentUser.course === "Data";
 
-  var courseCyber = req.session.currentUser.course === "Cyber_Security";
-  var courseWebDev = req.session.currentUser.course === "Web-Dev";
-  var courseUX = req.session.currentUser.course === "UX/UI";
-  var courseData = req.session.currentUser.course === "Data";
 
-
-  Project.findById(req.params.id).then(projectFromDb => {
-    if (req.session.currentUser._id != projectFromDb.uploader_id) {
-      res.redirect(`/projects/${projectFromDb._id}`);
-      console.log('😭');
-      return;
-    }
-    User.find().then(usersFromDb => {
-      console.log('user', req.session.currentUser)
-
-      var courseWebDev;
-      if (req.session.currentUser.course === "Web-Dev") {
-        courseWebDev = true;
-        console.log("🤖 we have a future web dev here !!")
+    Project.findById(req.params.id).then(projectFromDb => {
+      if (req.session.currentUser._id != projectFromDb.uploader_id) {
+        res.redirect(`/projects/${projectFromDb._id}`);
+        console.log('😭');
+        return;
       }
+      User.find().then(usersFromDb => {
+        console.log('user', req.session.currentUser)
 
-      var courseUX;
-      if (req.session.currentUser.course === "UX/UI") {
-        courseUX = true;
-      }
+        var courseWebDev;
+        if (req.session.currentUser.course === "Web-Dev") {
+          courseWebDev = true;
+          console.log("🤖 we have a future web dev here !!")
+        }
 
-      // Renvoie true or undefined
-      var courseData;
-      if (req.session.currentUser.course === "Data") {
-        courseData = true;
-      }
+        var courseUX;
+        if (req.session.currentUser.course === "UX/UI") {
+          courseUX = true;
+        }
 
-      // parcours tous les users de la database pour vérifier qui a développé le projet 
-      // usersFromDb.forEach((user, i) => {
-      //   if (projectFromDb.user.includes(user.id)) {
-      //     user.selected = true
-      //   }
-      // })
+        // Renvoie true or undefined
+        var courseData;
+        if (req.session.currentUser.course === "Data") {
+          courseData = true;
+        }
+
+        // parcours tous les users de la database pour vérifier qui a développé le projet 
+        // usersFromDb.forEach((user, i) => {
+        //   if (projectFromDb.user.includes(user.id)) {
+        //     user.selected = true
+        //   }
+        // })
 
 
-      res.render('projects/project-edit', {   //// vérifier le nom du fichier hbs
-        project: projectFromDb,
-        users: usersFromDb,
-        courseWebDev,
-        courseUX,
-        courseData
-      })
+        res.render('projects/project-edit', {   //// vérifier le nom du fichier hbs
+          project: projectFromDb,
+          users: usersFromDb,
+          courseWebDev,
+          courseUX,
+          courseData
+        })
+      }).catch(err => next(err))
+
+
     }).catch(err => next(err))
-
-
-  }).catch(err => next(err))
-
+  } else {
+    res.redirect(`/projects/${req.params.id}`)
+  }
 })
 
 // POST -> SINGLE PROJECT EDIT
@@ -418,7 +420,7 @@ router.get('/projects/:id', routeGuard, (req, res, next) => {
       // VALIDATION IF USER
       if (project.uploader_id == req.session.currentUser._id) { // NOT THE SAME FORMAT ????
         userIsUploader = true
-        console.log('📤📤📤📤 The current user is the uploader', userIsUploader) 
+        console.log('📤📤📤📤 The current user is the uploader', userIsUploader)
       }
       User.findById(project.uploader_id).then((creator) => {
         res.render('projects/project-details', {
