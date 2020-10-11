@@ -12,7 +12,7 @@ const User = require("./models/User.model");
 
 mongoose
   //UNCOMMENT R14 AND COMMENT R15 -> TO CONNECT TO ATLAS - DONE
-  .connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })    // ATLAS
+  .connect(process.env.MONGODB_URI, { useCreateIndex: true, useNewUrlParser: true, useUnifiedTopology: true })    // ATLAS
   // .connect("mongodb://localhost/ironring", { useNewUrlParser: true })
   .then((x) => {
     console.log(
