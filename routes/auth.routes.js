@@ -199,13 +199,97 @@ router.post('/login', (req, res, next) => {
 // ##       ##     ##  ##     ##    
 // ######## ########  ####    ##
 
+
+// FUNCTION - TEST THE CAMPUS OF THE USER
+function userCampus(user) {
+  // Crée une variable en renvoyant true ou false.
+  // Sert au préremplissage du edit-profile.hbs pour preselect option
+  var userCampusAmsterdam = user.campus === "Amsterdam";
+  var userCampusBarcelona = user.campus === "Barcelona";
+  var userCampusBerlin = user.campus === "Berlin";
+  var userCampusLisboa = user.campus === "Lisboa";
+  var userCampusMadrid = user.campus === "Madrid";
+  var userCampusMexico = user.campus === "Mexico";
+  var userCampusMiami = user.campus === "Miami";
+  var userCampusParis = user.campus === "Paris";
+  var userCampusRemote = user.campus === "Remote";
+  var userCampusSaoPaulo = user.campus === "Sao_Paulo";
+
+  return {
+    userCampusAmsterdam,
+    userCampusBarcelona,
+    userCampusBerlin,
+    userCampusLisboa,
+    userCampusMadrid,
+    userCampusMexico,
+    userCampusMiami,
+    userCampusParis,
+    userCampusRemote,
+    userCampusSaoPaulo
+  }
+}
+
+function userFormat(user) {
+  // Crée une variable en renvoyant true ou false.
+  // Sert au préremplissage du edit-profile.hbs pour preselect option
+  var userFormatPT = user.campus === "Full-Time";
+  var userFormatFT = user.campus === "Part-Time";
+
+  return {
+    userFormatPT,
+    userFormatFT
+  }
+}
+
+// FUNCTION - TEST THE COURSE OF THE USER
+function userCourses(user) {
+  var courseWebDev;
+  if (user.course === "Web-Dev") {
+    courseWebDev = true;
+  }
+
+  var courseUX;
+  if (user.course === "UX/UI") {
+    courseUX = true;
+  }
+
+  // Renvoie true or undefined
+  var courseData;
+  if (user.course === "Data") {
+    courseData = true;
+  }
+
+  // Permet de renvoyer forcément true ou false
+  var courseCyber = user.course === "Cyber_Security";
+
+  return {
+    courseWebDev,
+    courseUX,
+    courseData,
+    courseCyber
+  }
+}
+
+
 //GET -> USER EDIT
-router.get('/userEdit', routeGuard, (req, res) => {
-  res.render('users/user-edit', { user: req.session.currentUser });
-});
+router.get('/userEdit', routeGuard, (req, res, next) => {
+  User.find({})
+  .then(usersFromDb => {
+    const campus = userCampus(req.session.currentUser);
+    const courses = userCourses(req.session.currentUser);
+    const format = userFormat(req.session.currentUser);
+    res.render('users/user-edit', {
+    user: req.session.currentUser,
+    ...campus,
+    ...courses,
+    ...format
+    })
+  })
+  .catch(err => next(err))
+})
+
 
 // POST -> USER EDIT
-
 router.post('/userEdit', uploader.single('image'), (req, res) => {
 
   const {

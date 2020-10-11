@@ -36,6 +36,11 @@ ol, ul {
  *    ##         ## ##   ##       ##    ##     ##    ##  ##  ## ##     ## ##       ##    ##  ##       
  *    ########    ###    ######## ##     ##    ##     ###  ###  ##     ## ######## ##     ## ######## 
  */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
 .blue-btn {
   background: #2dc5fa none repeat scroll 0% 0%;
   color: white;
@@ -154,7 +159,8 @@ ol, ul {
   right: 0;
   top: 4vh;
   min-width: 13vw;
-  padding-top: 1.5vh; }
+  padding-top: 1.5vh;
+  z-index: 1; }
 
 .dropdown-content li {
   padding: 1.5vw; }
@@ -270,6 +276,12 @@ ol, ul {
   justify-content: center;
   align-items: center; }
 
+.signup form {
+  flex-direction: row; }
+
+.ironhacker-signup-box h2 {
+  margin-bottom: 3vh; }
+
 .signup-box {
   background: #fafbfd;
   border-radius: 6px;
@@ -298,11 +310,6 @@ ol, ul {
 .visible {
   display: block; }
 
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center; }
-
 .visitor-signup-box {
   display: flex;
   flex-direction: column;
@@ -317,7 +324,7 @@ form {
   color: #ff6e6e; }
 
 .signup-box .small-btn {
-  margin-top: 1.5rem;
+  margin-top: 3rem;
   font-weight: 500;
   text-transform: uppercase; }
 
@@ -367,6 +374,9 @@ input[type="checkbox"] {
   display: inline-block;
   margin-right: 1vh; }
 
+input[type="email"]:read-only, input[type="email"]:-moz-read-only {
+  background: #e1e8ee; }
+
 ::placeholder {
   color: #c0c4d0; }
 
@@ -378,6 +388,9 @@ input[type="checkbox"] {
   font-size: 10px;
   text-align: right;
   padding-top: 2vh; }
+
+#createAccountBtnRight {
+  margin: auto; }
 
 /***
  *    ##    ## ######## ##      ##       ########  ########   #######        ## ########  ######  ######## 
@@ -410,9 +423,9 @@ input[type="checkbox"] {
 
 .profile-page {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: flex-start;
-  justify-content: space-between;
+  justify-content: flex-start;
   height: calc( 100vh - 7vh);
   width: calc( 100vw - 9vh);
   padding: 5vh 9vh 0; }
@@ -448,6 +461,11 @@ input[type="checkbox"] {
   z-index: 1;
   text-align: center;
   position: relative; }
+
+.light-btn {
+  background: transparent;
+  border: none;
+  color: #c0c4d0; }
 
 /***
  *    ########  ########   #######        ## ########  ######  ########    ##       ####  ######  ######## 
@@ -606,9 +624,10 @@ input[type="checkbox"] {
  *    ######## ########  ####    ##       ##        ##     ##  #######  ##       #### ######## ######## 
  */
 .user-edit.profile-page {
-  justify-content: flex-start; }
+  justify-content: flex-start;
+  flex-direction: row; }
 
-.profile-page form {
+.user-edit form {
   flex-direction: row;
   padding-left: 6vw; }
 
@@ -621,10 +640,23 @@ input[type="checkbox"] {
 .user-edit input[type="text"], .user-edit input[type="password"], .user-edit input[type="email"], .user-edit input[type="month"], .user-edit textarea, .user-edit input[type="file"], .user-edit input[type="number"], .user-edit select {
   width: 250px; }
 
+input[type="date"], input[type="time"], input[type="datetime-local"], input[type="month"] {
+  line-height: normal; }
+
 #input-github, #input-linkedin {
   width: 550px; }
 
 .user-edit .ironhacker-signup-box {
   margin-left: 0; }
+
+.user-edit .mandatory {
+  text-align: left; }
+
+.edit-first-column {
+  width: 250px;
+  margin-right: 5vw; }
+
+.edit-first-column #updateAccount {
+  margin: 3vh auto 0; }
 
 /*# sourceMappingURL=style.css.map */
