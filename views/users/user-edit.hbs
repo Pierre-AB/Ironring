@@ -17,7 +17,6 @@
       {{!-- <label for="input-password">Password</label>
       <input type="password" name="password" id="input-password" placeholder="********"> --}}
 
-
       <!-- FIELD - Profile picture -->
       <div class="profile-images">
         <label for="image-input">Change your profile picture</label>
@@ -104,8 +103,8 @@
             <label for="input-format">format</label>
             <select name="format" id="input-format">
               <option value="">--What was your course format?--</option>
-              <option value="Part-Time">Part Time</option>
-              <option value="Full-Time">Full Time</option>
+              <option value="Part-Time" {{#if userFormatPT}}selected{{/if}}>Part Time</option>
+              <option value="Full-Time" {{#if userFormatFT}}selected{{/if}}>Full Time</option>
             </select>
           </div>
 

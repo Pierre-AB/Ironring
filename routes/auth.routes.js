@@ -229,6 +229,18 @@ function userCampus(user) {
   }
 }
 
+function userFormat(user) {
+  // Crée une variable en renvoyant true ou false.
+  // Sert au préremplissage du edit-profile.hbs pour preselect option
+  var userFormatPT = user.campus === "Full-Time";
+  var userFormatFT = user.campus === "Part-Time";
+
+  return {
+    userFormatPT,
+    userFormatFT
+  }
+}
+
 // FUNCTION - TEST THE COURSE OF THE USER
 function userCourses(user) {
   var courseWebDev;
@@ -264,11 +276,13 @@ router.get('/userEdit', routeGuard, (req, res, next) => {
   User.find({})
   .then(usersFromDb => {
     const campus = userCampus(req.session.currentUser);
-    const courses = userCourses(req.session.currentUser)
+    const courses = userCourses(req.session.currentUser);
+    const format = userFormat(req.session.currentUser);
     res.render('users/user-edit', {
     user: req.session.currentUser,
     ...campus,
-    ...courses
+    ...courses,
+    ...format
     })
   })
   .catch(err => next(err))

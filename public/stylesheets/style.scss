@@ -548,7 +548,7 @@ input[type="email"]:read-only, input[type="email"]:-moz-read-only {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: space-between;
+  justify-content: flex-start;
   height: calc( 100vh - 7vh);
   width: calc( 100vw - 9vh);
   padding: 5vh 9vh 0;
@@ -589,6 +589,12 @@ input[type="email"]:read-only, input[type="email"]:-moz-read-only {
   z-index: 1;
   text-align: center;
   position: relative;
+}
+
+.light-btn {
+  background: transparent;
+  border: none;
+  color: #c0c4d0;
 }
 
 
