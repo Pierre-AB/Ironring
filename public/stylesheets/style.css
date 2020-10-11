@@ -92,7 +92,8 @@ form {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 2vw; }
+  padding: 0 2vw;
+  overflow: hidden; }
 
 .top-nav-items {
   padding-left: 7vw; }
@@ -136,6 +137,20 @@ form {
 
 .add-project .fa, .add-project .fas {
   padding-right: .5vw; }
+
+/***
+ *     ######  ######## ####  ######  ##    ## ##    ##    ##    ##    ###    ##     ## 
+ *    ##    ##    ##     ##  ##    ## ##   ##   ##  ##     ###   ##   ## ##   ##     ## 
+ *    ##          ##     ##  ##       ##  ##     ####      ####  ##  ##   ##  ##     ## 
+ *     ######     ##     ##  ##       #####       ##       ## ## ## ##     ## ##     ## 
+ *          ##    ##     ##  ##       ##  ##      ##       ##  #### #########  ##   ##  
+ *    ##    ##    ##     ##  ##    ## ##   ##     ##       ##   ### ##     ##   ## ##   
+ *     ######     ##    ####  ######  ##    ##    ##       ##    ## ##     ##    ###    
+ */
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%; }
 
 /***
  *    ########  ########   #######  ########  ########   #######  ##      ## ##    ## 
@@ -405,6 +420,24 @@ input[type="email"]:read-only, input[type="email"]:-moz-read-only {
   background: #fafbfd;
   height: 100vh; }
 
+.new-project-page {
+  background: url("../images/new-project-bg.jpg") no-repeat right center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  height: calc( 100vh - 7vh);
+  width: calc( 100vw - 4vw);
+  padding: 5vh 9vh 0; }
+
+.new-project-page .submit-btn {
+  text-align: center;
+  margin-top: 3vh; }
+
 .general-subtitle {
   font-size: 18px;
   font-weight: 700;
@@ -419,7 +452,12 @@ input[type="email"]:read-only, input[type="email"]:-moz-read-only {
   display: inline; }
 
 .project-images {
-  margin-left: 7vw; }
+  padding-left: 4vw;
+  height: 95%;
+  border-left: 3px solid #f3f4fa; }
+
+.new-project-page input[type="text"], .new-project-page input[type="password"], .new-project-page input[type="email"], .new-project-page input[type="month"], .new-project-page textarea, .new-project-page input[type="file"], .new-project-page input[type="number"], .new-project-page select {
+  width: 250px; }
 
 .profile-page {
   display: flex;
@@ -427,7 +465,7 @@ input[type="email"]:read-only, input[type="email"]:-moz-read-only {
   align-items: flex-start;
   justify-content: flex-start;
   height: calc( 100vh - 7vh);
-  width: calc( 100vw - 9vh);
+  width: calc( 100vw - 4vw);
   padding: 5vh 9vh 0; }
 
 .profile-picture {
@@ -664,7 +702,7 @@ input[type="email"]:read-only, input[type="email"]:-moz-read-only {
 input[type="date"], input[type="time"], input[type="datetime-local"], input[type="month"] {
   line-height: normal; }
 
-#input-github, #input-linkedin {
+#input-github, #input-linkedin, #input-urlProject {
   width: 550px; }
 
 .user-edit .ironhacker-signup-box {

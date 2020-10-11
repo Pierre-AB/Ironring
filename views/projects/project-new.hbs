@@ -6,187 +6,165 @@
 
     <div class="project-fields">
 
-      <!-- FIELD - Name -->
-      <label> Project name</label>
-      <input type="text" name="name">
+      <div>
+        <div class="flex">
+          <div>
+            <!-- FIELD - Name -->
+            <label> Project name</label>
+            <input type="text" name="name">
 
-      <!-- FIELD - Description -->
-      <label for="">Description of your project</label>
-      <textarea class="" name="description" rows="4"></textarea>
+            <!-- FIELD - Creation year -->
+            <label for="">Creation year:</label>
+            <input type="number" class="" name="year_creation" min="1970" step="1" max="2099">
+          </div>
+          <div>
+            <!-- FIELD - Description -->
+            <label for="">Description of your project</label>
+            <textarea class="" name="description" rows="4"></textarea>
+          </div>
+        </div>
 
-      <!-- FIELD - Creation year -->
-      <label for="">Creation year:</label>
-      <input type="number" class="" name="year_creation" min="1970" step="1" max="2099">
+        <div class="flex">
+          <div>
+            <!-- FIELD - Modules -->
+            <!-- Modules regarding user course -->
+            <label for="">Module</label>
 
-      <!-- FIELD - Modules -->
-      <!-- Modules regarding user course -->
-      <label for="">Module</label>
+            <!-- WebDev -->
+            {{#if courseWebDev}}
+            <select name="module" id="">
+              <option value="">--Please select your module--</option>
+              <option value="1">1: Responsive design</option>
+              <option value="2">2: Back-end</option>
+              <option value="3">3: Front-end</option>
+              <option value="Personal">Personal project</option>
+            </select>
+            {{/if}}
 
-      <!-- WebDev -->
-      {{#if courseWebDev}}
-      <select name="module" id="">
-        <option value="">--Please select your module--</option>
-        <option value="1">1: Responsive design</option>
-        <option value="2">2: Back-end</option>
-        <option value="3">3: Front-end</option>
-        <option value="Personal">Personal project</option>
-      </select>
-      {{/if}}
+            <!-- UX/UI -->
+            {{#if courseUX}}
+            <select name="module" id="">
+              <option value="">--Please select your module--</option>
+              <option value="1">1: User experience</option>
+              <option value="2">2: Design user interfaces</option>
+              <option value="3">3: Design implementation</option>
+              <option value="Personal">Personal project</option>
+            </select>
+            {{/if}}
 
-      <!-- UX/UI -->
-      {{#if courseUX}}
-      <select name="module" id="">
-        <option value="">--Please select your module--</option>
-        <option value="1">1: User experience</option>
-        <option value="2">2: Design user interfaces</option>
-        <option value="3">3: Design implementation</option>
-        <option value="Personal">Personal project</option>
-      </select>
-      {{/if}}
+            <!-- Data Analyse -->
+            {{#if courseData}}
+            <select name="module" id="">
+              <option value="">--Please select your module--</option>
+              <option value="1">1: SQL to and Python</option>
+              <option value="2">2: Advanced Data Analytics</option>
+              <option value="3">3: Machine learning</option>
+              <option value="Personal">Personal project</option>
+            </select>
+            {{/if}}
 
-      <!-- Data Analyse -->
-      {{#if courseData}}
-      <select name="module" id="">
-        <option value="">--Please select your module--</option>
-        <option value="1">1: SQL to and Python</option>
-        <option value="2">2: Advanced Data Analytics</option>
-        <option value="3">3: Machine learning</option>
-        <option value="Personal">Personal project</option>
-      </select>
-      {{/if}}
+            <!-- Cybersecurity -->
+            {{#if courseCyber}}
+            <select name="module" id="">
+              <option value="">--Please select your module--</option>
+              <option value="Front">1: Basics of Cybersecurity</option>
+              <option value="Back">2: Security and Threats</option>
+              <option value="React">3: Real projects</option>
+              <option value="Personal">Personal project</option>
+            </select>
+            {{/if}}
+          </div>
+          <div>
+            <!-- FIELD - Ranking -->
+            <label for="">Ranking</label>
+            <select name="rank" id="input-ranking">
+              <option class="rank-input" value="">--Please select your ranking--</option>
+              <option class="rank-input" value="1st">1st</option>
+              <option class="rank-input" value="2nd">2nd</option>
+              <option class="rank-input" value="3rd">3rd</option>
+              <option class="rank-input" value="not ranked">Not ranked this time</option>
+            </select>
+          </div>
+        </div>
 
-      <!-- Cybersecurity -->
-      {{#if courseCyber}}
-      <select name="module" id="">
-        <option value="">--Please select your module--</option>
-        <option value="Front">1: Basics of Cybersecurity</option>
-        <option value="Back">2: Security and Threats</option>
-        <option value="React">3: Real projects</option>
-        <option value="Personal">Personal project</option>
-      </select>
-      {{/if}}
+        <!-- FIELD - Tech used -->
+        <!-- Tech used regarding user course -->
+        <label for="">Tech used</label>
 
-      <!-- FIELD - Course WE GOT IT THROUGH SESSION -->
-      {{!-- <label> Course</label>
-      <select name="course" id="input-course">
-        <option value="">--Please select your course--</option>
-        <option value="Web-Dev">Web Development</option>
-        <option value="UX/UI">UX/UI Design</option>
-        <option value="Data">Data Analytics</option>
-        <option value="Cyber_Security">Cybersecurity</option>
-      </select> --}}
+        <!-- WebDev -->
+        {{#if courseWebDev}}
+        <label class="inline"><input type="checkbox" class="techno-input" name="techno" value="HTML5">HTML5</label>
+        <label class="inline"><input type="checkbox" class="techno-input" name="techno" value="CSS3">CSS3</label>
+        <label class="inline"><input type="checkbox" class="techno-input" name="techno"
+            value="JavaScript">JavaScript</label>
+        <label class="inline"><input type="checkbox" class="techno-input" name="techno" value="NodeJS">NodeJS</label>
+        <label class="inline"><input type="checkbox" class="techno-input" name="techno"
+            value="ExpressJS">ExpressJS</label>
+        <label class="inline"><input type="checkbox" class="techno-input" name="techno" value="MongoDB">MongoDB</label>
+        <label class="inline"><input type="checkbox" class="techno-input" name="techno" value="ReactJS">ReactJS</label>
+        {{/if}}
 
-      <!-- FIELD - Campus WE GOT IT THROUGH SESSION -->
-      {{!-- <label for="input-campus">Campus*</label>
-      <select name="campus" id="input-campus">
-        <option value="">--Please select your campus--</option>
-        <option value="Amsterdam">Amsterdam</option>
-        <option value="Barcelona">Barcelona</option>
-        <option value="Berlin">Berlin</option>
-        <option value="Lisboa">Lisboa</option>
-        <option value="Madrid">Madrid</option>
-        <option value="Mexico">Mexico</option>
-        <option value="Miami">Miami</option>
-        <option value="Paris">Paris</option>
-        <option value="Remote">Remote</option>
-        <option value="Sao Paulo">Sao Paulo</option>
-      </select> --}}
+        <!-- UX/UI -->
+        {{#if courseUX}}
+        <label class="inline"><input type="checkbox" class="techno-input" name="techno" value="UI">UI</label>
+        <label class="inline"><input type="checkbox" class="techno-input" name="techno" value="UX">UX</label>
+        <label class="inline"><input type="checkbox" class="techno-input" name="techno" value="With_Prototypes">With
+          prototypes</label>
+        <label class="inline"><input type="checkbox" class="techno-input" name="techno" value="Other_idea">Une autre idée
+          ?</label>
+        <label class="inline"><input type="checkbox" class="techno-input" name="techno" value="HTML5 ">HTML5</label>
+        <label class="inline"><input type="checkbox" class="techno-input" name="techno" value="CSS3 ">CSS3</label>
+        {{/if}}
 
-      <!-- FIELD - Tech used -->
-      <!-- Tech used regarding user course -->
-      <label for="">Tech used</label>
+        <!-- Data Analyse -->
+        {{#if courseData}}techno
+        <label class="inline"><input type="checkbox" class="techno-input" name="techno" value="Python">Python</label>
+        <label class="inline"><input type="checkbox" class="techno-input" name="techno" value="MySQL">MySQL</label>
+        <label class="inline"><input type="checkbox" class="techno-input" name="techno"
+            value="Statistical_Analysis">Statistical
+          analysis</label>techno
+        <label class="inline"><input type="checkbox" class="techno-input" name="techno" value="Connected_to_API">Connected
+          to
+          API</label>
+        <label class="inline"><input type="checkbox" class="techno-input" name="techno" value="AI">With AI</label>
+        {{/if}}
 
-      <!-- WebDev -->
-      {{#if courseWebDev}}
-      <label class="inline"><input type="checkbox" class="techno-input" name="techno" value="HTML5">HTML5</label>
-      <label class="inline"><input type="checkbox" class="techno-input" name="techno" value="CSS3">CSS3</label>
-      <label class="inline"><input type="checkbox" class="techno-input" name="techno"
-          value="JavaScript">JavaScript</label>
-      <label class="inline"><input type="checkbox" class="techno-input" name="techno" value="NodeJS">NodeJS</label>
-      <label class="inline"><input type="checkbox" class="techno-input" name="techno"
-          value="ExpressJS">ExpressJS</label>
-      <label class="inline"><input type="checkbox" class="techno-input" name="techno" value="MongoDB">MongoDB</label>
-      <label class="inline"><input type="checkbox" class="techno-input" name="techno" value="ReactJS">ReactJS</label>
-      {{/if}}
+        <!-- Cybersecurity -->
+        {{#if courseCyber}}
+        <label class="inline"><input type="checkbox" class="techno-input" name="techno" value="Net_traffic">Around
+          networking
+          traffic</label>
+        <label class="inline"><input type="checkbox" class="techno-input" name="techno" value="Finger_printing">Around
+          fingerprinting</label>
+        <label class="inline"><input type="checkbox" class="techno-input" name="techno" value="Encrypting_data">Encrypting
+          data</label>
+        <label class="inline"><input type="checkbox" class="techno-input" name="techno" value="Backup_and_recovery">Backup
+          and
+          recovery</label>
+        {{/if}}
 
-      <!-- UX/UI -->
-      {{#if courseUX}}
-      <label class="inline"><input type="checkbox" class="techno-input" name="techno" value="UI">UI</label>
-      <label class="inline"><input type="checkbox" class="techno-input" name="techno" value="UX">UX</label>
-      <label class="inline"><input type="checkbox" class="techno-input" name="techno" value="With_Prototypes">With
-        prototypes</label>
-      <label class="inline"><input type="checkbox" class="techno-input" name="techno" value="Other_idea">Une autre idée
-        ?</label>
-      <label class="inline"><input type="checkbox" class="techno-input" name="techno" value="HTML5 ">HTML5</label>
-      <label class="inline"><input type="checkbox" class="techno-input" name="techno" value="CSS3 ">CSS3</label>
-      {{/if}}
+        <!-- FIELD - Project URL -->
+        <label> Project URL</label>
+        <input type="text" id="input-urlProject" name="url">
 
-      <!-- Data Analyse -->
-      {{#if courseData}}techno
-      <label class="inline"><input type="checkbox" class="techno-input" name="techno" value="Python">Python</label>
-      <label class="inline"><input type="checkbox" class="techno-input" name="techno" value="MySQL">MySQL</label>
-      <label class="inline"><input type="checkbox" class="techno-input" name="techno"
-          value="Statistical_Analysis">Statistical
-        analysis</label>techno
-      <label class="inline"><input type="checkbox" class="techno-input" name="techno" value="Connected_to_API">Connected
-        to
-        API</label>
-      <label class="inline"><input type="checkbox" class="techno-input" name="techno" value="AI">With AI</label>
-      {{/if}}
+        <!-- FIELD - Creator GitHub -->
+        <label> Github</label>
+        <input type="text" id="input-github" name="github">
 
-      <!-- Cybersecurity -->
-      {{#if courseCyber}}
-      <label class="inline"><input type="checkbox" class="techno-input" name="techno" value="Net_traffic">Around
-        networking
-        traffic</label>
-      <label class="inline"><input type="checkbox" class="techno-input" name="techno" value="Finger_printing">Around
-        fingerprinting</label>
-      <label class="inline"><input type="checkbox" class="techno-input" name="techno" value="Encrypting_data">Encrypting
-        data</label>
-      <label class="inline"><input type="checkbox" class="techno-input" name="techno" value="Backup_and_recovery">Backup
-        and
-        recovery</label>
-      {{/if}}
+        <!-- BUTTON - Submit button -->
+        <div class="submit-btn">
+          <button tton type="submit" class="small-btn blue-btn">Submit this project</button>
+        </div>
 
-      <!-- FIELD - Ranking -->
-      <label for="">Ranking</label>
-      <select name="rank" id="input-ranking">
-        <option class="rank-input" value="">--Please select your ranking--</option>
-        <option class="rank-input" value="1st">1st</option>
-        <option class="rank-input" value="2nd">2nd</option>
-        <option class="rank-input" value="3rd">3rd</option>
-        <option class="rank-input" value="not ranked">Not ranked this time</option>
-      </select>
-
-      <!-- FIELD - Project URL -->
-      <label> Project URL</label>
-      <input type="text" name="url">
-
-      <!-- FIELD - Creator GitHub -->
-      <label> Github</label>
-      <input type="text" name="github">
-
-      <!-- FIELD - Project image -->
-      <div class="project-images">
-        <label for="image-input">Image</label>
-        <input type="file" name="image" id="image-input" class="form-control-file" />
       </div>
-
-      <!-- BUTTON - Submit button -->
-      <button type="submit" class="small-btn blue-btn">Submit this project</button>
-
     </div>
 
-
+    <!-- FIELD - Project image -->
+    <div class="project-images">
+      <label for="image-input">Image</label>
+      <input type="file" name="image" id="image-input" class="form-control-file" />
+    </div>
     <!-- Ici ajouter la feature drag & drop -->
-    {{!-- <div class="project-images">
-      <label for="">Photos</label>
-      <input type="file" class="" name="">
-    </div> --}}
-
-
-
-
 
     {{#if errorMessage}}
     <p class="error">{{errorMessage}}</p>
