@@ -119,6 +119,7 @@ ol, ul {
   align-items: center;
   justify-content: space-between;
   padding: 0 2vw;
+  overflow: hidden;
 }
 
 .top-nav-items {
@@ -162,7 +163,7 @@ ol, ul {
 
 .ir-logo {
   position: absolute;
-  z-index: 1;
+  z-index: 2;
   margin: 1.5vh 1.5vw;
 }
 
@@ -178,6 +179,27 @@ ol, ul {
 
 .add-project .fa, .add-project .fas {
   padding-right: .5vw;
+}
+
+
+
+/***
+ *     ######  ######## ####  ######  ##    ## ##    ##    ##    ##    ###    ##     ## 
+ *    ##    ##    ##     ##  ##    ## ##   ##   ##  ##     ###   ##   ## ##   ##     ## 
+ *    ##          ##     ##  ##       ##  ##     ####      ####  ##  ##   ##  ##     ## 
+ *     ######     ##     ##  ##       #####       ##       ## ## ## ##     ## ##     ## 
+ *          ##    ##     ##  ##       ##  ##      ##       ##  #### #########  ##   ##  
+ *    ##    ##    ##     ##  ##    ## ##   ##     ##       ##   ### ##     ##   ## ##   
+ *     ######     ##    ####  ######  ##    ##    ##       ##    ## ##     ##    ###    
+ */
+
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
 }
 
 
@@ -514,6 +536,26 @@ input[type="email"]:read-only, input[type="email"]:-moz-read-only {
   height: 100vh;
 }
 
+.new-project-page {
+  background: url("../images/new-project-bg.jpg") no-repeat right center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  height: calc( 100vh - 7vh);
+  width: calc( 100vw - 4vw);
+  padding: 5vh 9vh 0;
+}
+
+.new-project-page .submit-btn {
+  text-align: center;
+  margin-top: 3vh;
+}
+
 .general-subtitle {
   font-size: 18px;
   font-weight: 700;
@@ -531,7 +573,13 @@ input[type="email"]:read-only, input[type="email"]:-moz-read-only {
 }
 
 .project-images {
-  margin-left: 7vw;
+  padding-left: 4vw;
+  height: 95%;
+  border-left: 3px solid #f3f4fa;
+}
+
+.new-project-page input[type="text"], .new-project-page input[type="password"], .new-project-page input[type="email"], .new-project-page input[type="month"], .new-project-page textarea, .new-project-page input[type="file"], .new-project-page input[type="number"], .new-project-page select {
+  width: 250px;
 }
 
 
@@ -550,7 +598,7 @@ input[type="email"]:read-only, input[type="email"]:-moz-read-only {
   align-items: flex-start;
   justify-content: flex-start;
   height: calc( 100vh - 7vh);
-  width: calc( 100vw - 9vh);
+  width: calc( 100vw - 4vw);
   padding: 5vh 9vh 0;
 }
 
@@ -612,7 +660,7 @@ input[type="email"]:read-only, input[type="email"]:-moz-read-only {
 
 
 .projects-list-page {
-  width: calc( 100vw - 4vw);
+  width: calc( 100vw - 5.1vw);
   padding: 4vw;
 }
 
@@ -969,9 +1017,13 @@ input[type="email"]:read-only, input[type="email"]:-moz-read-only {
   padding: 4vw;
 }
 
+// .projects-details-page .ico {
+//   margin-right: 1vw;
+// }
+
 .project-detail-picture {
   width: 100%;
-  max-height: 45vh;
+  max-height: 50vh;
   object-fit: cover;
   margin-bottom: 5vh;
 }
@@ -987,8 +1039,9 @@ input[type="email"]:read-only, input[type="email"]:-moz-read-only {
   font-size: 1.2em;
 }
 
-.projects-details-infos .fa, .projects-details-infos .fas {
+.projects-details-page .ico, .projects-details-page .ico .fa, .projects-details-page .ico .fas {
   color: #2DC5FA;
+  margin-right: .5vw;
 }
 
 .projects-details-infos {
@@ -999,6 +1052,10 @@ input[type="email"]:read-only, input[type="email"]:-moz-read-only {
   color: #c0c4d0;
 }
 
+.project-detail-int-col a {
+  color: inherit
+}
+
 .project-detail-data {
   display: flex;
   flex-direction: row;
@@ -1006,6 +1063,25 @@ input[type="email"]:read-only, input[type="email"]:-moz-read-only {
 
 .project-detail-col1 {
   flex-grow: 0.5;
+  width: 50%;
+  margin-right: 5vw;
+}
+
+.project-detail-col1 h1 {
+  margin-top: 0;
+}
+
+.project-detail-col2 {
+  min-width: 40%;
+}
+
+.project-detail-col2:nth-child(2) {
+  margin-right: 5vw;
+}
+
+.project-detail-int-col {
+  min-width: 20%;
+  float: left;
 }
 
 .project-detail-data h1, .project-detail-module {
@@ -1014,6 +1090,8 @@ input[type="email"]:read-only, input[type="email"]:-moz-read-only {
 
 .projects-details-description {
   color: #c0c4d0;
+  margin: 1.5vh 0 3vh;
+  line-height: 1.5;
 }
 
 
@@ -1053,7 +1131,7 @@ input[type="date"], input[type="time"], input[type="datetime-local"], input[type
   line-height: normal;
 }
 
-#input-github, #input-linkedin {
+#input-github, #input-linkedin, #input-urlProject {
   width: 550px;
 }
 

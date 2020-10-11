@@ -216,6 +216,22 @@
     {{{body}}}
   </div>
 
+  <!-- Sticky top menu -->
+  <script>
+  window.onscroll = function() {stickyNav()};
+
+  var navbar = document.querySelector(".course-nav");
+  var sticky = navbar.offsetTop;
+
+  function stickyNav() {
+    if (window.pageYOffset >= sticky) {
+      navbar.classList.add("sticky")
+    } else {
+      navbar.classList.remove("sticky");
+    }
+  }
+  </script>
+
   <script src="/javascripts/script.js"></script>
 </body>
 
