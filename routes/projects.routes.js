@@ -233,10 +233,10 @@ router.post('/projects/new', fileUploader.single('image'), (req, res, next) => {
     return
   }
 
-  // if (!imageUrl) {
-  //   res.render("projects/project-new", { errorMessage: "Please add an image" });
-  //   return
-  // }  
+  if (!imageUrl) {
+    res.render("projects/project-new", { errorMessage: "Please add an image", ...courses });
+    return
+  }  
 
 
 
@@ -247,7 +247,7 @@ router.post('/projects/new', fileUploader.single('image'), (req, res, next) => {
     course: req.session.currentUser.course,
     module,
     campus: req.session.currentUser.campus,
-    imageUrl: req.file.path,
+    imageUrl: req.file && req.file.path || undefined,
     name,
     description,
     year_creation,
