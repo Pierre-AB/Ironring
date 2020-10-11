@@ -1,41 +1,48 @@
 <div id="profile" class="profile-page grey-bg">
 
-  {{!-- {{#if user.ironhacker}} --}}
-
-  <div>
-    <img class="profile-picture" src="{{creator.profileImgSrc}}" />
-    <p class="user-project-quantity">{{#if creator.projects.length}} {{creator.projects.length}} {{else}} 0{{/if}}
-      projects
-    </p>
-  </div>
-
-  <div class="profile-informations">
-    <p class="profile-name"> {{creator.firstName}} {{creator.lastName}}</p>
-    {{#if creator.expertise}}<p class="profile-expertise">Expertise: {{creator.expertise}}</p>{{/if}}
-    <p class="profile-campus">Campus: {{creator.campus}}</p>
-    <p><a href="{{creator.gitHub}}">Github</a></p>
-    <p><a href="{{creator.linkedIn}}">linkedIn</a></p>
-    {{!-- <div class="profile-filters">Filtres</div> --}}
-  </div>
-
-  {{!-- Edit btn only if owner of the profile --}}
-  {{#if userIsUploader}} {{!-- ATTENTION, MAUVAISE VERIFICATION, CHANGER ! --}}
-  <a class="small-btn blue-btn" href="/userEdit">Edit your profile</a>
-  {{/if}}
-
-
-  {{#each creator.projects}}
-  <div class="project-card {{campus}} {{course}} {{module}}">
-    <img src="{{this.imageUrl}}" alt="">
+  <div class="flex">
     <div>
-      <p class="project-name">{{this.name}}</p>
-      <p class="project-date">{{this.year_creation}}</p>
+      <img class="profile-picture" src="{{creator.profileImgSrc}}" />
+      <p class="user-project-quantity">{{#if creator.projects.length}} {{creator.projects.length}} projects{{else}} 0 project{{/if}}
+      </p>
     </div>
-    {{!-- <div>
-      <p class="project-likes">{{this.likes}}72<i class="fas fa-heart"></i></p>
-    </div> --}}
-  </div>
-  {{/each}}
 
-  {{!-- {{/if}} --}}
+    <div class="profile-informations">
+      <p class="profile-name"> {{creator.firstName}} {{creator.lastName}}</p>
+      {{#if creator.expertise}}<p class="profile-expertise">Expertise: {{creator.expertise}}</p>{{/if}}
+      <p class="profile-campus">Campus: {{creator.campus}}</p>
+      {{#if creator.gitHub}}<p>Github:<a href="{{creator.gitHub}}"> {{creator.gitHub}}</a></p>{{/if}}
+      {{#if creator.linkedIn}}<p>LinkedIn:<a href="{{creator.linkedIn}}"> {{creator.linkedIn}}</a></p>{{/if}}
+    </div>
+
+    {{!-- Edit btn only if owner of the profile --}}
+    {{!-- <div style="position: absolute;right: 10vh;">
+      <a class="small-btn" href="/userEdit">Edit your profile</a>
+    </div> --}}
+
+  </div>
+
+
+  <div class="all-projects">
+    {{#each creator.projects}}
+    <div class="hover-effect column-effect project-card">
+      <div class="figure"><a href="/projects/{{this.id}}"><img src="{{this.imageUrl}}" alt=""><span>+ View this
+            project</span></div></a>
+      <div>
+        <a href="/projects/{{this.id}}"></a>
+        <p class="project-name">{{this.name}}</p></a>
+        <p class="project-date">{{this.year_creation}}</p>
+      </div>
+      {{!-- <div>
+        <p class="project-likes">{{this.likes}}72<i class="fas fa-heart"></i></p>
+      </div> --}}
+      <div class="flex">
+        <a href="/projects/{{id}}/edit" class="small-btn blue-btn">Edit</a>
+        <form action="/projects/{{id}}/delete" method="POST"><button class="small-btn light-btn">supprimer</button></form>
+      </div>
+    </div>
+    
+    {{/each}}
+  </div>
+
 </div>

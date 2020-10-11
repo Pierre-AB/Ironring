@@ -27,8 +27,9 @@ router.get('/creatorProfile/:id', (req, res, next) => {
   const id = req.params.id;
   console.log('🥶', id);
   User.findById(id).then(creator => {
+    const creatorCourses = userCourses(creator);
     console.log("CREATOR===", creator)
-    res.render('users/creator-profile', { creator });
+    res.render('users/creator-profile', { creator, ...creatorCourses });
   }).catch(err => next(err));
 });
 
