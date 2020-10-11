@@ -495,6 +495,34 @@ router.post('/projects/:id/delete', (req, res, next) => {
 
 })
 
+
+// ##       #### ##    ## ########  ######  
+// ##        ##  ##   ##  ##       ##    ## 
+// ##        ##  ##  ##   ##       ##       
+// ##        ##  #####    ######    ######  
+// ##        ##  ##  ##   ##             ## 
+// ##        ##  ##   ##  ##       ##    ## 
+// ######## #### ##    ## ########  ######  
+
+
+router.post('/likes/:id', (req, res, next) => {
+  var projectId = req.params.id
+
+  Project.findById(projectId).then((projectLiked) => {
+    User.findById(req.session.currentUser._id).then((liker) => {
+      projectLiked.likes.push(liker._id)
+      projectLiked.save().then((projectSaved) => {
+        res.redirect('back');
+      }).catch(err => next(err))
+    }).catch(err => next(err))
+
+  }).catch(err => next(err))
+})
+
+
+
+
+
 module.exports = router;
 
 

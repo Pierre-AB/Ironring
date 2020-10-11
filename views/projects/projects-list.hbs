@@ -109,7 +109,8 @@
         {{#if courseWebDev}}
         <!-- ATTENTION MAUVAIS FILTRE !! -->
         <select name="techno" id="filter-techno" class="selectpicker" data-style="btn-light" multiple></select>
-        <option>HTML5 - CSS3</option>
+        <option>HTML5</option>
+        <option>CSS3</option>
         <option>JavaScript</option>
         <option>NodeJS</option>
         <option>ExpressJS</option>
@@ -124,7 +125,8 @@
         <option>UI</option>
         <option>UX</option>
         <option>With prototypes</option>
-        <option>HTML5 - CSS3</option>
+        <option>HTML5</option>
+        <option>CSS3</option>
 
         {{else}}
         <!-- Si filtre Data Analyse -->
@@ -151,7 +153,8 @@
         <!-- No filter - Everyone -->
         <select name="techno" id="filter-techno" class="selectpicker" data-style="btn-light" multiple>
           <optgroup label="Web-Dev">
-            <option>HTML5 - CSS3</option>
+            <option>HTML5</option>
+            <option>CSS3</option>
             <option>JavaScript</option>
             <option>NodeJS</option>
             <option>ExpressJS</option>
@@ -162,7 +165,8 @@
             <option>UI</option>
             <option>UX</option>
             <option>With prototypes</option>
-            <option>HTML5 - CSS3</option>
+            <option>HTML5</option>
+            <option>CSS3</option>
           </optgroup>
           <optgroup label="Data Analyse">
             <option>Python</option>
@@ -202,6 +206,11 @@
         <a href="/projects/{{this.id}}"></a>
         <p class="project-name">{{this.name}}</p></a>
         <p class="project-date">{{this.year_creation}}</p>
+
+        <form action="/likes/{{this.id}}" method=" POST">
+          <button type="submit">+1UP</button>
+          <span>{{#if projects.likes.length}} {{projects.likes.length}} '🆙' {{/if}}</span>
+        </form>
       </div>
       {{!-- <div>
         <p class="project-likes">{{this.likes}}72<i class="fas fa-heart"></i></p>
