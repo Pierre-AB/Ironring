@@ -2,17 +2,17 @@
 
   <div>
     <img class="profile-picture" src="{{user.profileImgSrc}}" />
-    <p class="user-project-quantity">{{#if user.projects.length}} {{user.projects.length}} {{else}} 0{{/if}} projects
+    <p class="user-project-quantity">{{#if user.projects.length}} {{user.projects.length}} projects{{else}} 0 project{{/if}}
     </p>
   </div>
 
   <form action="/userEdit" method="POST" enctype="multipart/form-data">
 
-    <div>
+    <div class="edit-first-column">
       <h1 class="form-title">Edit my profile</h1>
 
       <label for="input-email">Email</label>
-      <input type="email" id="input-email" name="email" value="{{user.email}}" placeholder="sheldon_cooper@caltech.edu">
+      <input readonly="readonly" type="email" id="input-email" name="email" value="{{user.email}}" placeholder="sheldon_cooper@caltech.edu">
 
       {{!-- <label for="input-password">Password</label>
       <input type="password" name="password" id="input-password" placeholder="********"> --}}
@@ -24,7 +24,7 @@
         <input type="file" name="image" id="image-input" class="form-control-file" value="{{user.profileImgSrc}}" />
       </div>
 
-      {{#if user.ironhacker}}<label for="ironhacker"><input type="hidden" class="ironhacker-check" id="ironhacker"
+      {{#if user.ironhacker}}<label for="ironhacker" style="display: none;"><input type="hidden" class="ironhacker-check" id="ironhacker"
           onclick="ironhackerSignupBox()" name="ironhacker" value="true" {{#if user.ironhacker}}checked{{/if}}>I
         am an Ironhacker</label>
 
@@ -35,8 +35,6 @@
         am an Ironhacker</label>
 
       {{/if}}
-
-
 
       <button type="submit" id="updateAccount" class="small-btn blue-btn visible">Update my account</button>
 
@@ -71,17 +69,17 @@
           <div>
             <label for="input-campus">Campus*</label>
             <select name="campus" id="input-campus">
-              <option value="{{user.campus}}">--Please select your campus--</option>
-              <option value="Amsterdam">Amsterdam</option>
-              <option value="Barcelona">Barcelona</option>
-              <option value="Berlin">Berlin</option>
-              <option value="Lisboa">Lisboa</option>
-              <option value="Madrid">Madrid</option>
-              <option value="Mexico">Mexico</option>
-              <option value="Miami">Miami</option>
-              <option value="Paris">Paris</option>
-              <option value="Remote">Remote</option>
-              <option value="Sao Paulo">Sao Paulo</option>
+              <option value="">--Please select your campus--</option>
+              <option value="Amsterdam" {{#if userCampusAmsterdam}}selected{{/if}}>Amsterdam</option>
+              <option value="Barcelona" {{#if userCampusBarcelona}}selected{{/if}}>Barcelona</option>
+              <option value="Berlin" {{#if userCampusBerlin}}selected{{/if}}>Berlin</option>
+              <option value="Lisboa" {{#if userCampusLisboa}}selected{{/if}}>Lisboa</option>
+              <option value="Madrid" {{#if userCampusMadrid}}selected{{/if}}>Madrid</option>
+              <option value="Mexico" {{#if userCampusMexico}}selected{{/if}}>Mexico</option>
+              <option value="Miami" {{#if userCampusMiami}}selected{{/if}}>Miami</option>
+              <option value="Paris" {{#if userCampusParis}}selected{{/if}}>Paris</option>
+              <option value="Remote" {{#if userCampusRemote}}selected{{/if}}>Remote</option>
+              <option value="Sao Paulo" {{#if userCampusSaoPaulo}}selected{{/if}}>Sao Paulo</option>
             </select>
           </div>
 
@@ -94,18 +92,18 @@
 
         <label for="input-course">course*</label>
         <select name="course" id="input-course">
-          <option value="{{user.course}}">--What did you study?--</option>
-          <option value="Web-Dev">Web-Dev</option>
-          <option value="UX/UI">UX/UI</option>
-          <option value="Data">Data</option>
-          <option value="Cyber_Security">Cyber Security</option>
+          <option value="">--What did you study?--</option>
+          <option value="Web-Dev" {{#if courseWebDev}}selected{{/if}}>Web-Dev</option>
+          <option value="UX/UI" {{#if courseUX}}selected{{/if}}>UX/UI</option>
+          <option value="Data" {{#if courseData}}selected{{/if}}>Data</option>
+          <option value="Cyber_Security" {{#if courseCyber}}selected{{/if}}>Cyber Security</option>
         </select>
 
         <div class="flex">
           <div>
             <label for="input-format">format</label>
             <select name="format" id="input-format">
-              <option value="{{user.format}}">--What was your course format?--</option>
+              <option value="">--What was your course format?--</option>
               <option value="Part-Time">Part Time</option>
               <option value="Full-Time">Full Time</option>
             </select>

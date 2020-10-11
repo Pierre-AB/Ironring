@@ -20,6 +20,45 @@ const routeGuard = require('../configs/route-guard.config.js');
                               \$$$$$$                                         
 */
 
+/***
+ *     ######   ##        #######  ########     ###    ##       
+ *    ##    ##  ##       ##     ## ##     ##   ## ##   ##       
+ *    ##        ##       ##     ## ##     ##  ##   ##  ##       
+ *    ##   #### ##       ##     ## ########  ##     ## ##       
+ *    ##    ##  ##       ##     ## ##     ## ######### ##       
+ *    ##    ##  ##       ##     ## ##     ## ##     ## ##       
+ *     ######   ########  #######  ########  ##     ## ######## 
+ */
+
+// FUNCTION - TEST THE COURSE OF THE USER
+function userCourses(user) {
+  var courseWebDev;
+  if (user.course === "Web-Dev") {
+    courseWebDev = true;
+  }
+
+  var courseUX;
+  if (user.course === "UX/UI") {
+    courseUX = true;
+  }
+
+  // Renvoie true or undefined
+  var courseData;
+  if (user.course === "Data") {
+    courseData = true;
+  }
+
+  // Permet de renvoyer forcément true ou false
+  var courseCyber = user.course === "Cyber_Security";
+
+  return {
+    courseWebDev,
+    courseUX,
+    courseData,
+    courseCyber
+  }
+}
+
 
 // ######## ########  #### ########               ########  ########   #######        ## ########  ######  ######## 
 // ##       ##     ##  ##     ##                  ##     ## ##     ## ##     ##       ## ##       ##    ##    ##    
@@ -130,35 +169,6 @@ router.post('/projects/:id/edit', fileUploader.single('image'), (req, res, next)
 
 
 // GET - NEW PROJECT CREATION
-
-function userCourses(user) {
-  var courseWebDev;
-  if (user.course === "Web-Dev") {
-    courseWebDev = true;
-  }
-
-  var courseUX;
-  if (user.course === "UX/UI") {
-    courseUX = true;
-  }
-
-  // Renvoie true or undefined
-  var courseData;
-  if (user.course === "Data") {
-    courseData = true;
-  }
-
-  // Permet de renvoyer forcément true ou false
-  var courseCyber = user.course === "Cyber_Security";
-
-  return {
-    courseWebDev,
-    courseUX,
-    courseData,
-    courseCyber
-  }
-}
-
 router.get('/projects/new', (req, res, next) => {
   User.find({})
     .then(usersFromDb => {
@@ -175,8 +185,8 @@ router.get('/projects/new', (req, res, next) => {
     .catch(err => next(err))
 })
 
-// POST -> NEW PROJECT CREATION
 
+// POST -> NEW PROJECT CREATION
 router.post('/projects/new', fileUploader.single('image'), (req, res, next) => {
 
   const { uploader_id, owners_id, owners_mail, course, module, campus, imageUrl, name, description, year_creation, techno, url, github, rank, likes } = req.body;

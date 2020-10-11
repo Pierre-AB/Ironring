@@ -86,7 +86,7 @@
         <ul>
           <li><a href="/userProfile"><img class="user-picture" src="{{user.profileImgSrc}}" /></a></li>
           <div class="dropdown-content">
-            <li><a class="" href="/userProfile"><i class="fas fa-project-diagram"></i></i>My projects</a></li>
+            {{#if user.ironhacker}}<li><a class="" href="/userProfile"><i class="fas fa-project-diagram"></i></i>My projects</a></li>{{/if}}
             <li><a class="" href="/userEdit"><i class="fas fa-user-edit"></i>Edit profile</a></li>
             <li><a class="" href="/logout"><i class="fas fa-sign-out-alt"></i>Sign-out</a></li>
           </div>
