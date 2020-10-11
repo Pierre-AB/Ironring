@@ -194,9 +194,6 @@
 
   <div class="all-projects">
 
-    {{!-- {{projectPartial}} --}}
-
-    {{!-- A REMPLACER PAR LE {{projectPartial}}   --}}
     {{#each projects}}
     <div class="hover-effect column-effect project-card {{campus}} {{course}} {{module}}">
       <div class="figure"><a href="/projects/{{this.id}}"><img src="{{this.imageUrl}}" alt=""><span>+ View this
@@ -211,7 +208,6 @@
       </div> --}}
     </div>
     {{/each}}
-    {{!-- A REMPLACER PAR LE {{projectPartial}}   --}}
 
     {{!-- <a href="/projects/{{id}}/edit">Edit</a>
     <form action="/projects/{{id}}/delete" method="POST"><button>supprimer</button></form> --}}
