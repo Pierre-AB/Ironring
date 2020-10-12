@@ -59,6 +59,73 @@ function userCourses(user) {
   }
 }
 
+function projectRank(project) {
+  // Crée une variable en renvoyant true ou false.
+  // Sert au préremplissage du edit-profile.hbs pour preselect option
+  var projectRank1 = project.rank === "1st";
+  var projectRank2 = project.rank === "2nd";
+  var projectRank3 = project.rank === "3rd";
+  var projectRankNotRanked = project.rank === "not_ranked";
+
+  return {
+    projectRank1,
+    projectRank2,
+    projectRank3,
+    projectRankNotRanked,
+  }
+}
+
+function pojectTechno(project) {
+  // Crée une variable en renvoyant true ou false.
+  // Sert au préremplissage du edit-profile.hbs pour preselect option
+  var projectTechnoIsHTML5 = project.techno === "HTML5";
+  var projectTechnoIsCSS3 = project.techno === "CSS3";
+  var projectTechnoIsJavaScript = project.techno === "JavaScript";
+  var projectTechnoIsNodeJS = project.techno === "NodeJS";
+  var projectTechnoIsExpressJS = project.techno === "ExpressJS";
+  var projectTechnoIsMongoDB = project.techno === "MongoDB";
+  var projectTechnoIsReactJS = project.techno === "ReactJS";
+  var projectTechnoIsUI = project.techno === "UI";
+  var projectTechnoIsUX = project.techno === "UX";
+  var projectTechnoIsWithPrototypes = project.techno === "With_Prototypes";
+  var projectTechnoIsOther = project.techno === "Other_idea";
+  var projectTechnoIsPython = project.techno === "Python";
+  var projectTechnoIsMySQL = project.techno === "MySQL";
+  var projectTechnoIsStatistical = project.techno === "Statistical_Analysis";
+  var projectTechnoIsAPIConnected = project.techno === "Connected_to_API";
+  var projectTechnoIsNetTraffic = project.techno === "Net_traffic";
+  var projectTechnoIsFingerPrinting = project.techno === "Finger_printing";
+  var projectTechnoIsEncryptingData = project.techno === "Encrypting_data";
+  var projectTechnoIsBackup = project.techno === "Backup_and_recovery";
+  var projectTechnoIsAI = project.techno === "AI";
+
+
+
+  return {
+    projectTechnoIsHTML5,
+    projectTechnoIsCSS3,   
+    projectTechnoIsJavaScript,
+    projectTechnoIsNodeJS,
+    projectTechnoIsExpressJS,
+    projectTechnoIsMongoDB,
+    projectTechnoIsReactJS,
+    projectTechnoIsUI,
+    projectTechnoIsUX,
+    projectTechnoIsWithPrototypes,
+    projectTechnoIsOther,
+    projectTechnoIsPython,
+    projectTechnoIsMySQL,
+    projectTechnoIsStatistical,
+    projectTechnoIsAPIConnected,
+    projectTechnoIsNetTraffic,
+    projectTechnoIsFingerPrinting,
+    projectTechnoIsEncryptingData,
+    projectTechnoIsBackup,
+    projectTechnoIsAI
+  }
+}
+
+
 
 // ######## ########  #### ########               ########  ########   #######        ## ########  ######  ######## 
 // ##       ##     ##  ##     ##                  ##     ## ##     ## ##     ##       ## ##       ##    ##    ##    
@@ -79,7 +146,11 @@ router.get('/projects/:id/edit', (req, res, next) => {
     var courseData = req.session.currentUser.course === "Data";
 
 
-    Project.findById(req.params.id).then(projectFromDb => {
+    Project.findById(req.params.id)
+    .then(projectFromDb => {
+      var rank = projectRank(projectFromDb);
+      var techno = pojectTechno(projectFromDb);
+
       if (req.session.currentUser._id != projectFromDb.uploader_id) {
         res.redirect(`/projects/${projectFromDb._id}`);
         console.log('😭');
@@ -87,6 +158,8 @@ router.get('/projects/:id/edit', (req, res, next) => {
       }
       User.find().then(usersFromDb => {
         console.log('user', req.session.currentUser)
+
+
 
         var courseWebDev;
         if (req.session.currentUser.course === "Web-Dev") {
@@ -118,7 +191,9 @@ router.get('/projects/:id/edit', (req, res, next) => {
           users: usersFromDb,
           courseWebDev,
           courseUX,
-          courseData
+          courseData,
+          ...techno,
+          ...rank
         })
       }).catch(err => next(err))
 
