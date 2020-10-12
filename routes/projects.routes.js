@@ -139,7 +139,7 @@ router.post('/projects/:id/edit', fileUploader.single('image'), (req, res, next)
   if (req.file) {
     imageUrl = req.file.path;
   } else {
-    imageUrl = req.body.existingImage;
+    imageUrl = undi;
   }
   // console.log(req.session.currentUser)
   Project.findByIdAndUpdate(req.params.id, {
@@ -194,8 +194,15 @@ router.get('/projects/new', (req, res, next) => {
 // POST -> NEW PROJECT CREATION
 router.post('/projects/new', fileUploader.single('image'), (req, res, next) => {
 
-  const { uploader_id, owners_id, owners_mail, course, module, campus, imageUrl, name, description, year_creation, techno, url, github, rank, likes } = req.body;
+  const { uploader_id, owners_id, owners_mail, course, module, campus, name, description, year_creation, techno, url, github, rank, likes } = req.body;
   const courses = userCourses(req.session.currentUser)
+
+  let imageUrl;
+  if (req.file) {
+    imageUrl = req.file.path;
+  } else {
+    imageUrl = undefined;
+  }
 
   if (!name) {
     res.render("projects/project-new", { errorMessage: "Please enter your project's name", ...courses },
@@ -233,10 +240,11 @@ router.post('/projects/new', fileUploader.single('image'), (req, res, next) => {
     return
   }
 
-  if (!imageUrl) {
-    res.render("projects/project-new", { errorMessage: "Please add an image", ...courses });
-    return
-  }
+  // pour le moment il y a une image dans le cas où il n'y a pas de projet
+  // if (!imageUrl) {
+  //   res.render("projects/project-new", { errorMessage: "Please add an image", ...courses });
+  //   return
+  // }
 
 
 
@@ -247,7 +255,7 @@ router.post('/projects/new', fileUploader.single('image'), (req, res, next) => {
     course: req.session.currentUser.course,
     module,
     campus: req.session.currentUser.campus,
-    imageUrl: req.file && req.file.path || undefined,
+    imageUrl: req.file && req.file.path || "https://res.cloudinary.com/dbsnbga7z/image/upload/v1602529400/Ironring/empty%20project.png.png",
     name,
     description,
     year_creation,
@@ -312,6 +320,24 @@ router.get('/projects', (req, res, next) => {
       next(err); // 
     })
 })
+
+// router.get('/projects/time', (req, res, next) => {
+//   console.log('user: 🤑', req.session.currentUser)
+//   console.log("❓  ", req.query);
+//   var dateCreation = projects.year_creation;
+
+//   Project.find().sort({dateCreation:-1})
+//     .then((sortedProjectsFromDb) => {
+//       res.render('projects/projects-list', { //// vérifier le nom du fichier hbs
+//         projects: sortedProjectsFromDb,
+        
+//       })
+//     })
+//     .catch(err => {
+//       console.log('💥', err)
+//       next(err); // 
+//     })
+// })
 
 /*
 ███████ ██ ██   ████████ ███████ ██████  ███████ 
