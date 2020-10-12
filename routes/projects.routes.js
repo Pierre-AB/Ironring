@@ -135,31 +135,44 @@ router.post('/projects/:id/edit', fileUploader.single('image'), (req, res, next)
 
   const { owners_id, owners_mail, course, module, campus, name, description, year_creation, techno, url, github, rank, likes } = req.body;
 
-  let imageUrl;
-  if (req.file) {
-    imageUrl = req.file.path;
-  } else {
-    imageUrl = undi;
+
+  function editProjectInfo() {
+    Project.findByIdAndUpdate(req.params.id, {
+      owners_mail,
+      course,
+      module,
+      campus,
+      // imageUrl,
+      name,
+      description,
+      year_creation,
+      techno,
+      url,
+      github,
+      rank,
+      likes
+    }, { new: true }).then(updatedProject => {
+      console.log('title', updatedProject.title)
+      res.redirect(`/projects/${updatedProject.id}`)
+    }).catch(err => next(err))
   }
-  // console.log(req.session.currentUser)
-  Project.findByIdAndUpdate(req.params.id, {
-    owners_mail,
-    course,
-    module,
-    campus,
-    imageUrl,
-    name,
-    description,
-    year_creation,
-    techno,
-    url,
-    github,
-    rank,
-    likes
-  }, { new: true }).then(updatedProject => {
-    console.log('title', updatedProject.title)
-    res.redirect(`/projects/${updatedProject.id}`)
-  }).catch(err => next(err))
+
+
+  if (req.file) {
+    Project.findById(req.params.id).then((project) => {
+      project.imageUrl = req.file.path
+      project.save().then(() => {
+        editProjectInfo()
+      }).catch(err => next(err))
+    }).catch(err => next(err))
+  } else {
+    editProjectInfo();
+  }
+
+
+
+
+
 })
 
 
@@ -321,23 +334,18 @@ router.get('/projects', (req, res, next) => {
     })
 })
 
-// router.get('/projects/time', (req, res, next) => {
-//   console.log('user: 🤑', req.session.currentUser)
-//   console.log("❓  ", req.query);
-//   var dateCreation = projects.year_creation;
-
-//   Project.find().sort({dateCreation:-1})
-//     .then((sortedProjectsFromDb) => {
-//       res.render('projects/projects-list', { //// vérifier le nom du fichier hbs
-//         projects: sortedProjectsFromDb,
-        
-//       })
-//     })
-//     .catch(err => {
-//       console.log('💥', err)
-//       next(err); // 
-//     })
-// })
+router.get('/projects/recent', (req, res, next) => {
+  Project.find({}, {}, { sort: { createdAt: -1 }, limit: 10 })
+    .then((sortedProjectsFromDb) => {
+      res.render('projects/projects-list', { //// vérifier le nom du fichier hbs
+        projects: sortedProjectsFromDb,
+      })
+    })
+    .catch(err => {
+      console.log('💥', err)
+      next(err); // 
+    })
+})
 
 /*
 ███████ ██ ██   ████████ ███████ ██████  ███████ 

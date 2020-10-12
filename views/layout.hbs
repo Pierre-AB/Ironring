@@ -86,7 +86,8 @@
         <ul>
           <li><a href="/userProfile"><img class="user-picture" src="{{user.profileImgSrc}}" /></a></li>
           <div class="dropdown-content">
-            {{#if user.ironhacker}}<li><a class="" href="/userProfile"><i class="fas fa-project-diagram"></i></i>My projects</a></li>{{/if}}
+            {{#if user.ironhacker}}<li><a class="" href="/userProfile"><i class="fas fa-project-diagram"></i></i>My
+                projects</a></li>{{/if}}
             <li><a class="" href="/userEdit"><i class="fas fa-user-edit"></i>Edit profile</a></li>
             <li><a class="" href="/logout"><i class="fas fa-sign-out-alt"></i>Sign-out</a></li>
           </div>
@@ -107,8 +108,8 @@
 
   <!-- Left navbar -->
   <div class="left-nav">
-    <a class="ico active" href="#" onclick="activeOnClickLeft(this)"><i class="fas fa-home"></i></a>
-    <a class="ico" href="#" onclick="activeOnClickLeft(this)"><svg xmlns="http://www.w3.org/2000/svg"
+    <a class="ico active" href="/projects" onclick="activeOnClickLeft(this)"><i class="fas fa-home"></i></a>
+    <a class="ico" href="/projects/recent" onclick="activeOnClickLeft(this)"><svg xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" version="1.1" width="20"
         height="20" x="0" y="0" viewBox="0 0 500 500" xml:space="preserve" class="">
         <g>
@@ -218,18 +219,18 @@
 
   <!-- Sticky top menu -->
   <script>
-  window.onscroll = function() {stickyNav()};
+    window.onscroll = function () { stickyNav() };
 
-  var navbar = document.querySelector(".course-nav");
-  var sticky = navbar.offsetTop;
+    var navbar = document.querySelector(".course-nav");
+    var sticky = navbar.offsetTop;
 
-  function stickyNav() {
-    if (window.pageYOffset >= sticky) {
-      navbar.classList.add("sticky")
-    } else {
-      navbar.classList.remove("sticky");
+    function stickyNav() {
+      if (window.pageYOffset >= sticky) {
+        navbar.classList.add("sticky")
+      } else {
+        navbar.classList.remove("sticky");
+      }
     }
-  }
   </script>
 
   <script src="/javascripts/script.js"></script>
