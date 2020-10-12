@@ -207,10 +207,10 @@
         <p class="project-name">{{this.name}}</p></a>
         <p class="project-date">{{this.year_creation}}</p>
 
-        <form action="/likes/{{this.id}}" method=" POST">
+        {{!-- <form action="/likes/{{this.id}}" method=" POST">
           <button type="submit">+1UP</button>
           <span>{{#if projects.likes.length}} {{projects.likes.length}} '🆙' {{/if}}</span>
-        </form>
+        </form> --}}
       </div>
       {{!-- <div>
         <p class="project-likes">{{this.likes}}72<i class="fas fa-heart"></i></p>
