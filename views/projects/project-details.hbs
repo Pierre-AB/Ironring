@@ -8,11 +8,13 @@
       <p class="project-detail-module">&nbsp; Module {{project.module}}</p>
       <p class="projects-details-description">{{project.description}}</p>
 
+
       {{#if userIsUploader}}
-        <div class="flex">
-          <a class="small-btn blue-btn" href="/projects/{{project.id}}/edit">Edit</a>
-          <form action="/projects/{{project.id}}/delete" method="POST"><button class="small-btn light-btn">Delete</button></form>
-        </div>
+      <div class="flex">
+        <a class="small-btn blue-btn" href="/projects/{{project.id}}/edit">Edit</a>
+        <form action="/projects/{{project.id}}/delete" method="POST"><button class="small-btn light-btn">Delete</button>
+        </form>
+      </div>
       {{/if}}
     </div>
 
@@ -34,6 +36,16 @@
             <p class="projects-details-answer">Creation date</p>
             <p>{{project.year_creation}}</p>
           </div>
+          <div class="ico"></div>
+          <div>
+            <p class="projects-details-answer">Github</p>
+            <p><a href="{{project.github}}">{{project.github}}</a></p>
+          </div>
+          <div>
+            <p class="projects-details-answer">URL</p>
+            <p><a href="{{project.url}}">{{project.url}}</a></p>
+          </div>
+
         </div>
       </div>
 
@@ -46,7 +58,7 @@
           </div>
         </div>
       </div>
-      
+
     </div>
 
   </div>

@@ -236,7 +236,7 @@ router.post('/projects/new', fileUploader.single('image'), (req, res, next) => {
   if (!imageUrl) {
     res.render("projects/project-new", { errorMessage: "Please add an image", ...courses });
     return
-  }  
+  }
 
 
 
@@ -329,6 +329,9 @@ router.get('/projects/q', function (req, res) {
   if (req.query.module) query.module = req.query.module;
   if (req.query.campus) query.campus = req.query.campus;
   if (req.query.techno) query.techno = req.query.techno;
+  console.log(`{$in: ${query.techno}}`);
+
+
   if (req.query.course) query.course = req.query.course;
   if (req.query.rank) query.rank = req.query.rank;
 
