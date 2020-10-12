@@ -328,10 +328,7 @@ router.get('/projects/q', function (req, res) {
   var query = {};
   if (req.query.module) query.module = req.query.module;
   if (req.query.campus) query.campus = req.query.campus;
-  if (req.query.techno) query.techno = req.query.techno;
-  console.log(`{$in: ${query.techno}}`);
-
-
+  if (req.query.techno) query.techno = { $in: req.query.techno };
   if (req.query.course) query.course = req.query.course;
   if (req.query.rank) query.rank = req.query.rank;
 
