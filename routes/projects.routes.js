@@ -364,7 +364,7 @@ router.post('/projects/new', fileUploader.single('image'), (req, res, next) => {
   }
 
   if (!url && !github) {
-    res.render("projects/project-new", { errorMessage: "Please enter at least your github or your URL", ...courses });
+    res.render("projects/project-new", { errorMessage: "Please enter your github or your URL", ...courses });
     return
   }
 
