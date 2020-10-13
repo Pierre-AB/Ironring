@@ -21,15 +21,73 @@
     <div class="project-detail-col2">
       <p class="projects-details-name">Details</p>
 
-      <div class="project-detail-int-col" style="margin-right: 5vw;">
-        <div class="flex" style="padding-bottom: 2vh; margin-top: 1.5vh;">
-          <div class="ico"><i class="fas fa-user"></i></div>
-          <div>
-            <p class="projects-details-answer">Creator</p>
-            <p><a href="/creatorProfile/{{creator._id}}">{{creator.firstName}} {{creator.lastName}}</a></p>
-          </div>
-        </div>
+      <!-- TABLEAU DETAILS -->
+      <table style="width: 100%;">
 
+        <!-- Ligne Creator -->
+        <tr>
+          <td>
+            <span class="ico"><i class="fas fa-user"></i></span>
+            <span class="projects-details-answer">Creator</span>
+          </td>
+          <td>
+            <a href="/creatorProfile/{{creator._id}}">{{creator.firstName}} {{creator.lastName}}</a>
+          </td>
+        </tr>
+
+        <!-- Ligne Creation date -->
+        <tr>
+          <td>
+            <span class="ico"><i class="fas fa-calendar"></i></span>
+            <span class="projects-details-answer">Creation date</span>
+          </td>
+          <td>
+            {{project.year_creation}}
+          </td>
+        </tr>
+
+        <!-- Ligne Tech used -->
+        <tr>
+          <td>
+            <span class="ico"><i class="fas fa-microchip"></i></span>
+            <span class="projects-details-answer">Tech used</span>
+          </td>
+          <td>
+            {{project.techno}}
+          </td>
+        </tr>
+
+        {{#if project.github}}
+        <!-- Ligne Github -->
+        <tr>
+          <td>
+            <span class="ico"><i class="fas fa-database"></i></span>
+            <span class="projects-details-answer">Github</span>
+          </td>
+          <td>
+            <a href="{{project.github}}">{{project.github}}</a>
+          </td>
+        </tr>
+        {{/if}}
+    
+        {{#if project.url}}
+        <!-- Ligne URL -->
+        <tr>
+          <td>
+            <span class="ico"><i class="fas fa-tv"></i></span>
+            <span class="projects-details-answer">URL</span>
+          </td>
+          <td>
+            <a href="{{project.url}}">{{project.url}}</a>
+          </td>
+        </tr>
+        {{/if}}
+      </table>
+
+      
+      
+
+      {{!-- <div class="project-detail-int-col" style="margin-right: 5vw;">
         <div class="flex">
           <div class="ico"><i class="fas fa-calendar"></i></div>
           <div>
@@ -38,43 +96,53 @@
           </div>
           <div class="ico"></div>
         </div>
-      </div>
-
-      <div class="project-detail-int-col">
-        <div class="flex">
-          <div class="ico"><i class="fas fa-microchip"></i></div>
-          <div>
-            <p class="projects-details-answer">Tech used</p>
-            <p>{{project.techno}}</p>
-          </div>
+      </div> --}}
+{{!-- 
+      <div class="flex">
+        <div class="ico"><i class="fas fa-microchip"></i></div>
+        <div>
+          <p class="projects-details-answer">Tech used</p>
+          <p>{{project.techno}}</p>
         </div>
-      </div>
+      </div> --}}
 
-      {{#if project.github}}
-      <div class="project-detail-int-col">
-        <div class="flex">
-          <div class="ico"><i class="fas fa-database"></i></div>
-          <div>
-            <p class="projects-details-answer">Github</p>
-            <p><a href="{{project.github}}">{{project.github}}</a></p>
-          </div>
-        </div>
-      </div>
-      {{/if}}
 
-      {{#if project.url}}
-      <div class="project-detail-int-col">
-        <div class="flex">
-          <div class="ico"><i class="fas fa-tv"></i></div>
-          <div>
-            <p class="projects-details-answer">URL</p>
-            <p><a href="{{project.url}}">{{project.url}}</a></p>
+      {{!-- <div class="project-detail-int-col">
+
+        {{#if project.github}}
+          <div class="flex">
+            <div class="ico"><i class="fas fa-database"></i></div>
+            <div>
+              <p class="projects-details-answer">Github</p>
+              <p><a href="{{project.github}}">{{project.github}}</a></p>
+            </div>
           </div>
-        </div>
-      </div>
-      {{/if}}
+        {{/if}} --}}
+{{!-- 
+        {{#if project.url}}
+          <div class="flex">
+            <div class="ico"><i class="fas fa-tv"></i></div>
+            <div>
+              <p class="projects-details-answer">URL</p>
+              <p><a href="{{project.url}}">{{project.url}}</a></p>
+            </div>
+          </div>
+        {{/if}} --}}
+
+      {{!-- </div> --}}
 
     </div>
 
   </div>
 </div>
+
+
+
+{{!-- <!-- BLOC CREATOR -->
+<div class="flex" style="padding-bottom: 2vh; margin-top: 1.5vh;">
+  <div class="ico"><i class="fas fa-user"></i></div>
+  <div>
+    <p class="projects-details-answer">Creator</p>
+    <p><a href="/creatorProfile/{{creator._id}}">{{creator.firstName}} {{creator.lastName}}</a></p>
+  </div>
+</div> --}}
