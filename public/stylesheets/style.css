@@ -644,6 +644,9 @@ input[type="email"]:read-only, input[type="email"]:-moz-read-only {
 .project-detail-int-col a {
   color: inherit; }
 
+.project-detail-int-col a:hover {
+  color: #2DC5FA; }
+
 .project-detail-data {
   display: flex;
   flex-direction: row; }

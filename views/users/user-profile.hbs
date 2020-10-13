@@ -14,11 +14,7 @@
       <p class="profile-campus">Campus: {{user.campus}}</p>
       {{#if user.gitHub}}<p>Github:<a href="{{user.gitHub}}"> {{user.gitHub}}</a></p>{{/if}}
       {{#if user.linkedIn}}<p>LinkedIn:<a href="{{user.linkedIn}}"> {{user.linkedIn}}</a></p>{{/if}}
-    </div>
-
-    {{!-- Edit btn only if owner of the profile --}}
-    <div style="position: absolute;right: 10vh;">
-      <a class="small-btn" href="/userEdit">Edit your profile</a>
+      <a class="small-btn blue-btn" href="/userEdit">Edit your profile</a>
     </div>
 
   </div>

@@ -75,7 +75,7 @@ function projectRank(project) {
   }
 }
 
-function pojectTechno(project) {
+function projectTechno(project) {
   // Crée une variable en renvoyant true ou false.
   // Sert au préremplissage du edit-profile.hbs pour preselect option
   var projectTechnoIsHTML5 = project.techno === "HTML5";
@@ -98,8 +98,6 @@ function pojectTechno(project) {
   var projectTechnoIsEncryptingData = project.techno === "Encrypting_data";
   var projectTechnoIsBackup = project.techno === "Backup_and_recovery";
   var projectTechnoIsAI = project.techno === "AI";
-
-
 
   return {
     projectTechnoIsHTML5,
@@ -125,6 +123,54 @@ function pojectTechno(project) {
   }
 }
 
+function projectModule(project, user) {
+  // Crée une variable en renvoyant true ou false.
+  // Sert au préremplissage du project-edit.hbs pour preselect option
+
+  if (user.course === "Web-Dev") {
+    var projectModuleIsRespDes = project.module === "1";
+    var projectModuleIsBackEnd = project.module === "2";
+    var projectModuleIsFrontEnd = project.module === "3";
+    var projectModuleIsWDPersonal = project.module === "Personal";
+  } else if (user.course === 'UX/UI') {
+    var projectModuleIsUX = project.module === "1";
+    var projectModuleIsUI = project.module === "2";
+    var projectModuleIsDesign = project.module === "3";
+    var projectModuleIsUXPersonal = project.module === "Personal";
+  } else if (user.course === "Data") {
+    var projectModuleIsSQL = project.module === "1";
+    var projectModuleIsData = project.module === "2";
+    var projectModuleIsML = project.module === "3";
+    var projectModuleIsDataPersonal = project.module === "Personal";
+  } else if (user.course === "Cyber_Security") {
+    var projectModuleIsBasics = project.module === "1";
+    var projectModuleIsSecurity = project.module === "2";
+    var projectModuleIsProjects = project.module === "3";
+    var projectModuleIsCyberPersonal = project.module === "Personal";
+  }
+
+
+  return {
+    projectModuleIsRespDes,
+    projectModuleIsBackEnd,   
+    projectModuleIsFrontEnd,
+    projectModuleIsWDPersonal,
+    projectModuleIsUX,
+    projectModuleIsUI,
+    projectModuleIsDesign,
+    projectModuleIsUXPersonal,
+    projectModuleIsSQL,
+    projectModuleIsData,
+    projectModuleIsML,
+    projectModuleIsDataPersonal,
+    projectModuleIsBasics,
+    projectModuleIsSecurity,
+    projectModuleIsProjects,
+    projectModuleIsCyberPersonal
+  }
+}
+
+
 
 
 // ######## ########  #### ########               ########  ########   #######        ## ########  ######  ######## 
@@ -149,7 +195,7 @@ router.get('/projects/:id/edit', (req, res, next) => {
     Project.findById(req.params.id)
     .then(projectFromDb => {
       var rank = projectRank(projectFromDb);
-      var techno = pojectTechno(projectFromDb);
+      var techno = projectTechno(projectFromDb);
 
       if (req.session.currentUser._id != projectFromDb.uploader_id) {
         res.redirect(`/projects/${projectFromDb._id}`);
@@ -158,8 +204,7 @@ router.get('/projects/:id/edit', (req, res, next) => {
       }
       User.find().then(usersFromDb => {
         console.log('user', req.session.currentUser)
-
-
+        var project = projectModule(projectFromDb, req.session.currentUser);
 
         var courseWebDev;
         if (req.session.currentUser.course === "Web-Dev") {
@@ -193,7 +238,8 @@ router.get('/projects/:id/edit', (req, res, next) => {
           courseUX,
           courseData,
           ...techno,
-          ...rank
+          ...rank,
+          // ...project
         })
       }).catch(err => next(err))
 

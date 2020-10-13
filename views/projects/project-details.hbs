@@ -50,7 +50,8 @@
         </div>
       </div>
 
-            <div class="project-detail-int-col">
+      {{#if project.github}}
+      <div class="project-detail-int-col">
         <div class="flex">
           <div class="ico"><i class="fas fa-database"></i></div>
           <div>
@@ -59,8 +60,10 @@
           </div>
         </div>
       </div>
+      {{/if}}
 
-            <div class="project-detail-int-col">
+      {{#if project.url}}
+      <div class="project-detail-int-col">
         <div class="flex">
           <div class="ico"><i class="fas fa-tv"></i></div>
           <div>
@@ -69,6 +72,7 @@
           </div>
         </div>
       </div>
+      {{/if}}
 
     </div>
 

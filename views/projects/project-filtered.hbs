@@ -14,7 +14,6 @@
         <select name="module" id="filter-module" class="selectpicker" data-style="btn-light" multiple>
           <!-- Si filtre WebDev -->
           {{#if courseWebDevFilter}}
-          <!-- ATTENTION MAUVAIS FILTRE !! -->
           <option value="1">1: Responsive design</option>
           <option value="2">2: Back-end</option>
           <option value="3">3: Front-end</option>
@@ -22,7 +21,6 @@
           {{else}}
           <!-- Si filtre UX/UI -->
           {{#if courseUXFilter}}
-          <!-- ATTENTION MAUVAIS FILTRE !! -->
           <option value="1">1: User experience</option>
           <option value="2">2: Design user interfaces</option>
           <option value="3">3: Design implementation</option>
@@ -30,7 +28,6 @@
           {{else}}
           <!-- Si filtre Data Analyse -->
           {{#if courseDataFilter}}
-          <!-- ATTENTION MAUVAIS FILTRE !! -->
           <option value="1">1: SQL to and Python</option>
           <option value="2">2: Advanced Data Analytics</option>
           <option value="3">3: Machine learning</option>
@@ -38,7 +35,6 @@
           {{else}}
           <!-- Si filtre Cybersecurity -->
           {{#if courseCyberFilter}}
-          <!-- ATTENTION MAUVAIS FILTRE !! -->
           <option value="1">1: Basics of Cybersecurity</option>
           <option value="2">2: Security and Threats</option>
           <option value="3">3: Real projects</option>
@@ -110,7 +106,6 @@
 
         <!-- Si filtre WebDev -->
         {{#if courseWebDevFilter}}
-        <!-- ATTENTION MAUVAIS FILTRE !! -->
         <select name="techno" id="filter-techno" class="selectpicker" data-style="btn-light" multiple>
           <option>HTML5</option>
           <option>CSS3</option>
@@ -124,7 +119,6 @@
         {{else}}
         <!-- Si filtre UX/UI -->
         {{#if courseUXFilter}}
-        <!-- ATTENTION MAUVAIS FILTRE !! -->
         <select name="techno" id="filter-techno" class="selectpicker" data-style="btn-light" multiple>
           <option>UI</option>
           <option>UX</option>
@@ -136,7 +130,6 @@
         {{else}}
         <!-- Si filtre Data Analyse -->
         {{#if courseDataFilter}}
-        <!-- ATTENTION MAUVAIS FILTRE !! -->
         <select name="techno" id="filter-techno" class="selectpicker" data-style="btn-light" multiple>
           <option>Python</option>
           <option>MySQL</option>
@@ -148,7 +141,6 @@
         {{else}}
         <!-- Si filtre Cybersecurity -->
         {{#if courseCyberFilter}}
-        <!-- ATTENTION MAUVAIS FILTRE !! -->
         <select name="techno" id="filter-techno" class="selectpicker" data-style="btn-light" multiple>
           <option>Around networking traffic</option>
           <option>Around fingerprinting</option>
@@ -204,22 +196,24 @@
   <div class="all-projects">
 
     {{#each filteredProject}}
-    <div class="project-card {{campus}} {{course}} {{module}}">
-      <a href="/projects/{{this.id}}"><img src="{{this.imageUrl}}" alt=""></a>
+    <div class="hover-effect column-effect project-card {{campus}} {{course}} {{module}}">
+      <div class="figure"><a href="/projects/{{this.id}}"><img src="{{this.imageUrl}}" alt=""><span>+ View this
+            project</span></div></a>
       <div>
-        <a href="/projects/{{this.id}}"></a>
+        <a href="/projects/{{this.id}}">
         <p class="project-name">{{this.name}}</p></a>
         <p class="project-date">{{this.year_creation}}</p>
+
+        {{!-- <form action="/likes/{{this.id}}" method=" POST">
+          <button type="submit">+1UP</button>
+          <span>{{#if projects.likes.length}} {{projects.likes.length}} '🆙' {{/if}}</span>
+        </form> --}}
       </div>
       {{!-- <div>
         <p class="project-likes">{{this.likes}}72<i class="fas fa-heart"></i></p>
       </div> --}}
     </div>
     {{/each}}
-
-    {{!-- <a href="/projects/{{id}}/edit">Edit</a>
-    <form action="/projects/{{id}}/delete" method="POST"><button>supprimer</button></form> --}}
-
 
   </div>
 </div>
