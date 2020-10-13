@@ -78,26 +78,26 @@ function projectRank(project) {
 function projectTechno(project) {
   // Crée une variable en renvoyant true ou false.
   // Sert au préremplissage du edit-profile.hbs pour preselect option
-  var projectTechnoIsHTML5 = project.techno === "HTML5";
-  var projectTechnoIsCSS3 = project.techno === "CSS3";
-  var projectTechnoIsJavaScript = project.techno === "JavaScript";
-  var projectTechnoIsNodeJS = project.techno === "NodeJS";
-  var projectTechnoIsExpressJS = project.techno === "ExpressJS";
-  var projectTechnoIsMongoDB = project.techno === "MongoDB";
-  var projectTechnoIsReactJS = project.techno === "ReactJS";
-  var projectTechnoIsUI = project.techno === "UI";
-  var projectTechnoIsUX = project.techno === "UX";
-  var projectTechnoIsWithPrototypes = project.techno === "With_Prototypes";
-  var projectTechnoIsOther = project.techno === "Other_idea";
-  var projectTechnoIsPython = project.techno === "Python";
-  var projectTechnoIsMySQL = project.techno === "MySQL";
-  var projectTechnoIsStatistical = project.techno === "Statistical_Analysis";
-  var projectTechnoIsAPIConnected = project.techno === "Connected_to_API";
-  var projectTechnoIsNetTraffic = project.techno === "Net_traffic";
-  var projectTechnoIsFingerPrinting = project.techno === "Finger_printing";
-  var projectTechnoIsEncryptingData = project.techno === "Encrypting_data";
-  var projectTechnoIsBackup = project.techno === "Backup_and_recovery";
-  var projectTechnoIsAI = project.techno === "AI";
+  var projectTechnoIsHTML5 = project.techno.includes("HTML5");
+  var projectTechnoIsCSS3 = project.techno.includes("CSS3");
+  var projectTechnoIsJavaScript = project.techno.includes("JavaScript");
+  var projectTechnoIsNodeJS = project.techno.includes("NodeJS");
+  var projectTechnoIsExpressJS = project.techno.includes("ExpressJS");
+  var projectTechnoIsMongoDB = project.techno.includes("MongoDB");
+  var projectTechnoIsReactJS = project.techno.includes("ReactJS");
+  var projectTechnoIsUI = project.techno.includes("UI");
+  var projectTechnoIsUX = project.techno.includes("UX");
+  var projectTechnoIsWithPrototypes = project.techno.includes("With_Prototypes");
+  var projectTechnoIsOther = project.techno.includes("Other_idea");
+  var projectTechnoIsPython = project.techno.includes("Python");
+  var projectTechnoIsMySQL = project.techno.includes("MySQL");
+  var projectTechnoIsStatistical = project.techno.includes("Statistical_Analysis");
+  var projectTechnoIsAPIConnected = project.techno.includes("Connected_to_API");
+  var projectTechnoIsNetTraffic = project.techno.includes("Net_traffic");
+  var projectTechnoIsFingerPrinting = project.techno.includes("Finger_printing");
+  var projectTechnoIsEncryptingData = project.techno.includes("Encrypting_data");
+  var projectTechnoIsBackup = project.techno.includes("Backup_and_recovery");
+  var projectTechnoIsAI = project.techno.includes("AI");
 
   return {
     projectTechnoIsHTML5,
@@ -149,7 +149,6 @@ function projectModule(project, user) {
     var projectModuleIsCyberPersonal = project.module === "Personal";
   }
 
-
   return {
     projectModuleIsRespDes,
     projectModuleIsBackEnd,   
@@ -196,6 +195,7 @@ router.get('/projects/:id/edit', (req, res, next) => {
     .then(projectFromDb => {
       var rank = projectRank(projectFromDb);
       var techno = projectTechno(projectFromDb);
+      var project = projectModule(projectFromDb, req.session.currentUser);
 
       if (req.session.currentUser._id != projectFromDb.uploader_id) {
         res.redirect(`/projects/${projectFromDb._id}`);
@@ -204,7 +204,6 @@ router.get('/projects/:id/edit', (req, res, next) => {
       }
       User.find().then(usersFromDb => {
         console.log('user', req.session.currentUser)
-        var project = projectModule(projectFromDb, req.session.currentUser);
 
         var courseWebDev;
         if (req.session.currentUser.course === "Web-Dev") {
@@ -239,7 +238,7 @@ router.get('/projects/:id/edit', (req, res, next) => {
           courseData,
           ...techno,
           ...rank,
-          // ...project
+          ...project
         })
       }).catch(err => next(err))
 
@@ -289,11 +288,6 @@ router.post('/projects/:id/edit', fileUploader.single('image'), (req, res, next)
   } else {
     editProjectInfo();
   }
-
-
-
-
-
 })
 
 

@@ -119,7 +119,7 @@ ol, ul {
   align-items: center;
   justify-content: space-between;
   padding: 0 2vw;
-  overflow: hidden;
+  // overflow: hidden; // Fait bugger le menu
 }
 
 .top-nav-items {
