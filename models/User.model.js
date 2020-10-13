@@ -38,7 +38,7 @@ const userSchema = new Schema(
       type: String,
       enum: ['Amsterdam', 'Barcelona', 'Berlin', 'Lisboa', 'Madrid', 'Mexico', 'Miami', 'Paris', 'Remote', 'Sao_Paulo']
     },
-    format: { type: String, /*enum: ['Full-Time', 'Part-Time']*/ }, // PART-TIME OU FULL-TIME
+    format: { type: String/*, enum: ['Full-Time', 'Part-Time']*/ }, // PART-TIME OU FULL-TIME
     current_location: String, //WHAT LOCATION ATTRIBUTE IS ABOUT?
     projects: [{
       type: Schema.Types.ObjectId,

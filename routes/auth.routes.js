@@ -55,8 +55,8 @@ function userCampus(user) {
 function userFormat(user) {
   // Crée une variable en renvoyant true ou false.
   // Sert au préremplissage du edit-profile.hbs pour preselect option
-  var userFormatPT = user.campus === "Full-Time";
-  var userFormatFT = user.campus === "Part-Time";
+  var userFormatPT = user.format === "Full-Time";
+  var userFormatFT = user.format === "Part-Time";
 
   return {
     userFormatPT,
@@ -304,6 +304,7 @@ router.get('/userEdit', routeGuard, (req, res, next) => {
       const campus = userCampus(req.session.currentUser);
       const courses = userCourses(req.session.currentUser);
       const format = userFormat(req.session.currentUser);
+
       res.render('users/user-edit', {
         user: req.session.currentUser,
         ...campus,
